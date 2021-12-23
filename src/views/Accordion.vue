@@ -3,11 +3,8 @@
   <AbritesGrid>
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-selector">
-        <a
-          href="${Config.componentsUrl}/lib/accordion/accordion.dart"
-          target="_blank"
-          rel="noopener"
-          >AbritesAccordion</a
+        <router-link :to="`${Config.componentsUrl}/lib/accordion/Accordion.vue`"
+          >AbritesAccordion</router-link
         >
         <span>{{'<AbritesAccordion></AbritesAccordion>'}}</span>
       </h2>
@@ -62,11 +59,9 @@
     </div>
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-panel-selector">
-        <a
-          href="${Config.componentsUrl}/lib/accordion/accordion_panel.dart"
-          target="_blank"
-          rel="noopener"
-          >AbritesAccordionPanel</a
+        <router-link
+          :to="`${Config.componentsUrl}/lib/accordion-panel/AccordionPanel.vue`"
+          >AbritesAccordionPanel</router-link
         >
         <span>{{`<AbritesAccordion></AbritesAccordion>`}}</span>
       </h2>
@@ -240,6 +235,7 @@
 
 <script lang="ts" setup>
 import Preview from "./shared/Preview.vue";
+import Config from "../utils/app-config";
 
 const themesExample = `
   <AbritesAccordionPanel label="Default">

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Preview } from "./shared/Preview.vue";
+import Config from "../utils/app-config";
 
 const filledExample = `
   <AbritesButton>Default</AbritesButton>
@@ -266,11 +267,8 @@ const buttonsGroupExample = `
 <template>
   <div>Button</div>
   <h2 class="component-title" id="selector">
-    <a
-      href="${Config.componentsUrl}/lib/button/button:scriptExample target="
-      _blank
-      rel="noopener"
-      >AbritesButton</a
+    <router-link :to="`${Config.componentsUrl}/lib/button/Button.vue`"
+      >AbritesButton</router-link
     >
     <span>{{ `<AbritesButton></AbritesButton>` }}</span>
   </h2>

@@ -2,11 +2,8 @@
   <AbritesGrid>
     <div class="col-lg-4">
       <h2 class="component-title" id="tabs-selector">
-        <a
-          href="${Config.componentsUrl}/lib/tabs/tabs.dart"
-          target="_blank"
-          rel="noopener"
-          >AbritesTabs</a
+        <router-link :to="`${Config.componentsUrl}/lib/tabs/Tabs.vue`"
+          >AbritesTabs</router-link
         >
         <span>{{'<abrites-tabs></abrites-tabs>'}}</span>
       </h2>
@@ -38,11 +35,8 @@
     </div>
     <div class="col-lg-4">
       <h2 class="component-title" id="tab-panel-selector">
-        <a
-          href="${Config.componentsUrl}/lib/tabs/tab_panel.dart"
-          target="_blank"
-          rel="noopener"
-          >AbritesTabPanel</a
+        <router-link :to="`${Config.componentsUrl}/lib/tab-panel/TabPanel.vue`"
+          >AbritesTabPanel</router-link
         >
         <span>{{'<abrites-tab-panel></abrites-tab-panel>'}}</span>
       </h2>
@@ -86,11 +80,9 @@
     </div>
     <div class="col-lg-4">
       <h2 class="component-title" id="tabs-header-selector">
-        <a
-          href="${Config.componentsUrl}/lib/tabs/tabs_header.dart"
-          target="_blank"
-          rel="noopener"
-          >AbritesTabsHeader</a
+        <router-link
+          :to="`${Config.componentsUrl}/lib/tab-header/TabHeader.vue`"
+          >AbritesTabsHeader</router-link
         >
         <span>{{'<abrites-tabs-header></abrites-tabs-header>'}}</span>
       </h2>
@@ -147,11 +139,14 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import Preview from "./shared/Preview.vue";
+import Config from "../utils/app-config";
+
 export default defineComponent({
   name: "Tabs",
   components: { Preview },
   data() {
     return {
+      Config,
       htmlDefaultExample: `    
     <AbritesTabs>
       <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>

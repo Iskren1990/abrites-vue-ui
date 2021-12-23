@@ -2,11 +2,8 @@
   <div>Alert</div>
 
   <h2 class="component-title" id="selector">
-    <a
-      href="${Config.componentsUrl}/lib/alert/alert.dart"
-      target="_blank"
-      rel="noopener"
-      >AbritesAlert</a
+    <router-link :to="`${Config.componentsUrl}/lib/alert/Alert.vue`"
+      >AbritesAlert</router-link
     >
     <span>{{'<AbritesAlert></AbritesAlert>'}}</span>
   </h2>
@@ -28,7 +25,8 @@
   <Preview title="Colors Example" :htmlExample="htmlColorsExample"> </Preview>
 </template>
 
-<script>
+<script lang="ts">
+import Config from "../utils/app-config";
 import { defineComponent } from "@vue/runtime-core";
 import Preview from "./shared/Preview.vue";
 
@@ -37,6 +35,7 @@ export default defineComponent({
   components: { Preview },
   data() {
     return {
+      Config,
       htmlColorsExample: `
     <AbritesAlert>
       <p>Lorem ipsum dolor sit amet...</p>

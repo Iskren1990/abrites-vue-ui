@@ -2,11 +2,8 @@
   <div>Animated If</div>
 
   <h2 class="component-title" id="selector">
-    <a
-      href="${Config.componentsUrl}/lib/animated_if/animated_if.dart"
-      target="_blank"
-      rel="noopener"
-      >AbritesAnimatedIf</a
+    <router-link :to="`${Config.componentsUrl}/lib/animated_if/AnimatedIf.dart`"
+      >AbritesAnimatedIf</router-link
     >
     <span>*abritesAnimatedIf, [abritesAnimatedIf]</span>
   </h2>
@@ -78,6 +75,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/runtime-core";
 import { Preview } from "./shared/Preview.vue";
+import Config from "../utils/app-config";
 
 export default defineComponent({
   name: "AnimatedIfPage",
@@ -85,6 +83,7 @@ export default defineComponent({
 
   data() {
     return {
+      Config,
       htmlExample: `
   <div>
     <AbritesButton @trigger="toggle()">Toggle content</AbritesButton>

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import Preview from "./shared/Preview.vue";
+import Config from "../utils/app-config";
 
 const htmlExample = `
     <AbritesDrawer ref="drawer">
@@ -105,11 +106,8 @@ const setupFn = function script() {
 <template>
   <div>Drawer</div>
   <h2 class="component-title" id="selector">
-    <a
-      href="${Config.componentsUrl}/lib/drawer/drawer.vue"
-      target="_blank"
-      rel="noopener"
-      >AbritesDrawer</a
+    <router-link :to="`${Config.componentsUrl}/lib/drawer/Drawer.vue`"
+      >AbritesDrawer</router-link
     >
     <span>{{'<AbritesDrawer></AbritesDrawer>'}}</span>
   </h2>
