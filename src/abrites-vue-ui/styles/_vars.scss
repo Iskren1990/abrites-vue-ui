@@ -1,0 +1,56 @@
+// Global variables
+// -----------------------------------------------------------------------------
+
+// texts
+$txt-bold:              500 !default;
+$txt-primary-color:     #fff !default;
+$txt-alternative-color: #1d1e20 !default;
+$txt-secondary-color:   #a7a7ab !default;
+$txt-hint-color:        #707078 !default;
+$txt-disabled-color:    #44444b !default;
+
+// misc (buttons, links, etc.)
+$base-color:         #202123 !default;
+$panel-color:        #27282b !default;
+$accent-color:       #fedd17 !default;
+$success-color:      #41cc7a !default;
+$danger-color:       #cc4141 !default;
+$warning-color:      #fea416 !default;
+$scrollbar-color:    $accent-color !default;
+$overlay-color:      rgba(darken($base-color, 10%), 0.6) !default;
+$hover-color:        rgba(225, 225, 255, 0.05) !default;
+$active-color:       rgba(225, 230, 255, 0.08) !default;
+$active-focus-color: rgba(230, 230, 255, 0.15) !default;
+$border-color:       rgba(225, 225, 255, 0.06) !default;
+$disabled-color:     rgba(225, 225, 255, 0.06) !default;
+$field-border-color: rgba(240, 240, 255, 0.15) !default;
+
+// ----
+
+$base-spacing: 30px !default;
+$border-radius: 2px !default;
+$transition-speed: 0.15s !default;
+
+// fields
+$field-height: 40px !default;
+$field-height-small: 30px !default;
+$field-height-large: 50px !default;
+
+// buttons
+$button-height: 40px !default;
+$button-height-small: 30px !default;
+$button-height-large: 50px !default;
+
+// icons
+$icon-size: 24px !default;
+$icon-size-small: 1.5em !default;
+$icon-size-large: 2.6em !default;
+
+// grid
+$grid-sm-breakpoint: 576px !default;
+$grid-md-breakpoint: 768px !default;
+$grid-lg-breakpoint: 992px !default;
+
+// drawer
+$drawer-width: 250px !default;
+$drawer-breakpoint: 1200px;

@@ -1,0 +1,11 @@
+@import 'mdc_functions';
+@import 'vars';
+
+// Returns the most suitable contrast color - $ligt-color or $dark-color.
+@function contrast-color($color, $light-color: $txt-primary-color, $dark-color: $txt-alternative-color) {
+  @if (mdc-theme-contrast($color, $light-color) > mdc-theme-contrast($color, $dark-color)) {
+    @return $light-color;
+  }
+
+  @return $dark-color;
+}

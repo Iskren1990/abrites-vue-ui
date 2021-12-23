@@ -1,0 +1,416 @@
+@use "sass:math";
+@import 'vars';
+
+// this mixin is usually intented to be include at the root level in your main 'web/styles.scss'
+@mixin base-layout() {
+  html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-size: 14px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    min-width: 320px;
+    background: $base-color;
+    color: $txt-secondary-color;
+  }
+
+  // custom scrollbar
+  @include scrollbar($width: 7px);
+
+  // text selection
+  ::-moz-selection { background-color: rgba($accent-color, 0.2); }
+  ::selection { background-color: rgba($accent-color, 0.2); }
+
+  // elements focus outline
+  * { outline-color: rgba(255,255,255, 0.2); }
+
+  img {
+    border: 0;
+  }
+  figure {
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  strong {
+    font-weight: $txt-bold;
+  }
+  p {
+    line-height: 1.5em;
+    margin: 1em 0;
+  }
+  pre {
+    margin: 0;
+  }
+  h1 {
+    @include h1();
+  }
+  h2 {
+    @include h2();
+  }
+  h3 {
+    @include h3();
+  }
+  h4 {
+    @include h4();
+  }
+  h5 {
+    @include h5();
+  }
+  h6 {
+    @include h6();
+  }
+  ul, ol {
+    li {
+      margin: 5px 0;
+      p {
+        margin-top: 5px;
+      }
+    }
+  }
+  hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    display: block;
+    margin: $base-spacing 0;
+    background: $border-color;
+  }
+  code:not([class*=language-]) {
+    background: $hover-color;
+    font-family: monospace;
+    padding: 2px 3px;
+    border-radius: $border-radius;
+  }
+
+  // dnd helper styles
+  .dnd-dragging {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .dnd-dragging,
+  .dnd-drag-occurring {
+    cursor: default;
+    cursor: grabbing;
+  }
+  .dnd-elem[style*="transform:"] { // ghost
+    opacity: 0.6;
+    background: $base-color;
+    box-shadow: 0px 0px 0px 2px $accent-color;
+  }
+
+  // other commonly used elements
+  .flex-fill {
+    flex-grow: 1;
+  }
+  .flex-clear {
+    clear: both;
+    flex-basis: 100%;
+  }
+
+  @include margins($selector: '');
+}
+
+@mixin normalize-host() {
+  box-sizing: border-box;
+  ::v-deep(*) {
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+  }
+}
+
+@mixin children-spacing($spacing: math.div($base-spacing, 2)) {
+  & * {
+    margin-left: $spacing;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin shadowize($additional...) {
+  box-shadow: 0px 2px 12px 0px rgba(#000, 0.15), $additional;
+}
+
+@mixin shadowize-floated($additional...) {
+  box-shadow: 0px 5px 20px 0px rgba(#000, 0.3), $additional;
+}
+
+@mixin margins($base: 5px, $max: 10, $selector: &) {
+  @for $i from 0 through 10 {
+    $factor: ($base) * $i;
+    #{$selector}.m-t-#{math.div($factor, 1px)} { margin-top: $factor !important; }
+    #{$selector}.m-b-#{math.div($factor, 1px)} { margin-bottom: $factor !important; }
+    #{$selector}.m-l-#{math.div($factor, 1px)} { margin-left: $factor !important; }
+    #{$selector}.m-r-#{math.div($factor, 1px)} { margin-right: $factor !important; }
+  }
+}
+
+@mixin h1($with-spacing: true) {
+  font-weight: $txt-bold;
+  font-size: 1.5rem;
+  @if $with-spacing {
+    margin: (math.div($base-spacing, 2)) 0;
+  }
+}
+@mixin h2($with-spacing: true) {
+  font-weight: $txt-bold;
+  font-size: 1.4rem;
+  @if $with-spacing {
+    margin: (math.div($base-spacing, 2)) 0;
+  }
+}
+@mixin h3($with-spacing: true) {
+  font-weight: $txt-bold;
+  font-size: 1.3rem;
+  @if $with-spacing {
+    margin: (math.div($base-spacing, 2)) 0;
+  }
+}
+@mixin h4($with-spacing: true) {
+  font-weight: $txt-bold;
+  font-size: 1.2rem;
+  @if $with-spacing {
+    margin: (math.div($base-spacing, 2)) 0;
+  }
+}
+@mixin h5($with-spacing: true) {
+  font-weight: $txt-bold;
+  font-size: 1.1rem;
+  @if $with-spacing {
+    margin: (math.div($base-spacing, 2)) 0;
+  }
+}
+@mixin h6($with-spacing: true) {
+  font-weight: $txt-bold;
+  font-size: 1rem;
+  @if $with-spacing {
+    margin: (math.div($base-spacing, 2)) 0;
+  }
+}
+
+@mixin items-per-row($itemSelector, $columns: 4, $spacing: $base-spacing) {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  margin-left: -(math.div($spacing, 2));
+  margin-right: -(math.div($spacing, 2));
+  #{$itemSelector} {
+    margin: math.div($spacing, 2);
+    width: calc((100% / #{$columns}) - #{$spacing});
+  }
+}
+
+@mixin scrollbar(
+  $track-color: rgba(#fff, 0.05),
+  $thumb-color: rgba(#fff, 0.1),
+  $thumb-hover-color: $accent-color,
+  $width: 5px,
+) {
+  @media screen and (min-width: 550px) {
+    $selector: '';
+
+    // chrome scrollbar styles
+    #{$selector}::-webkit-scrollbar {
+      width: $width;
+      height: $width;
+    }
+    #{$selector}::-webkit-scrollbar-track {
+      background: $track-color;
+    }
+    #{$selector}::-webkit-scrollbar-thumb {
+      background: $thumb-color;
+      &:hover {
+        background: $thumb-hover-color;
+      }
+      &:active {
+        background: darken($thumb-hover-color, 10%);
+      }
+    }
+
+    @if & {
+      // firefox scrollbar
+      scrollbar-color: $thumb-color $track-color;
+      scrollbar-width: thin;
+    } @else {
+      html {
+        // firefox scrollbar
+        scrollbar-color: $thumb-color $track-color;
+        scrollbar-width: thin;
+        * {
+          scrollbar-width: thin;
+        }
+      }
+    }
+  }
+}
+
+@mixin help-block-elem($default-selector: '.help', $error-selector: '.help-error') {
+  #{$default-selector} {
+    display: block;
+    width: 100%;
+    font-size: 0.9em;
+    color: $txt-hint-color;
+    margin: 5px 0 0;
+  }
+  #{$error-selector} {
+    color: $danger-color;
+    white-space: pre-line;
+  }
+}
+
+@mixin toggle-field-elem($selector: '.field-content') {
+  #{$selector} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+    user-select: none;
+    .help-icon {
+      font-size: 1.1em;
+      margin: 0 3px;
+      color: $txt-hint-color;
+      cursor: default;
+      transition: color $transition-speed;
+      &:hover {
+        color: $txt-secondary-color;
+      }
+    }
+    label {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      padding-right: 5px;
+      padding-left: 30px;
+      line-height: normal;
+      font-size: 1em;
+      cursor: pointer;
+      color: $txt-secondary-color;
+      .txt {
+        display: inline-block;
+        vertical-align: top;
+      }
+      &:before {
+        content: '\e835';
+        font-family: 'Material Icons';
+        position: absolute;
+        left: 0;
+        top: -4px;
+        font-size: 24px;
+        line-height: inherit;
+        color: $txt-secondary-color;
+        transition: color $transition-speed;
+      }
+    }
+    input {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      & ~ label:hover:before,
+      &:focus ~ label:before {
+        color: $txt-primary-color;
+      }
+      &:checked ~ label:before {
+        content: '\e834';
+        color: $accent-color;
+      }
+      &:disabled ~ label {
+        pointer-events: none;
+        opacity: 0.3;
+      }
+    }
+
+    // radio customizations
+    input[type="radio"] {
+      & ~ label:before {
+        content: '\e836';
+      }
+      &:checked ~ label:before {
+        content: '\e837';
+      }
+    }
+
+    // toggle/switch styles
+    :host[toggle] &, :host(.toggle) &,
+    &[toggle], &.toggle {
+      $toggle-width: 36px !default;
+      $toggle-handle: 20px !default;
+      $toggle-slider: 14px !default;
+      $toggle-knob-color: lighten($panel-color, 25%) !default;
+      $toggle-slider-color: lighten($panel-color, 10%) !default;
+      label {
+        padding-left: 45px;
+        &:before {
+          content: '' !important;
+          font-family: inherit;
+          width: $toggle-width;
+          height: 14px;
+          top: 2px;
+          border-radius: 10px;
+          background: $toggle-slider-color;
+          transition: background $transition-speed;
+        }
+        &:after {
+          $size: 20px;
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: -2px;
+          width: $toggle-handle;
+          height: $toggle-handle;
+          border-radius: $toggle-handle;
+          background: $toggle-knob-color;
+          transition: background $transition-speed, transform $transition-speed, box-shadow $transition-speed;
+          @include shadowize();
+        }
+      }
+      input {
+        & ~ label:hover:after,
+        &:focus ~ label:after {
+          background: lighten($toggle-knob-color, 10%);
+        }
+        &:focus ~ label:after {
+          @include shadowize(0px 0px 0px 7px rgba($toggle-knob-color, 0.15));
+        }
+        &:checked ~ label:before {
+          background: rgba($accent-color, 0.5);
+        }
+        &:checked ~ label:after {
+          background: $accent-color;
+          transform: translateX($toggle-width - $toggle-handle);
+        }
+        &:focus:checked ~ label:after {
+          @include shadowize(0px 0px 0px 7px rgba($accent-color, 0.15));
+        }
+      }
+    }
+  }
+}
+
+@mixin box-shadow-pulse-animation($keyframeName, $color: $accent-color, $alpha: 0.3, $spread: 15px) {
+  @keyframes #{$keyframeName} {
+    0% {
+      box-shadow: 0px 0px 0px 0px rgba($color, $alpha);
+    }
+    50% {
+      box-shadow: 0px 0px 0px (math.div($spread, 2)) rgba($color, math.div($alpha, 2));
+    }
+    100% {
+      box-shadow: 0px 0px 0px $spread rgba($color, 0);
+    }
+  }
+}
