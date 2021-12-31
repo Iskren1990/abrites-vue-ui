@@ -9,8 +9,7 @@ const htmlExample = `
     top aligned tooltip
   </AbritesButton>
 
-  <AbritesButton v-abrites-tooltip="{
-    abritesTooltip:'Lorem ipsum dolor...'">
+  <AbritesButton v-abrites-tooltip="'Lorem ipsum dolor...'">
     bottom aligned tooltip
   </AbritesButton>
 
