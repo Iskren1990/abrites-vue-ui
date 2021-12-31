@@ -10,8 +10,7 @@ const htmlExample = `
   </AbritesButton>
 
   <AbritesButton v-abrites-tooltip="{
-    abritesTooltip:'Lorem ipsum dolor...', 
-    abritesTooltipDelay: 2000}">
+    abritesTooltip:'Lorem ipsum dolor...'">
     bottom aligned tooltip
   </AbritesButton>
 
