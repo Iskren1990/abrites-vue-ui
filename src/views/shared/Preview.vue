@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 <template>
   <div class="preview-host">
     <header class="preview-header">

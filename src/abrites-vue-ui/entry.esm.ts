@@ -1,12 +1,16 @@
 import { App, Plugin } from "vue";
 // Import vue components
 import * as components from "./components/index";
+import * as directives from "./directives/index";
 
 // install function executed by Vue.use()
 const install: Exclude<Plugin["install"], undefined> =
   function installAbritesVueUi(app: App) {
     Object.values(components).forEach((component) => {
       app.component(component.name, component);
+    });
+    Object.values(directives).forEach((directive) => {
+      app.directive(directive.name, directive.directive);
     });
   };
 
