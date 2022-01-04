@@ -1,5 +1,4 @@
 <template>
-  <div>Accordion</div>
   <AbritesGrid>
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-selector">

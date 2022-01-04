@@ -1,6 +1,4 @@
 <template>
-  <div>Animated If</div>
-
   <h2 class="component-title" id="selector">
     <router-link :to="`${Config.componentsUrl}/lib/animated_if/AnimatedIf.dart`"
       >AbritesAnimatedIf</router-link

@@ -1,6 +1,4 @@
 <template>
-  <div>Alert</div>
-
   <h2 class="component-title" id="selector">
     <router-link :to="`${Config.componentsUrl}/lib/alert/Alert.vue`"
       >AbritesAlert</router-link

@@ -1,5 +1,4 @@
 <template>
-  <div>Popup</div>
   <AbritesButton @trigger="largeSizePopup.open()"
     >Large size popup</AbritesButton
   >

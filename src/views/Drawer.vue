@@ -104,7 +104,6 @@ const setupFn = function script() {
 </script>
 
 <template>
-  <div>Drawer</div>
   <h2 class="component-title" id="selector">
     <router-link :to="`${Config.componentsUrl}/lib/drawer/Drawer.vue`"
       >AbritesDrawer</router-link

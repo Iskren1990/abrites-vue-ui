@@ -265,7 +265,6 @@ const buttonsGroupExample = `
 </script>
 
 <template>
-  <div>Button</div>
   <h2 class="component-title" id="selector">
     <router-link :to="`${Config.componentsUrl}/lib/button/Button.vue`"
       >AbritesButton</router-link

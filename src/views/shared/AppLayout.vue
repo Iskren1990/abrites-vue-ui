@@ -12,7 +12,7 @@
       <AbritesButton flat round class="menu-toggle" @trigger="drawer.toggle()">
         <AbritesIcon icon="menu"></AbritesIcon>
       </AbritesButton>
-      <h1 class="app-title">{{ pageTitle }}</h1>
+      <h1 class="app-title">{{ $route.name }}</h1>
     </header>
 
     <div class="app-content">
@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
-import { RouteRecordRaw } from "vue-router";
+import { defineComponent, reactive, ref, watch, watchEffect } from "vue";
+import { RouteRecordRaw, useRoute } from "vue-router";
 import { routes } from "../../router";
 
 export default defineComponent({
@@ -36,9 +36,8 @@ export default defineComponent({
   setup() {
     const routeItems = reactive<RouteRecordRaw[]>(routes);
     const drawer = ref();
-    const pageTitle = "Hardcoded Title";
 
-    return { pageTitle, drawer, routeItems };
+    return { drawer, routeItems };
   },
 });
 </script>
