@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, ref, watchEffect } from "vue";
+import { defineComponent, onBeforeMount, PropType, reactive, ref } from "vue";
 
 interface TemplateParts {
   html: string;
@@ -79,7 +79,7 @@ const Preview = defineComponent({
       setupFn: props.setupFn,
     });
 
-    watchEffect(() => {
+    onBeforeMount(() => {
       templateRef.value = vueExampleGenerator(templateParts);
     });
 
