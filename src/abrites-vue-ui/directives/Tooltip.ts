@@ -122,6 +122,7 @@ function tooltipState(el: Element) {
 
   function hideTooltip(): void {
     clearTimer();
+    console.log("hide");
 
     tooltip().classList.remove("active");
 
@@ -234,6 +235,7 @@ function tooltipState(el: Element) {
     _isSourceElemTooltipActive,
     hideTooltip,
     clearTimer,
+    tooltip,
   };
 }
 
@@ -241,7 +243,7 @@ function tooltipState(el: Element) {
 export default (function AbritesTooltip() {
   /// Example
   /// ```html
-  /// <p abritesTooltip="My tooltip content">Lorem ipsum</p>
+  /// <p v-abrites-tooltip="My tooltip content">Lorem ipsum</p>
   /// ```
 
   function mounted(el: Element, binding: DirectiveBinding): void {
