@@ -1,5 +1,6 @@
 <template>
   <div>Intro</div>
+  <p>Test if two remote repos are sync</p>
 </template>
 
 <script lang="ts">
