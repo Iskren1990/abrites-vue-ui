@@ -266,8 +266,11 @@ const buttonsGroupExample = `
 
 <template>
   <h2 class="component-title" id="selector">
-    <router-link :to="`${Config.componentsUrl}/lib/button/Button.vue`"
-      >AbritesButton</router-link
+    <a
+      :href="`${Config.componentsUrl}/lib/button/Button.vue`"
+      target="_blank"
+      rel="noopener"
+      >AbritesDrawer</a
     >
     <span>{{ `<AbritesButton></AbritesButton>` }}</span>
   </h2>

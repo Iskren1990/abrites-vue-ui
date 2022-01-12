@@ -1,7 +1,10 @@
 <template>
   <h2 class="component-title" id="selector">
-    <router-link :to="`${Config.componentsUrl}/lib/animated_if/AnimatedIf.dart`"
-      >AbritesAnimatedIf</router-link
+    <a
+      :href="`${Config.componentsUrl}/lib/animated_if/AnimatedIf.dart`"
+      target="_blank"
+      rel="noopener"
+      >AbritesAnimatedIf</a
     >
     <span>*abritesAnimatedIf, [abritesAnimatedIf]</span>
   </h2>

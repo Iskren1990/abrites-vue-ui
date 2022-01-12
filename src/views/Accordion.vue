@@ -2,8 +2,11 @@
   <AbritesGrid>
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-selector">
-        <router-link :to="`${Config.componentsUrl}/lib/accordion/Accordion.vue`"
-          >AbritesAccordion</router-link
+        <a
+          :href="`${Config.componentsUrl}/lib/accordion/Accordion.vue`"
+          target="_blank"
+          rel="noopener"
+          >AbritesAccordion</a
         >
         <span>{{'<AbritesAccordion></AbritesAccordion>'}}</span>
       </h2>
@@ -58,9 +61,11 @@
     </div>
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-panel-selector">
-        <router-link
-          :to="`${Config.componentsUrl}/lib/accordion-panel/AccordionPanel.vue`"
-          >AbritesAccordionPanel</router-link
+        <a
+          :href="`${Config.componentsUrl}/lib/accordion-panel/AccordionPanel.vue`"
+          target="_blank"
+          rel="noopener"
+          >AbritesAccordionPanel</a
         >
         <span>{{`<AbritesAccordion></AbritesAccordion>`}}</span>
       </h2>

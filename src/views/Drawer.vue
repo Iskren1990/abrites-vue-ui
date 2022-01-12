@@ -105,8 +105,11 @@ const setupFn = function script() {
 
 <template>
   <h2 class="component-title" id="selector">
-    <router-link :to="`${Config.componentsUrl}/lib/drawer/Drawer.vue`"
-      >AbritesDrawer</router-link
+    <a
+      :href="`${Config.componentsUrl}/lib/drawer/Drawer.vue`"
+      target="_blank"
+      rel="noopener"
+      >AbritesDrawer</a
     >
     <span>{{'<AbritesDrawer></AbritesDrawer>'}}</span>
   </h2>

@@ -2,8 +2,11 @@
   <AbritesGrid>
     <div class="col-lg-4">
       <h2 class="component-title" id="tabs-selector">
-        <router-link :to="`${Config.componentsUrl}/lib/tabs/Tabs.vue`"
-          >AbritesTabs</router-link
+        <a
+          :href="`${Config.componentsUrl}/lib/tabs/Tabs.vue`"
+          target="_blank"
+          rel="noopener"
+          >AbritesTabs</a
         >
         <span>{{'<abrites-tabs></abrites-tabs>'}}</span>
       </h2>
@@ -35,8 +38,11 @@
     </div>
     <div class="col-lg-4">
       <h2 class="component-title" id="tab-panel-selector">
-        <router-link :to="`${Config.componentsUrl}/lib/tab-panel/TabPanel.vue`"
-          >AbritesTabPanel</router-link
+        <a
+          :href="`${Config.componentsUrl}/lib/tab-panel/TabPanel.vue`"
+          target="_blank"
+          rel="noopener"
+          >AbritesTabPanel</a
         >
         <span>{{'<abrites-tab-panel></abrites-tab-panel>'}}</span>
       </h2>
@@ -80,10 +86,13 @@
     </div>
     <div class="col-lg-4">
       <h2 class="component-title" id="tabs-header-selector">
-        <router-link
-          :to="`${Config.componentsUrl}/lib/tab-header/TabHeader.vue`"
-          >AbritesTabsHeader</router-link
+        <a
+          :href="`${Config.componentsUrl}/lib/tab-header/TabHeader.vue`"
+          target="_blank"
+          rel="noopener"
+          >AbritesTabsHeader</a
         >
+
         <span>{{'<abrites-tabs-header></abrites-tabs-header>'}}</span>
       </h2>
 

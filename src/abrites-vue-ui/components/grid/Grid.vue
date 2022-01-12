@@ -50,8 +50,8 @@ export default defineComponent({
   &.nogutters {
     margin-right: 0;
     margin-left: 0;
-    & > ::ng-deep .col,
-    & > ::ng-deep [class*="col-"] {
+    & > ::v-deep() .col,
+    & > ::v-deep() [class*="col-"] {
       padding-right: 0 !important;
       padding-left: 0 !important;
     }
