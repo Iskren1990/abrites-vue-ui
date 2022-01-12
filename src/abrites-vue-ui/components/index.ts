@@ -15,3 +15,4 @@ export { default as AbritesAccordionPanel } from "./accordion-panel";
 export { default as AbritesAccordion } from "./accordion";
 export { default as AbritesAmimatedIf } from "./animatedIf";
 export { default as AbritesAlert } from "./alert";
+export { default as AbritesChart } from "./chart";
