@@ -3,18 +3,34 @@ import {
   withDefaults,
   defineProps,
   defineComponent,
-  reactive,
   computed,
-  onBeforeMount,
+  onUnmounted,
 } from "@vue/runtime-core";
-import { onMounted, watch, shallowRef } from "vue";
-import { ChartConfiguration, ChartData, ChartOptions } from "chart.js";
+import { onMounted, watch, shallowRef, ref } from "vue";
+import {
+  ChartConfiguration,
+  ChartData,
+  ChartOptions,
+  ChartType,
+  CoreScaleOptions,
+  Point,
+  Scale,
+  UpdateMode,
+} from "chart.js";
 export default defineComponent({ name: "AbritesChart" });
 import { ChartController } from "./chart-controller";
 </script>
 
 <script lang="ts" setup>
+type PanAmount = number | Partial<Point>;
+interface PanControllerArgs {
+  pan?: PanAmount;
+  scales?: Scale<CoreScaleOptions>[];
+  mode?: UpdateMode;
+}
+
 interface ChartProps {
+  type: ChartType;
   data: ChartData;
   isLoading?: boolean;
   missingDataText?: string;
@@ -23,6 +39,8 @@ interface ChartProps {
   height?: number;
   options?: ChartOptions;
   nocontrols?: boolean;
+  isStartRangeReached?: boolean;
+  isEndRangeReached?: boolean;
 }
 
 const props = withDefaults(defineProps<ChartProps>(), {
@@ -33,69 +51,46 @@ const props = withDefaults(defineProps<ChartProps>(), {
   nocontrols: false,
 });
 
-// implement and delete
-const hasRangeSelector = false;
-const isZoomed = true;
-const isStartRangeReached = false;
-const isEndRangeReached = false;
-
-const chartProps: ChartConfiguration = {
-  type: "line",
-  data: props.data,
-  // options: props.options,
-};
 const chart = new ChartController({ group: props.group });
-const reff = reactive(chartProps.data.datasets[0].data);
-setInterval(() => console.log(reff.length), 2000);
-watch(
-  () => reff,
-  () => {
-    console.log("h", chartProps);
-    const [data1, data2] = props.data.datasets;
-    if (JSON.stringify(data1.data) !== JSON.stringify(data2.data)) {
-      console.log("equal", JSON.stringify(data1), JSON.stringify(data2));
-
-      chart?.updateChart();
-    }
-  },
-  {
-    deep: true,
-    onTrigger(e) {
-      debugger;
-    },
-  }
-);
-
+const isInited = ref(false);
 const chartEl = shallowRef<HTMLCanvasElement>();
 
-onMounted(() => {
-  console.log("mount");
+const chartProps = computed<ChartConfiguration>(() => ({
+  type: props.type,
+  data: props.data,
+  options: props.options,
+}));
 
-  chart.initChart(chartEl, chartProps);
+const resetZoom = (mode?: UpdateMode) => {
+  chart.chartInst.resetZoom(mode);
+};
+const panPrev = ({ pan = 10, scales, mode }: PanControllerArgs = {}) => {
+  chart.chartInst.pan(pan, scales, mode);
+};
+const panNext = ({ pan = -10, scales, mode }: PanControllerArgs = {}) => {
+  chart.chartInst.pan(pan, scales, mode);
+};
+
+watch(
+  () => props.data,
+  () => {
+    chart.updateChart();
+  },
+  { deep: true }
+);
+
+onMounted(() => {
+  chart.initChart(chartEl, chartProps.value);
+  isInited.value = chart.isInited;
 });
 
-// const isInited = computed(() => _chart != null);
-const isInited = true;
-
-const resetZoom = () => {
-  console.log("hello");
-};
-const panPrev = () => {
-  console.log("hello");
-};
-const panNext = () => {
-  console.log("hello");
-};
+onUnmounted(() => chart.destroyChart());
 </script>
 
 <template>
-  <div class="chart-host">
+  <div class="chart-host" :class="props.isLoading && 'loading'">
     <div class="chart-container">
-      <canvas
-        class="chart"
-        ref="chartEl"
-        :class="{ 'range-selector': hasRangeSelector }"
-      ></canvas>
+      <canvas class="chart" ref="chartEl"></canvas>
     </div>
     <AbritesLoader
       class="chart-loader"
@@ -105,35 +100,32 @@ const panNext = () => {
     <div v-if="!props.isLoading && !isInited" class="chart-hint">
       <h6>{{ props.missingDataText }}</h6>
     </div>
-    <div v-if="!props.nocontrols && isZoomed" class="chart-ctrls">
+    <div v-if="!props.nocontrols && !props.isLoading" class="chart-ctrls">
       <AbritesButton
-        dark
-        small
-        class="ctrl-btn pan-btn-prev"
+        class="ctrl-btn pan-btn-prev dark small"
         v-abrites-tooltip="{
           abritesTooltip: 'Scroll left (Shift + Drag)',
           abritesTooltipPosition: 'bottom',
         }"
-        :continuous="150"
-        :disabled="isStartRangeReached"
+        :disabled="props.isStartRangeReached"
         @trigger="panPrev()"
       >
         <AbritesIcon icon="arrow_back"></AbritesIcon>
       </AbritesButton>
 
-      <AbritesButton dark small class="ctrl-btn reset-btn" @trigger="resetZoom"
+      <AbritesButton
+        class="ctrl-btn reset-btn dark small"
+        @trigger="resetZoom"
+        v-if="!props.nocontrols && !props.isLoading && chart.isZoomed.value"
         >Reset zoom</AbritesButton
       >
       <AbritesButton
-        dark
-        small
-        class="ctrl-btn pan-btn-prev"
+        class="ctrl-btn pan-btn-prev dark small"
         v-abrites-tooltip="{
           abritesTooltip: 'Scroll right (Shift + Drag)',
           abritesTooltipPosition: 'bottom-right',
         }"
-        :continuous="150"
-        :disabled="isEndRangeReached"
+        :disabled="props.isEndRangeReached"
         @trigger="panNext()"
       >
         <AbritesIcon icon="arrow_forward"></AbritesIcon>
@@ -171,61 +163,12 @@ const panNext = () => {
   height: 350px;
   user-select: none;
 
-  // dygraph styles
-  ::v-deep(.chart-container) {
+  .chart-container ::v-deep() {
     > canvas {
       width: 100% !important;
     }
-    .dygraph-axis-label {
-      color: $txt-secondary-color;
-    }
-    .dygraph-axis-label-x {
-      margin-top: 12px;
-    }
-    .dygraph-axis-label-y {
-      width: 120%;
-      float: right;
-      font-size: 0.96rem;
-      overflow-wrap: break-word;
-    }
-    .dygraph-rangesel-bgcanvas,
-    .dygraph-rangesel-fgcanvas {
-      border-radius: $border-radius;
-    }
-    .dygraph-legend {
-      @include shadowize();
-      z-index: 8;
-      left: auto !important; // overwrite inline styles
-      right: 5px;
-      padding: 10px;
-      width: auto;
-      min-width: 220px;
-      color: $txt-primary-color;
-      font-size: 0.95rem;
-      overflow-wrap: break-word;
-      background: rgba($base-color, 0.9);
-      border-radius: $border-radius;
-      pointer-events: none;
-      .name {
-        font-weight: bold;
-      }
-      .date {
-        color: $txt-secondary-color;
-        margin: 0 0 3px;
-      }
-      &:empty {
-        display: none;
-      }
-      & > :first-child {
-        margin-top: 0;
-      }
-      & > :last-child {
-        margin-bottom: 0;
-      }
-    }
   }
 }
-
 .chart-loader {
   position: absolute;
   z-index: 1;

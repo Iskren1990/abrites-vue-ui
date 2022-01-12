@@ -1,178 +1,185 @@
-import { reactive, ref, Ref, shallowRef, watch, watchEffect } from "vue";
-import {
-  Chart,
-  ChartConfiguration,
-  ChartData,
-  ChartOptions,
-  registerables,
-  Tooltip,
-} from "chart.js";
+import { ref, Ref } from "vue";
 import zoomPlugin from "chartjs-plugin-zoom";
+import "chartjs-adapter-date-fns";
 import ColorHelper from "../../utils/color-helper";
 import { _DeepPartialObject } from "chart.js/types/utils";
+import {
+  ChartData,
+  ChartOptions,
+  Chart,
+  registerables,
+  ChartConfiguration,
+  ScaleOptionsByType,
+  PluginOptionsByType,
+  ChartTypeRegistry,
+} from "chart.js";
+import chartSynchronyser from "./chart-plugins";
+import { ZoomPluginOptions } from "chartjs-plugin-zoom/types/options";
 
-interface ControlerProps {
+interface ChartControlerProps {
   group?: string;
 }
 
-// Change any to appropriate
-type ChartsSynchronizers = {
-  [key: string]: any;
-};
-
-interface ChartDataInitProps {
-  labels: string[];
-  values: [][];
-  dateWindow?: number[];
-  colors?: string[];
-}
-
 export class ChartController {
+  static defaultGroup = "default";
+  private static _instances: ChartController[] = [];
+
   private _group: string;
   private _data?: ChartData;
   private _chart?: Chart | null;
-  private _options?: ChartOptions;
+  private _options: ChartOptions = {};
+  isZoomed: Ref<boolean> = ref(false);
 
-  constructor({ group: string }: ControlerProps = {}) {
-    this._group = this.group || ChartController.defaultGroup;
+  constructor({ group }: ChartControlerProps = {}) {
+    this._group = group || ChartController.defaultGroup;
     Chart.register(...registerables);
     Chart.register(zoomPlugin);
+    Chart.register(chartSynchronyser);
+    this._globalDefaults();
   }
 
   get group() {
     return this._group || ChartController.defaultGroup;
   }
 
-  get chartInst() {
-    return this._chart;
+  get chartInst(): Chart {
+    return this._chart as Chart;
   }
 
-  get isInited() {
+  get isInited(): boolean {
     return this._chart != null;
   }
 
-  static defaultGroup = "default";
-
-  private static _instances: ChartController[] = [];
-  static chartsSynchronizers: ChartsSynchronizers = new Map();
-
   initChart(
-    chartEl: Ref<HTMLCanvasElement | undefined>,
+    chartRef: Ref<HTMLCanvasElement | undefined>,
     chartProps: ChartConfiguration
   ): void {
     this.destroyChart();
     this._data = chartProps.data;
 
-    if (chartEl == null || (!this._data?.datasets.length ?? true)) {
+    if (chartRef.value == null || (!this._data?.datasets.length ?? true)) {
       return;
     }
 
     this._options = chartProps.options || {};
 
-    // the chart library has different behavior for `undefined`, `null` and `array`
-    // if (options.dateWindow?.length ?? true) {
-    // (this._data?.dateWindow?.length ?? false)
-    // options.dateWindow = this._data?.dateWindow;
-    // }
-
-    // ---
-
-    // options.zoomCallback ??= this._zoomCallbackFunc;
-
     // set defaults
-    this._defaultInteraction(this._options);
-    this._defaultPlugins(this._options);
-    this._axisLineColor(this._options);
-    this._options = {
-      ...this._options,
-      // overwrites the defaults
-      ...chartProps.options,
-      // responsive: true,
-      // animation: false,
-    };
-    this._options.maintainAspectRatio = false;
-
-    this._defaultDatasetStyle(this._data);
+    this._defaultDatasetStyle();
+    this._defaultPlugins();
+    this._timeAxisDefaults();
 
     const chartConfig: ChartConfiguration = {
       type: chartProps.type,
       data: this._data,
       options: this._options,
     };
+    this._chart = new Chart(chartRef.value, chartConfig);
 
-    this._chart = new Chart(chartEl.value as HTMLCanvasElement, chartConfig);
-
-    // this._chart.options.animation = false;
-
-    // this._chart.options.plugins(
-    //      ( dygraph ) => {
-    //         if ( !_initedCtrl.isClosed )
-    //         {
-    //             _initedCtrl.add( dygraph );
-    //         }
-
-    //         ChartController.refreshActiveSync( group: group );
-
-    //         _initRangePanListener();
-    //      ),
-    // );
+    // add the inited chart contrller instance to chart store
+    ChartController._addInstance(this);
   }
 
-  private _defaultInteraction(options: ChartOptions): void {
-    options.interaction = {
-      intersect: false,
-      mode: "index",
-    };
+  private _globalDefaults(): void {
+    // performance improvement
+    Chart.defaults.animation = false;
+    Chart.defaults.datasets.line.pointRadius = 0;
+
+    // crosshair requirement
+    Chart.defaults.hover.mode = "index";
+    Chart.defaults.hover.intersect = false;
+    Chart.defaults.interaction.mode = "index";
+    Chart.defaults.interaction.intersect = false;
+
+    // stylization
+    Chart.defaults.maintainAspectRatio = false;
+    Chart.defaults.scale.grid.color = "rgba(255,255,255,0.1)";
+    Chart.defaults.elements.line.borderWidth = 1;
+    Chart.defaults.datasets.line.pointHoverRadius = 2;
+
+    // tooltip
+    Chart.defaults.plugins.tooltip.enabled = true;
+    Chart.defaults.plugins.tooltip.position = "topLeftPositioner";
+    Chart.defaults.plugins.tooltip.usePointStyle = true;
   }
 
-  private _defaultPlugins(options: ChartOptions): void {
-    options.plugins = {
-      tooltip: {
+  private _defaultPlugins(): void {
+    type PluginOptions = PluginOptionsByType<keyof ChartTypeRegistry>;
+    // zoom plugin missbehaves if type: "category"
+    !this._options.scales && (this._options.scales = { x: { type: "linear" } });
+
+    !this._options.plugins && (this._options.plugins = <PluginOptions>{});
+    !this._options.plugins.sync &&
+      (this._options.plugins.sync = { group: this.group });
+
+    const zoom: ZoomPluginOptions = {
+      //  cares for dragging of the map
+      pan: {
         enabled: true,
-        position: "myCustomPositioner",
-        usePointStyle: true,
+        mode: "x",
+        onPan: () => this.updateChartInstancesScale(),
       },
+      // zoom in/out plugin
       zoom: {
-        zoom: {
-          drag: {
-            enabled: true,
-          },
-          wheel: {
-            enabled: true,
-          },
-          pinch: {
-            enabled: true,
-          },
-          mode: "x",
+        onZoom: () => this.updateChartInstancesScale(),
+        onZoomComplete: () => this.updateChartInstancesScale(),
+        wheel: {
+          enabled: true,
         },
+        pinch: {
+          enabled: true,
+        },
+        mode: "x",
       },
     };
+
+    !this._options.plugins.zoom && (this._options.plugins.zoom = zoom);
   }
 
-  private _axisLineColor(options: ChartOptions): void {
-    options.scales = {
-      x: {
-        grid: {
-          color: "rgba(255,255,255,0.1)",
-        },
-      },
-      y: {
-        grid: {
-          color: "rgba(255,255,255,0.1)",
-        },
-      },
-    };
+  private _timeAxisDefaults(): void {
+    Object.keys(this._options.scales || {}).forEach((scale) => {
+      if (
+        this._options.scales &&
+        ((this._options.scales[scale] as ScaleOptionsByType)?.type == "time" ||
+          (this._options.scales[scale] as ScaleOptionsByType)?.type ==
+            "timeseries")
+      ) {
+        const defaultProps = {
+          ticks: {
+            autoSkip: false,
+            maxRotation: 0,
+            major: {
+              enabled: true,
+            },
+          },
+        };
+        this._options.scales[scale] = Object.assign(
+          defaultProps,
+          this._options.scales[scale]
+        );
+
+        // disabling parsing increases chart update performance
+        // downside is that data should be passed processed
+        const datasetLineOption = {
+          line: {
+            parsing: false,
+          },
+        };
+        this._options.datasets = Object.assign(
+          datasetLineOption,
+          this._options.datasets
+        );
+      }
+    });
   }
 
-  private _defaultDatasetStyle(dataset: ChartData) {
-    dataset.datasets.forEach((data) => {
+  private _defaultDatasetStyle(): void {
+    if (this._data == undefined) return;
+    this._data.datasets.forEach((data) => {
       const randomColor = ColorHelper.getRandomColor();
-      data.data.fill = data.data.fill || false;
       data.label = data.label || "";
       data.borderColor = data.borderColor || randomColor;
-
-      // data.pointBackgroundColor = data.pointBackgroundColor || randomColor;
-      // pointBackgroundColor: ColorHelper.getRandomColor(),
+      data.backgroundColor = data.backgroundColor || randomColor;
+      data.hoverBackgroundColor = data.hoverBackgroundColor || randomColor;
     });
   }
 
@@ -181,142 +188,64 @@ export class ChartController {
       return; // nothing to destroy
     }
 
-    const needResync = ChartController.chartsSynchronizers[this.group] != null;
-    ChartController.unsyncInited({ group: this.group });
+    ChartController._instances = ChartController._instances.filter(
+      (inst) => inst._chart?.id !== this._chart?.id
+    );
+    const leftChartsInGroup = ChartController._instances.findIndex(
+      (x) => x.group == this.group
+    );
 
     this._chart.destroy();
     this._chart = null;
-
-    if (needResync) {
-      // ChartController.syncInited( { group: this.group, resetZoom: false } );
-    }
   }
 
-  static _addInstance(inst: ChartController): void {
-    if (this._instances.includes(inst)) {
+  private static _addInstance(chart: ChartController): void {
+    const isAdded = this._instances.find(
+      (inst) => inst.chartInst.id === chart.chartInst.id
+    );
+    if (isAdded) {
       return; // already added
     }
-
-    const needResync = ChartController.chartsSynchronizers[inst.group] != null;
-    ChartController.unsyncInited({ group: inst.group });
-
-    ChartController._instances.push(inst);
-
-    if (needResync) {
-      // ChartController.syncInited( { group: inst.group, resetZoom: false } );
-    }
-  }
-
-  // static syncInited( { group = this.defaultGroup, resetZoom = true }: { group?: string, resetZoom?: boolean; } ): void {
-  //     const groupInstances = ChartController.instancesByGroup( group )
-  //         .filter( ( inst ) => inst.chartInst != null );
-
-  //     if ( !groupInstances.length )
-  //     {
-  //         return;
-  //     }
-
-  //     ChartController.unsyncInited( { group: group } ); // reset
-
-  //     const charts =
-  //         groupInstances.map( ( inst ) => inst.chartInst );
-
-  //     if ( resetZoom )
-  //     {
-  //         charts.forEach( ( chart ) => chart.resetZoom() );
-  //     } else if ( hasZoomedCharts( { group } ) )
-  //     {
-  //         applyLargestDateWindowToGroup( { group } );
-  //     }
-
-  //     this.chartsSynchronizers[group] = DygraphSynchronize(
-  //         charts,
-  //         DygraphSynchronizeOptions( range: false ),
-  //     );
-  // }
-
-  static unsyncInited({
-    group = this.defaultGroup,
-  }: { group?: string } = {}): void {
-    this.chartsSynchronizers[group]?.detach();
-    this.chartsSynchronizers[group] = null;
+    ChartController._instances.push(chart);
   }
 
   static instancesByGroup(group: string): ChartController[] {
+    // avoid interacting with default group charts
+    if (group === "default") return [];
     return ChartController._instances.filter((inst) => inst.group == group);
   }
 
-  set data(val: ChartData) {
-    // if (ListHelper.deepEqual(_data?.labels, val?.labels) &&
-    //     ListHelper.deepEqual(_data?.dateWindow, val?.dateWindow) &&
-    //     ListHelper.deepEqual(_data?.values, val?.values)) {
-    //   return; // no change
-    // }
-
-    this._data = val;
-    console.log(this._data);
-
-    if (this._data.datasets.length == 0) {
-      // cannot plot empty data sets
-      this.destroyChart();
-      return;
-    }
-
-    if (this._chart != null) {
-      //   const updateOptions = DygraphOptions(
-      //     file: _normalizeDataValues(this._data.values),
-      //     labels: this._data.labels,
-      //     colors: this._data.colors ??
-      //         this._generateSeriesColors(this._data.labels.slice(1)),
-      //   );
-      //   if (ChartController.chartsSynchronizers[this.group] != null &&
-      //       (this._data.dateWindow?.length == 0 || true) && !this.isZoomed) {
-      //     // explicitly reset the date window for synced charts in order to allow live data updates
-      //     updateOptions.dateWindow = null;
-      //   } else if (this._data.dateWindow == null) {
-      //     // keep current chart date window...
-      //   } else if (this._data.dateWindow.length == 0) {
-      //     updateOptions.dateWindow = null;
-      //   } else {
-      //     updateOptions.dateWindow = this._data.dateWindow;
-      //   }
-      //   this.updateChartOptions(updateOptions);
-      // } else {
-      //   this.initChart();
-      // }
+  updateChartOptions({ newOptions }: { newOptions: ChartOptions }): void {
+    if (this.chartInst != null) {
+      this.chartInst.options = { ...this.chartInst.options, ...newOptions };
+      this.chartInst.update();
     }
   }
-  updateChartOptions({
-    newOptions,
-    blockRedraw,
-  }: {
-    newOptions: ChartOptions;
-    blockRedraw?: boolean;
-  }): void {
-    if (this._chart != null) {
-      this._chart.options = { ...this._chart.options, ...newOptions };
-      //   this._chart.updateOptions(newOptions, blockRedraw);
-    }
+
+  updateChartInstancesScale(): void {
+    this.isZoomed.value = this.chartInst.isZoomedOrPanned();
+
+    const min = this.chartInst.scales.x.min;
+    const max = this.chartInst.scales.x.max;
+
+    ChartController.instancesByGroup(this._group).forEach((instance) => {
+      // avoid rewriting of zoom plugin chart pre-zoom state
+      if (this.chartInst.id === instance.chartInst.id) return;
+      instance.isZoomed.value = this.chartInst.isZoomedOrPanned();
+
+      instance.chartInst.options?.scales?.x == undefined
+        ? null
+        : (instance.chartInst.options.scales.x.min = min);
+      instance.chartInst.options?.scales?.x == undefined
+        ? null
+        : (instance.chartInst.options.scales.x.max = max);
+      instance.chartInst.update();
+    });
   }
 
   updateChart(): void {
     if (this._chart != null) {
       this._chart.update();
-      //   this._chart.updateOptions(newOptions, blockRedraw);
     }
-  }
-}
-
-Tooltip.positioners.myCustomPositioner = function (elements, eventPosition) {
-  return {
-    x: 0,
-    y: 0,
-    // You may also include xAlign and yAlign to override those tooltip options.
-  };
-};
-
-declare module "chart.js" {
-  interface TooltipPositionerMap {
-    myCustomPositioner: TooltipPositionerFunction<ChartType>;
   }
 }

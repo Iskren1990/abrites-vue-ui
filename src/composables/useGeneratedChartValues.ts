@@ -1,19 +1,19 @@
-interface IGeneratedValues {
-  seriesCount: number;
+export interface IGeneratedValues {
+  seriesCount?: number;
   dateType?: boolean;
   points?: number;
 }
 
-interface IPointData {
+export interface IPointData {
   x: number | string;
   y: number | string;
 }
 
 export default function generateValues({
-  seriesCount,
+  seriesCount = 1,
   dateType = false,
   points = 50,
-}: IGeneratedValues): IPointData[][] {
+}: IGeneratedValues = {}): IPointData[][] {
   const random = () => (Math.random() * 100).toFixed(1);
 
   const chartData = [];
@@ -25,8 +25,8 @@ export default function generateValues({
 
     for (let i = 0; i < points; i++) {
       const pointData = {
-        x: xAxix[i],
-        y: random(),
+        x: dateType ? Date.now() : xAxix[i],
+        y: Number(random()),
       };
 
       lineData.push(pointData);
