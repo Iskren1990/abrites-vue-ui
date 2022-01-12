@@ -121,7 +121,7 @@
 
 @mixin normalize-host() {
   box-sizing: border-box;
-  ::v-deep(*) {
+  ::v-deep() {
     *, *::before, *::after {
       box-sizing: border-box;
     }

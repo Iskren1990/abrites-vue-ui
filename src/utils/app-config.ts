@@ -2,7 +2,7 @@ export default class Config {
   static projectTitle =
     process.env.VUE_APP_TITLE || "Abrites UI components for VUE";
 
-  static appUrl: string = process.env.VUE_APP_URL || "http://127.0.0.1";
+  static appUrl: string = process.env.VUE_APP_URL || "";
 
   static env: string = process.env.NODE_ENV || "development";
 

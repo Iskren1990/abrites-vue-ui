@@ -104,7 +104,7 @@ function vueExampleGenerator(templateParts: TemplateParts): string {
   import { defineComponent } from "vue";
   ${templateParts.imports}
   export default defineComponent({ name: "YourComponent", ${templateParts.code}});
-<//script>
+< /script>;
 
 <style> </style>
 `;

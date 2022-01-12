@@ -122,7 +122,6 @@ function tooltipState(el: Element) {
 
   function hideTooltip(): void {
     clearTimer();
-    console.log("hide");
 
     tooltip().classList.remove("active");
 
