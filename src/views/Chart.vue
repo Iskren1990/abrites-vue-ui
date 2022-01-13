@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import generateValues, {
-  IPointData,
+  PointData,
 } from "@/composables/useGeneratedChartValues";
 import { computed, Ref, ref } from "@vue/reactivity";
 import { ChartType } from "chart.js";
@@ -18,7 +18,7 @@ const htmlDefaultExample = `
 `;
 
 const vueDefaultExample = function () {
-  let datasetData: Ref<IPointData[][]> = ref<IPointData[][]>(
+  let datasetData: Ref<PointData[][]> = ref<PointData[][]>(
     generateValues({ seriesCount: 2, dateType: true, points: 1 })
   );
 
@@ -74,7 +74,7 @@ const htmlLoadingExample = `
 `;
 
 const vueLoadingExample = () => {
-  let datasetData: Ref<IPointData[][]> = ref(generateValues());
+  let datasetData: Ref<PointData[][]> = ref(generateValues());
 
   const type: ChartType = "line";
   const chartData = computed(() => {
@@ -123,9 +123,9 @@ const htmlSyncExample = `
 `;
 
 const vueSyncExample = () => {
-  let datasetDataOne: Ref<IPointData[][]> = ref(generateValues());
-  let datasetDataTwo: Ref<IPointData[][]> = ref(generateValues());
-  let datasetDataThree: Ref<IPointData[][]> = ref(generateValues());
+  let datasetDataOne: Ref<PointData[][]> = ref(generateValues());
+  let datasetDataTwo: Ref<PointData[][]> = ref(generateValues());
+  let datasetDataThree: Ref<PointData[][]> = ref(generateValues());
 
   const type: ChartType = "line";
   const chartDataOne = computed(() => {
@@ -173,7 +173,7 @@ const htmlBubleExample = `
 `;
 
 const vueBubleExample = () => {
-  let datasetData: Ref<IPointData[][]> = ref(generateValues());
+  let datasetData: Ref<PointData[][]> = ref(generateValues());
 
   const type: ChartType = "bubble";
   const chartData = computed(() => {
@@ -200,7 +200,7 @@ const htmlSteppedExample = `
 `;
 
 const vueSteppedExample = () => {
-  let datasetData: Ref<IPointData[][]> = ref(
+  let datasetData: Ref<PointData[][]> = ref(
     generateValues({ dateType: true, points: 1 })
   );
 

@@ -101,12 +101,7 @@ function expandAll() {
   if (!props.multiple && !props.stepped) {
     return;
   }
-
-  for (let i = 0; i < panels.value.length; i++) {
-    if (!panels.value[i].isDisabled) {
-      expandPanel(i);
-    }
-  }
+  panels.value.map((x, i) => x.isDisabled && expandPanel(i));
 }
 
 function disableNextPanels(index: number) {
