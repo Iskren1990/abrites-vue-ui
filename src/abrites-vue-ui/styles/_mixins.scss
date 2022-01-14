@@ -344,7 +344,8 @@
     }
 
     // toggle/switch styles
-    :host[toggle] &, :host(.toggle) &,
+    [class*="-host"][toggle] &, 
+    [class*="-host"].toggle &,
     &[toggle], &.toggle {
       $toggle-width: 36px !default;
       $toggle-handle: 20px !default;

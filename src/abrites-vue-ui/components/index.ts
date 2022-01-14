@@ -16,3 +16,4 @@ export { default as AbritesAccordion } from "./accordion";
 export { default as AbritesAmimatedIf } from "./animatedIf";
 export { default as AbritesAlert } from "./alert";
 export { default as AbritesChart } from "./chart";
+export { default as AbritesCheckbox } from "./checkbox";
