@@ -106,8 +106,10 @@ function prventDefaultAndStopPropagtion(event: Event) {
 @import "../../styles/core";
 
 @mixin button-theme($name, $color) {
-  .button-host[#{$name}]:not([flat]) &:not([disabled]):not(.disabled),
-  .button-host.#{$name}:not([flat]) &:not([disabled]):not(.disabled) {
+  .button-host[#{$name}]:not([flat]):not(.flat)
+    &:not([disabled]):not(.disabled),
+  .button-host.#{$name}:not([flat]):not(.flat)
+    &:not([disabled]):not(.disabled) {
     background: $color;
     color: contrast-color($color);
     @if (lightness($color) > 50) {
@@ -276,7 +278,7 @@ function prventDefaultAndStopPropagtion(event: Event) {
         margin-right: 0;
       }
     }
-    ::v-deep(.dropdown-host) {
+    .dropdown-host ::v-deep() {
       margin-left: 0;
       margin-right: 0;
     }
@@ -289,7 +291,8 @@ function prventDefaultAndStopPropagtion(event: Event) {
     background: rgba(#fff, 0.15);
     transition-duration: (math.div($transition-speed, 2));
   }
-  .button-host[flat] & {
+  .button-host[flat] &,
+  .button-host.flat & {
     box-shadow: none;
     background: transparent;
     &:hover,
@@ -309,11 +312,11 @@ function prventDefaultAndStopPropagtion(event: Event) {
     box-shadow: none;
   }
   .button-host[flat] &[disabled],
-  .button-host[flat] &.disabled {
+  .button-host.flat &.disabled {
     background: none;
   }
   .button-host:not([flat]) &[disabled],
-  .button-host:not([flat]) &.disabled,
+  .button-host:not(.button-host[flat]) &.disabled,
   .button-host[disabled]:not([flat]) &,
   .button-host[loading]:not([flat]) & {
     background: $disabled-color;
