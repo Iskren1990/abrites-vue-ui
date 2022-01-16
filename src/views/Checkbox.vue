@@ -101,5 +101,5 @@ const htmlStatesExample = `
 
   <Preview title="Styles" :htmlExample="htmlStylesExample" />
 
-  <Preview title="States" :htmlExample="htmlStatesExample"> </Preview>
+  <Preview title="States" :htmlExample="htmlStatesExample" />
 </template>

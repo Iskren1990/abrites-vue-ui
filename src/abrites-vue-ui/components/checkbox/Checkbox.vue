@@ -27,8 +27,6 @@ const props = withDefaults(defineProps<ICheckboxProps>(), {
 
 const { value, error, disabled } = toRefs(props);
 const uniqueId = performance.now().toString();
-
-// che
 const { errors, hasError } = useBaseErrorValidation(error);
 
 const emit = defineEmits<{

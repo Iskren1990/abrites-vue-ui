@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, watch, watchEffect } from "vue";
-import { RouteRecordRaw, useRoute } from "vue-router";
+import { defineComponent, reactive, ref } from "vue";
+import { RouteRecordRaw } from "vue-router";
 import { routes } from "../../router";
 
 export default defineComponent({

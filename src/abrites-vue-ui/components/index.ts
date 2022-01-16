@@ -17,3 +17,4 @@ export { default as AbritesAmimatedIf } from "./animatedIf";
 export { default as AbritesAlert } from "./alert";
 export { default as AbritesChart } from "./chart";
 export { default as AbritesCheckbox } from "./checkbox";
+export { default as AbritesConfirmation } from "./confirmation";
