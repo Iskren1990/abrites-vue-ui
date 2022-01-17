@@ -122,7 +122,7 @@ const htmlExample = `
     <div class="col-lg-6">
       <h2 class="component-title" id="selector">
         <a
-          :href="`${Config.componentsUrl}/lib/snackbar/snackbar.dart`"
+          :href="`${Config.componentsUrl}/composables/useSnackbarMessageQueue.ts`"
           target="_blank"
           rel="noopener"
           >AbritesSnackbar</a

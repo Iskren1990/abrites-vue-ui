@@ -4,6 +4,8 @@ export default class Config {
 
   static appUrl: string = process.env.VUE_APP_URL || "";
 
+  static repoUrl: string = process.env.VUE_APP_REPO_URL || "";
+
   static env: string = process.env.NODE_ENV || "development";
 
   static isProduction: boolean = process.env.NODE_ENV == "production";
@@ -11,8 +13,6 @@ export default class Config {
   static isDevelopment: boolean = process.env.NODE_ENV == "development";
 
   static get componentsUrl(): string {
-    return this.isProduction
-      ? this.appUrl
-      : `${this.appUrl}:${window.location.port}`;
+    return Config.isProduction ? Config.appUrl : Config.repoUrl;
   }
 }
