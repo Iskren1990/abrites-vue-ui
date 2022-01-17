@@ -17,14 +17,14 @@ export default defineComponent({ name: "AbritesConfirmation" });
 interface IConfirmationProps {
   message: string;
   open?: boolean;
-  placeToAttach?: string;
+  teleportTo?: string;
   yesButtonText?: string;
   noButtonText?: string;
 }
 
 const props = withDefaults(defineProps<IConfirmationProps>(), {
   open: false,
-  placeToAttach: "body",
+  teleportTo: "body",
   yesButtonText: "Yes",
   noButtonText: "No",
 });
@@ -50,7 +50,7 @@ watchEffect(() => open.value && popup.value?.open());
 </script>
 
 <template>
-  <teleport :to="placeToAttach">
+  <teleport :to="teleportTo">
     <div class="confirmation-host" @confirm="confirm">
       <!-- <slot /> -->
       <AbritesPopup ref="popup" preventOverlayClose noCloseButton>

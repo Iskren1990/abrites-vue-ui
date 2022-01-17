@@ -56,8 +56,8 @@ const htmlExample = `
           </p>
         </li>
         <li>
-          <strong>placeToAttach</strong> <code>string</code>
-          <p>Vue &lt;teleport&gt; component in use</p>
+          <strong>teleportTo</strong> <code>string</code>
+          <p>Vue &lt;teleport&gt; component in use.</p>
           <p>
             CSS selector to which the element should be attached. (default to
             <code>body</code>).
