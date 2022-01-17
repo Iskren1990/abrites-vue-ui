@@ -1,7 +1,7 @@
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/alert/Alert.vue`"
+      :href="`${Config.componentsUrl}/components/alert/Alert.vue`"
       target="_blank"
       rel="noopener"
       >AbritesAlert</a

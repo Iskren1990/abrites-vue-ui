@@ -251,7 +251,7 @@ const vueSteppedExample = () => {
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/chart/Chart.vue`"
+      :href="`${Config.componentsUrl}/components/chart/Chart.vue`"
       target="_blank"
       rel="noopener"
       >AbritesChart</a

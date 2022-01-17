@@ -267,7 +267,7 @@ const buttonsGroupExample = `
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/button/Button.vue`"
+      :href="`${Config.componentsUrl}/components/button/Button.vue`"
       target="_blank"
       rel="noopener"
       >AbritesDrawer</a

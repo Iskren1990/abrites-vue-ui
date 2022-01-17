@@ -3,18 +3,18 @@
     <div class="col-lg-4">
       <h2 class="component-title" id="tabs-selector">
         <a
-          :href="`${Config.componentsUrl}/lib/tabs/Tabs.vue`"
+          :href="`${Config.componentsUrl}/components/tabs/Tabs.vue`"
           target="_blank"
           rel="noopener"
           >AbritesTabs</a
         >
-        <span>{{'<abrites-tabs></abrites-tabs>'}}</span>
+        <span>{{'<AbritesTabs></AbritesTabs>'}}</span>
       </h2>
 
       <p>This is the main wrapper tabs component.</p>
       <p>
         Expects
-        <code>{{'<abrites-tab-panel></abrites-tab-panel>'}}</code> children.
+        <code>{{'<AbritesTabPanel></AbritesTabPanel>'}}</code> children.
         <br />
         It will auto generate tabs header items from each tab panel label.
       </p>
@@ -22,7 +22,7 @@
       <h3 class="section-title" id="tabs-events">Vue Events</h3>
       <ul>
         <li>
-          <strong>change</strong> <code>{{ "String" }}</code>
+          <strong>change</strong> <code>string</code>
           <p>
             Fired after the active tab has changed.
             <code>TabChangeEvent</code> contains the previous and current active
@@ -39,12 +39,12 @@
     <div class="col-lg-4">
       <h2 class="component-title" id="tab-panel-selector">
         <a
-          :href="`${Config.componentsUrl}/lib/tab-panel/TabPanel.vue`"
+          :href="`${Config.componentsUrl}/components/tab-panel/TabPanel.vue`"
           target="_blank"
           rel="noopener"
           >AbritesTabPanel</a
         >
-        <span>{{'<abrites-tab-panel></abrites-tab-panel>'}}</span>
+        <span>{{'<AbritesTabPanel></AbritesTabPanel>'}}</span>
       </h2>
 
       <p>
@@ -55,11 +55,11 @@
       <h3 class="section-title" id="tabs-panel-inputs">Inputs</h3>
       <ul>
         <li>
-          <strong>label</strong> <code>String</code>
+          <strong>label</strong> <code>string</code>
           <p>Label of the panel (usually displayed only as tooltip).</p>
         </li>
         <li>
-          <strong>active</strong> <code>{{ "Boolean" }}</code>
+          <strong>active</strong> <code>boolean</code>
           <p>Activates/show the tab panel (default to <code>false</code>).</p>
         </li>
       </ul>
@@ -67,7 +67,7 @@
       <h3 class="section-title" id="tabs-panel-events">Events</h3>
       <ul>
         <li>
-          <strong>change</strong> <code>{{ "String" }}</code>
+          <strong>change</strong> <code>string</code>
           <p>
             Fired after the tab panel active state has changed. Contains the
             current active tab index.
@@ -87,13 +87,13 @@
     <div class="col-lg-4">
       <h2 class="component-title" id="tabs-header-selector">
         <a
-          :href="`${Config.componentsUrl}/lib/tab-header/TabHeader.vue`"
+          :href="`${Config.componentsUrl}/components/tab-header/TabHeader.vue`"
           target="_blank"
           rel="noopener"
           >AbritesTabsHeader</a
         >
 
-        <span>{{'<abrites-tabs-header></abrites-tabs-header>'}}</span>
+        <span>{{'<AbritesTabsHeader></AbritesTabsHeader>'}}</span>
       </h2>
 
       <p>
@@ -104,11 +104,11 @@
       <h3 class="section-title" id="tabs-header-inputs">Inputs</h3>
       <ul>
         <li>
-          <strong>labels</strong> <code>{{ "String[]" }}</code>
+          <strong>labels</strong> <code>string[]</code>
           <p>The labels of the header items.</p>
         </li>
         <li>
-          <strong>active</strong> <code>int</code>
+          <strong>active</strong> <code>number</code>
           <p>
             The index of the active header item (default to <code>0</code>).
           </p>
@@ -118,7 +118,7 @@
       <h3 class="section-title" id="tabs-header-events">Events</h3>
       <ul>
         <li>
-          <strong>change</strong> <code>{{ "String" }}</code>
+          <strong>change</strong> <code>string</code>
           <p>
             Fired after the active header item has changed. Receives the active
             item index as argument.

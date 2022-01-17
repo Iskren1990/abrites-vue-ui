@@ -38,7 +38,7 @@ const htmlStatesExample = `
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/checkbox/checkbox.dart`"
+      :href="`${Config.componentsUrl}/components/checkbox/Checkbox.vue`"
       target="_blank"
       rel="noopener"
       >AbritesCheckbox</a

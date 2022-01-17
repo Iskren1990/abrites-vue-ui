@@ -3,7 +3,7 @@
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-selector">
         <a
-          :href="`${Config.componentsUrl}/lib/accordion/Accordion.vue`"
+          :href="`${Config.componentsUrl}/components/accordion/Accordion.vue`"
           target="_blank"
           rel="noopener"
           >AbritesAccordion</a
@@ -62,7 +62,7 @@
     <div class="col-lg-6">
       <h2 class="component-title" id="accordion-panel-selector">
         <a
-          :href="`${Config.componentsUrl}/lib/accordion-panel/AccordionPanel.vue`"
+          :href="`${Config.componentsUrl}/components/accordion-panel/AccordionPanel.vue`"
           target="_blank"
           rel="noopener"
           >AbritesAccordionPanel</a

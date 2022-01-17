@@ -66,7 +66,7 @@ const htmlExample = `
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/tooltip/tooltip.dart`"
+      :href="`${Config.componentsUrl}/directives/Tooltip.ts`"
       target="_blank"
       rel="noopener"
       >AbritesTooltip</a

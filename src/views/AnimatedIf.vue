@@ -1,18 +1,15 @@
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/animated_if/AnimatedIf.dart`"
+      :href="`${Config.componentsUrl}/components/animated_if/AnimatedIf.dart`"
       target="_blank"
       rel="noopener"
       >AbritesAnimatedIf</a
     >
-    <span>*abritesAnimatedIf, [abritesAnimatedIf]</span>
+    <span
+      ><code> &lt;AbritesAmimatedIf&gt;&lt;/AbritesAmimatedIf&gt;</code></span
+    >
   </h2>
-
-  <p>
-    Structural component similar to <code>NgIf</code> directive but with slide
-    down/up animation.
-  </p>
 
   <abrites-alert warning>
     Styling can be achieved by clases property.</abrites-alert
@@ -22,23 +19,17 @@
 
   <ul>
     <li>
-      <strong>visible</strong> <code>bool</code>
+      <strong>visible</strong> <code>boolean</code>
       <p>
         Main input used to register the directive. If set to true it forces
         rendering the template (default to <code>false</code>).
       </p>
     </li>
     <li>
-      <strong>speed</strong> <code>String</code>
+      <strong>speed</strong> <code>string</code>
       <p>
         Interval in ms for the slide up/down animation (default to
         <code>200</code>).
-      </p>
-    </li>
-    <li>
-      <p>
-        To pass both simply set them as object
-        <code> v-abrites-animated-if="{ visible: true, speed: '300' }" </code>
       </p>
     </li>
   </ul>

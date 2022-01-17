@@ -106,7 +106,7 @@ const setupFn = function script() {
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/drawer/Drawer.vue`"
+      :href="`${Config.componentsUrl}/components/drawer/Drawer.vue`"
       target="_blank"
       rel="noopener"
       >AbritesDrawer</a

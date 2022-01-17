@@ -33,7 +33,7 @@ const htmlExample = `
     <div class="col-lg-12">
       <h2 class="component-title" id="selector">
         <a
-          :href="`${Config.componentsUrl}/lib/confirmation/confirmation.vue`"
+          :href="`${Config.componentsUrl}/components/confirmation/Confirmation.vue`"
           target="_blank"
           rel="noopener"
           >AbritesConfirmation</a

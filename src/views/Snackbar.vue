@@ -188,7 +188,7 @@ const htmlExample = `
     <div class="col-lg-6">
       <h2 class="component-title">
         <a
-          :href="`${Config.componentsUrl}/lib/snackbar/snackbar_service.dart`"
+          :href="`${Config.componentsUrl}/composables/useSnackbarMessageQueue.ts#L3`"
           target="_blank"
           rel="noopener"
           >SnackbarMessageModelProps</a
