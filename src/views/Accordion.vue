@@ -34,7 +34,7 @@
             only the panels before it. <br />
             The following helper public methods could be used:
             <code>nextStep()</code>, <code>prevStep()</code> and
-            <code>activateStep(int index)</code>
+            <code>activateStep(index: number)</code>
           </p>
         </li>
       </ul>

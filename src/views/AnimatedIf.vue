@@ -37,7 +37,6 @@
   <h3 class="section-title" id="events">Events</h3>
   <ul>
     <li>
-      <!-- <strong>abritesAnimatedIfEnd</strong> <code>{{`Stream<bool>`}}</code> -->
       <p>
         Fired after slide up/down. Receives the current visibility state as an
         argument.
