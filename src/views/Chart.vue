@@ -259,7 +259,7 @@ const vueSteppedExample = () => {
     <span>&lt;abrites-chart&gt;&lt;/abrites-chart&gt;</span>
   </h2>
 
-  <p>Chart component with line synchronization support.</p>
+  <p>Chart component with synchronization support for line charts.</p>
   <abrites-alert warning>
     <p>
       This component depends on
