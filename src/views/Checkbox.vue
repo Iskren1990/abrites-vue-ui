@@ -2,15 +2,6 @@
 import Preview from "../views/shared/Preview.vue";
 import Config from "../utils/app-config";
 
-const example = `
-  <AbritesCheckbox
-    class="card toggle"
-    label="Toggle checkbox"
-    hint="Card layout hint"
-    error="Some error..."
-  />
-`;
-
 const htmlDefaultExample = `
   <AbritesCheckbox label="Checkbox 1" />
 
