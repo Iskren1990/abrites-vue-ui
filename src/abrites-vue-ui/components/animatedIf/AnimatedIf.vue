@@ -1,6 +1,6 @@
 <template>
   <transition @enter="show" @leave="hide" :duration="speed" :css="false">
-    <div v-if="visible" class="transition-host" :classes="classes">
+    <div v-if="visible" class="transition-host" v-bind="$attrs">
       <slot></slot>
     </div>
   </transition>
@@ -19,9 +19,6 @@ export default defineComponent({
     speed: {
       type: Number,
       default: 200,
-    },
-    classes: {
-      type: String,
     },
   },
   setup(props, { emit }) {

@@ -11,10 +11,6 @@
     >
   </h2>
 
-  <abrites-alert warning>
-    Styling can be achieved by clases property.</abrites-alert
-  >
-
   <h3 class="section-title" id="inputs">Inputs</h3>
 
   <ul>
@@ -79,7 +75,7 @@ export default defineComponent({
   <div>
     <AbritesButton @trigger="toggle()">Toggle content</AbritesButton>
 
-    <AbritesAmimatedIf :visible="visible" classes="content flex-clear">
+    <AbritesAmimatedIf :visible="visible" class="content flex-clear">
   
       <p>Lorem ipsum dolor sit amet...</p>
       <p>Lorem ipsum dolor sit amet...</p>
@@ -93,7 +89,7 @@ export default defineComponent({
   <div>
     <AbritesButton @trigger="toggle()">Toggle content</AbritesButton>
 
-    <AbritesAmimatedIf :visible="visible" :speed="4000" classes="content flex-clear">
+    <AbritesAmimatedIf :visible="visible" :speed="4000" class="content flex-clear">
 
       <p>Lorem ipsum dolor sit amet...</p>
       <p>Lorem ipsum dolor sit amet...</p>
