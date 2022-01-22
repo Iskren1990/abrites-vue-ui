@@ -6,7 +6,8 @@ import Config from "../utils/app-config";
 const imports = ['import { Ref, ref } from "vue";\n'];
 const setup = () => {
   const message = ref<string | undefined>("");
-  let open: Ref<boolean> = ref<boolean>(false);
+  const open: Ref<boolean> = ref<boolean>(false);
+  const chosedAnswer = ref<Event | undefined>();
 
   const ask = () => {
     open.value = true;
@@ -14,16 +15,23 @@ const setup = () => {
   };
 
   const answer = (answer: Event) => {
+    chosedAnswer.value = answer;
     open.value = false;
   };
 
-  return { message, open, ask, answer };
+  return { message, open, ask, answer, chosedAnswer };
 };
 
 const htmlExample = `
   <div>
     <AbritesConfirmation :open="open" :message="message" @answer="answer" />
     <AbritesButton @trigger="ask">Confirm</AbritesButton>
+    <br>
+    <br>
+    <div>
+      <span>Answer: </span>
+      <strong>{{chosedAnswer}}</strong>
+    </div>
   </div>
 `;
 </script>
