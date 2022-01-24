@@ -92,16 +92,16 @@
   }
 
   // dnd helper styles
-  .dnd-dragging {
+  .sortable-chosen {
     opacity: 0.3;
-    pointer-events: none;
   }
-  .dnd-dragging,
-  .dnd-drag-occurring {
-    cursor: default;
-    cursor: grabbing;
+
+  .grabbing * {
+    cursor: move !important;
+    cursor: grabbing !important;
   }
-  .dnd-elem[style*="transform:"] { // ghost
+
+  .sortable-drag[style*="transform:"] { // ghost
     opacity: 0.6;
     background: $base-color;
     box-shadow: 0px 0px 0px 2px $accent-color;

@@ -12,7 +12,7 @@
       <AbritesButton flat round class="menu-toggle" @trigger="drawer.toggle()">
         <AbritesIcon icon="menu"></AbritesIcon>
       </AbritesButton>
-      <h1 class="app-title">{{ $route.name }}</h1>
+      <h1 class="app-title">{{ $route.meta.title }}</h1>
     </header>
 
     <div class="app-content">
