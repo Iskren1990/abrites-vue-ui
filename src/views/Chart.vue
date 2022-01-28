@@ -375,7 +375,7 @@ const vueSteppedExample = () => {
     <li>
       <strong>chart</strong>
       <code
-        >class ChartController({ group }?: ChartControlerProps):
+        >class ChartController({ group }?: ChartControllerProps):
         ChartController</code
       >
       <p>Resets the Chart Controller class.</p>
@@ -408,7 +408,7 @@ const vueSteppedExample = () => {
           >
           <p>
             Inits the chart instance sets default options and adds it to the
-            static Chart Controler list.
+            static Chart Controller list.
           </p>
         </li>
         <li>

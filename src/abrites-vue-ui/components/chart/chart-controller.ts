@@ -16,7 +16,7 @@ import {
 import chartSynchronyser from "./chart-plugins";
 import { ZoomPluginOptions } from "chartjs-plugin-zoom/types/options";
 
-interface ChartControlerProps {
+interface ChartControllerProps {
   group?: string;
 }
 
@@ -30,7 +30,7 @@ export class ChartController {
   private _options: ChartOptions = {};
   isZoomed: Ref<boolean> = ref(false);
 
-  constructor({ group }: ChartControlerProps = {}) {
+  constructor({ group }: ChartControllerProps = {}) {
     this._group = group || ChartController.defaultGroup;
     Chart.register(...registerables);
     Chart.register(zoomPlugin);
