@@ -1,5 +1,9 @@
 import { DirectiveBinding } from "vue";
 
+interface ElementWithBinding extends HTMLElement {
+  callback: () => () => unknown;
+}
+
 function outsideClickEvent(el: ElementWithBinding) {
   return (event: MouseEvent) => {
     if (
@@ -10,10 +14,6 @@ function outsideClickEvent(el: ElementWithBinding) {
       el.callback()();
     }
   };
-}
-
-interface ElementWithBinding extends HTMLElement {
-  callback: () => () => unknown;
 }
 
 // IIFE
