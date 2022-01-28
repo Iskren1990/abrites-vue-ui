@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onUnmounted, ref } from "vue";
 import Config from "../utils/app-config";
 import { Preview } from "./shared/Preview.vue";
 
@@ -18,6 +18,30 @@ const setup = () => {
   };
 
   return { count, onOutsideClick };
+};
+
+const htmlConditionExample = `
+  <div v-abrites-outside-click="() => (isActive ? onOutsideClick : null)" class="container">
+    <div>
+      Outside clicked {{ count }}
+    </div>
+    <div>
+      Is directive callback active {{ isActive }}
+    </div>
+  </div>
+  `;
+
+const setupWithCondition = () => {
+  const isActive = ref(false);
+  const interval = setInterval(() => (isActive.value = !isActive.value), 3000);
+  const count = ref(0);
+  const onOutsideClick = () => {
+    count.value++;
+  };
+
+  onUnmounted(() => clearInterval(interval));
+
+  return { count, onOutsideClick, isActive };
 };
 </script>
 
@@ -43,8 +67,8 @@ const setup = () => {
       <strong>v-abrites-outside-click</strong> <code>() => any</code>
       <p>
         Callback to execute. To prevent unnecessary calls it is recommended to
-        use it with a ternary condition (eg. `v-abrites-outside-click="isTrue ?
-        myCallback : null"`).
+        use it with a function expresion (eg. `v-abrites-outside-click="() =>
+        isTrue ? myCallback : null"`).
       </p>
     </li>
   </ul>
@@ -52,22 +76,32 @@ const setup = () => {
   <h3 class="section-title" id="examples">Examples</h3>
 
   <Preview
+    title="Default"
     :htmlExample="htmlExample"
-    :vueExample="setup"
+    :scriptExample="`${setup}`"
     :setupFn="setup"
+    :imports="imports"
+  />
+
+  <Preview
+    title="Conditional"
+    :htmlExample="htmlConditionExample"
+    :scriptExample="`${setupWithCondition}`"
+    :setupFn="setupWithCondition"
     :imports="imports"
   />
 </template>
 
 <style lang="scss" scoped>
 ::v-deep() .container {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  background: red;
+  flex-direction: column;
+  justify-content: space-around;
+  background: rgb(255, 0, 0);
   min-width: 300px;
   min-height: 300px;
-  color: #fff;
+  color: #000000;
   width: unset;
 }
 </style>

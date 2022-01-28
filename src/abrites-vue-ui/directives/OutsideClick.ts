@@ -1,17 +1,20 @@
-import { DirectiveBinding, VNode } from "vue";
+import { DirectiveBinding } from "vue";
 
-function callbackHandlerRef(
-  el: HTMLElement,
-  binding: DirectiveBinding<() => unknown>
-) {
-  return function outsideClickEvent(event: MouseEvent) {
-    if (!el.contains(event.target as HTMLElement)) {
-      binding.value();
+function outsideClickEvent(el: ElementWithBinding) {
+  return (event: MouseEvent) => {
+    if (
+      !el.contains(event.target as HTMLElement) &&
+      typeof el.callback == "function" &&
+      typeof el.callback() == "function"
+    ) {
+      el.callback()();
     }
   };
 }
 
-let reff: (event: MouseEvent) => void;
+interface ElementWithBinding extends HTMLElement {
+  callback: () => () => unknown;
+}
 
 // IIFE
 export default (function AbritesOutsideClick() {
@@ -21,17 +24,15 @@ export default (function AbritesOutsideClick() {
   /// ```
 
   function mounted(
-    el: HTMLElement,
-    binding: DirectiveBinding<() => unknown>
+    el: ElementWithBinding,
+    binding: DirectiveBinding<() => () => unknown>
   ): void {
-    reff = callbackHandlerRef(el, binding);
-    document.addEventListener("mousedown", reff);
-    document.addEventListener("click", reff);
+    el.callback = binding.value;
+    document.addEventListener("click", outsideClickEvent(el));
   }
 
-  function unmounted(el: HTMLElement) {
-    document.removeEventListener("mousedown", reff);
-    document.removeEventListener("click", reff);
+  function unmounted(el: ElementWithBinding) {
+    document.removeEventListener("click", outsideClickEvent(el));
   }
 
   return {

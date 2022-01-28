@@ -278,7 +278,7 @@ function prventDefaultAndStopPropagtion(event: Event) {
         margin-right: 0;
       }
     }
-    .dropdown-host ::v-deep() {
+    ::v-deep(.dropdown-host) {
       margin-left: 0;
       margin-right: 0;
     }
