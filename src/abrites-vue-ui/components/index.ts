@@ -20,3 +20,4 @@ export { default as AbritesCheckbox } from "./checkbox";
 export { default as AbritesConfirmation } from "./confirmation";
 export { default as AbritesSnackbar } from "./snackbar";
 export { default as AbritesDropdown } from "./dropdown";
+export { default as AbritesInfo } from "./info";
