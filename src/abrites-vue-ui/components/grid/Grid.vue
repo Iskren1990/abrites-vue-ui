@@ -1,15 +1,15 @@
-<template>
-  <div class="grid-host">
-    <slot />
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "AbritesGrid",
 });
 </script>
+
+<template>
+  <div class="grid-host">
+    <slot />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @use "sass:math";
