@@ -1,18 +1,10 @@
 <template>
-  <div></div>
+  <div class="loader-host"></div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "AbritesLoader",
-  data() {
-    return {
-      isActive: false,
-    };
-  },
-});
+export default defineComponent({ name: "AbritesLoader" });
 </script>
 
 <style lang="scss" scoped>
@@ -22,7 +14,7 @@ export default defineComponent({
 $loader-border-size: 0.15em !default;
 $loader-speed: 1.1s !default;
 
-div {
+.loader-host {
   position: relative;
   outline: 0;
   padding: 0;
