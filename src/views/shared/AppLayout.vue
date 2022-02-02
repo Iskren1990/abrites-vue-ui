@@ -1,5 +1,5 @@
 <template>
-  <AbritesDrawer ref="drawer">
+  <AbritesDrawer name="side-navigation" ref="drawer">
     <div class="drawer-header">
       <AbritesSearch class="expanded" placeholder="Search..."></AbritesSearch>
     </div>
