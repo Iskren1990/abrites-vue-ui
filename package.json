@@ -4,10 +4,10 @@
   "private": true,
   "module": "vue.esm-bundler.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
+    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "test:unit": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service test:unit",
+    "test:e2e": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
