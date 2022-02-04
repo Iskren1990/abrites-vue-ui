@@ -1,11 +1,12 @@
 <script lang="ts">
-import useBaseErrorValidation from "@/abrites-vue-ui/composables/useBaseErrorValidation";
+import useErrorFormating from "@/abrites-vue-ui/composables/useErrorFormating";
 import {
   defineComponent,
   withDefaults,
   defineProps,
   defineEmits,
   toRefs,
+  computed,
 } from "vue";
 
 export default defineComponent({ name: "AbritesCheckbox" });
@@ -27,10 +28,12 @@ const props = withDefaults(defineProps<ICheckboxProps>(), {
 
 const { value, error, disabled } = toRefs(props);
 const uniqueId = performance.now().toString();
-const { errors, hasError } = useBaseErrorValidation(error);
+const { errors, hasError } = useErrorFormating(error.value);
+const internalValue = computed(() => value.value);
 
 const emit = defineEmits<{
   (event: "update:checkbox", checked: boolean): void;
+  (event: "blur"): void;
 }>();
 
 const writeValue = (checkbox: boolean): void => {
@@ -47,6 +50,7 @@ const writeValue = (checkbox: boolean): void => {
         :disabled="disabled"
         :checked="value"
         @change.prevent="writeValue(!value)"
+        @blur="$emit('blur')"
       />
 
       <label :for="uniqueId">
