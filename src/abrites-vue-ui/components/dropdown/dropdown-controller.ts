@@ -25,6 +25,7 @@ export default class DropdownController {
     private props: IDropdownProps,
     public isVisible: Ref<boolean>
   ) {
+    this.isManual = props.manual as boolean;
     DropdownController.instances.push(this);
   }
 
