@@ -22,3 +22,4 @@ export { default as AbritesSnackbar } from "./snackbar";
 export { default as AbritesDropdown } from "./dropdown";
 export { default as AbritesInfo } from "./info";
 export { default as AbritesInput } from "./input";
+export { default as AbritesLazyFor } from "./lazy-for";
