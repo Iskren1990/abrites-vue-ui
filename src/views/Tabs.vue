@@ -55,11 +55,11 @@
       <h3 class="section-title" id="tabs-panel-inputs">Inputs</h3>
       <ul>
         <li>
-          <strong>label</strong> <code>string</code>
+          <strong>label?</strong> <code>string</code>
           <p>Label of the panel (usually displayed only as tooltip).</p>
         </li>
         <li>
-          <strong>active</strong> <code>boolean</code>
+          <strong>active?</strong> <code>boolean</code>
           <p>Activates/show the tab panel (default to <code>false</code>).</p>
         </li>
       </ul>
@@ -104,11 +104,11 @@
       <h3 class="section-title" id="tabs-header-inputs">Inputs</h3>
       <ul>
         <li>
-          <strong>labels</strong> <code>string[]</code>
+          <strong>labels?</strong> <code>string[]</code>
           <p>The labels of the header items.</p>
         </li>
         <li>
-          <strong>active</strong> <code>number</code>
+          <strong>active?</strong> <code>number</code>
           <p>
             The index of the active header item (default to <code>0</code>).
           </p>

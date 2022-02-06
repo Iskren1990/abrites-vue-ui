@@ -3,6 +3,7 @@ import {
   defineEmits,
   defineComponent,
   defineProps,
+  withDefaults,
   reactive,
   watchEffect,
   provide,
@@ -13,9 +14,13 @@ import { IAccordionPanelState } from "../../inteerfaces/Accordion";
 </script>
 
 <script lang="ts" setup>
-const props = defineProps({
-  multiple: { type: Boolean, default: false },
-  stepped: { type: Boolean },
+interface IAccordionProps {
+  multiple?: boolean;
+  stepped?: boolean;
+}
+const props = withDefaults(defineProps<IAccordionProps>(), {
+  multiple: false,
+  stepped: false,
 });
 
 const panels = ref<IAccordionPanelState[]>([]);
@@ -41,14 +46,14 @@ watchEffect(
   { flush: "post" }
 );
 
-function expandedPanelIndexes(): number[] {
+function expandedPanelIndexes() {
   const indexes: number[] = [];
   panels.value.map((panel, i) => panel.isExpanded && indexes.push(i));
 
   return indexes;
 }
 
-function getLastActivePanelIndex(): number {
+function getLastActivePanelIndex() {
   return expandedPanelIndexes().length
     ? expandedPanelIndexes()[expandedPanelIndexes().length - 1]
     : 0;
@@ -140,7 +145,7 @@ function emitChange() {
 
 // events can not be transmited from slots hence beforeExpand event is not received
 // to overcome this expand() is apended with collapse all
-function monkeyPatchedExpand(childState: IAccordionPanelState): void {
+function monkeyPatchedExpand(childState: IAccordionPanelState) {
   let oldExpand = childState.expand.bind(childState);
   childState.expand = function () {
     if (!props.multiple) {

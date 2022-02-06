@@ -37,7 +37,7 @@ const emit = defineEmits<{
   (event: "end", totalLoaded?: number): void;
 }>();
 
-const min = (numOne: number, numTwo: number): number =>
+const min = (numOne: number, numTwo: number) =>
   [numOne, numTwo].sort((a, b) => a - b)[0];
 
 const resetCounters = () => {

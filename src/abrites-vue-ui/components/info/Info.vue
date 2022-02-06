@@ -11,8 +11,6 @@ interface IInfoProps {
 }
 
 const props = defineProps<IInfoProps>();
-
-console.log(props);
 </script>
 
 <template>

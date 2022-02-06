@@ -191,18 +191,18 @@ const scriptHandleExample = () => {
   <h3 class="section-title" id="inputs">Inputs</h3>
   <ul>
     <li>
-      <strong>visible</strong> <code>boolean</code>
+      <strong>visible?</strong> <code>boolean</code>
       <p>Show/hide the dropdown (default to <code>false</code>).</p>
     </li>
     <li>
-      <strong>contentSelectable</strong> <code>boolean</code>
+      <strong>contentSelectable?</strong> <code>boolean</code>
       <p>
         Keep the dropdown open on dropdown item's click/tab (default to
         <code>false</code>).
       </p>
     </li>
     <li>
-      <strong>manual</strong> <code>boolean</code>
+      <strong>manual?</strong> <code>boolean</code>
       <p>
         Specify that the dropdown is only progmatically operatable, eg. by
         manually calling the instances show/hide methods (default to
@@ -210,7 +210,7 @@ const scriptHandleExample = () => {
       </p>
     </li>
     <li>
-      <strong>handle</strong> <code>HTMLElement</code>
+      <strong>handle?</strong> <code>HTMLElement</code>
       <p>
         Dropdown toggle handle. If not set, the component fallbacks to its first
         parent element. This is ignored if <code>manual</code> is set.

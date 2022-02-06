@@ -58,13 +58,13 @@ const htmlExample = `
           <p>Message to display.</p>
         </li>
         <li>
-          <strong>open</strong> <code>boolean</code>
+          <strong>open?</strong> <code>boolean</code>
           <p>
             Controls the state of the popup. (default to <code>false</code>).
           </p>
         </li>
         <li>
-          <strong>teleportTo</strong> <code>string</code>
+          <strong>teleportTo?</strong> <code>string</code>
           <p>Vue &lt;teleport&gt; component in use.</p>
           <p>
             CSS selector to which the element should be attached. (default to
@@ -72,11 +72,11 @@ const htmlExample = `
           </p>
         </li>
         <li>
-          <strong>yesButtonText</strong> <code>string</code>
+          <strong>yesButtonText?</strong> <code>string</code>
           <p>Yes button text (default to <code>'Yes'</code>).</p>
         </li>
         <li>
-          <strong>noButtonText</strong> <code>string</code>
+          <strong>noButtonText?</strong> <code>string</code>
           <p>No button text (default to <code>'No'</code>).</p>
         </li>
       </ul>

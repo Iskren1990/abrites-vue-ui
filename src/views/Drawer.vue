@@ -127,21 +127,21 @@ const setupFn = function script() {
   <h3 class="section-title" id="inputs">Inputs</h3>
   <ul>
     <li>
-      <strong>name</strong> <code>string</code>
+      <strong>name?</strong> <code>string</code>
       <p>
         Name of the drawer (default to <code>'drawer'</code>). Used to restore
         the last visibility state from the local storage.
       </p>
     </li>
     <li>
-      <strong>animation</strong> <code>number</code>
+      <strong>animation?</strong> <code>number</code>
       <p>
         Interval in ms for the show/hide animation (default to
         <code>200</code>).
       </p>
     </li>
     <li>
-      <strong>hidden</strong> <code>boolen</code>
+      <strong>hidden?</strong> <code>boolen</code>
       <p>Hide the drawer.</p>
     </li>
   </ul>

@@ -278,7 +278,7 @@ const buttonsGroupExample = `
   <h3 class="section-title" id="inputs">Inputs</h3>
   <ul>
     <li>
-      <strong>submit</strong> <code>boolean</code>
+      <strong>submit?</strong> <code>boolean</code>
       <p>
         Whether clicking on the button should submit a form (equivalent to
         <code>{{`<button type="submit"></button>`}}</code>) (default to
@@ -286,32 +286,32 @@ const buttonsGroupExample = `
       </p>
     </li>
     <li>
-      <strong>disabled</strong> <code>boolean</code>
+      <strong>disabled?</strong> <code>boolean</code>
       <p>
         Mark the button as disabled. This will disable also all pointer events
         (default to <code>false</code>).
       </p>
     </li>
     <li>
-      <strong>loading</strong> <code>boolean</code>
+      <strong>loading?</strong> <code>boolean</code>
       <p>
         Display a spinning loader on top of the button content (default to
         <code>false</code>).
       </p>
     </li>
     <li>
-      <strong>link</strong> <code>string</code>
+      <strong>link?</strong> <code>string</code>
       <p>
         Will render <code>{{`<a :href="link"></a>`}}</code> tag with the input
         value. The trigger callback will be ignored.
       </p>
     </li>
     <li>
-      <strong>continuous</strong> <code>boolean</code>
+      <strong>continuous?</strong> <code>boolean</code>
       <p>Periodic call the button trigger callback on mouse hold.</p>
     </li>
     <li>
-      <strong>continuousDelay</strong> <code>number</code>
+      <strong>continuousDelay?</strong> <code>number</code>
       <p>
         Interval in ms between each <code>continuous</code> periodic call
         (default to <code>300</code>).

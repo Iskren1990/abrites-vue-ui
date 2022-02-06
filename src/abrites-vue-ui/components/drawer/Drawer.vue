@@ -1,16 +1,7 @@
-<template>
-  <div class="app-sidebar" ref="drawer-host">
-    <div class="drawer-wrapper" ref="drawer-wrapper">
-      <slot></slot>
-    </div>
-    <div class="drawer-overlay" @click="hide({})"></div>
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 let animation = new Animation();
-let isAnimating = ref(null as boolean | null);
+let isAnimating = ref<boolean | null>(null);
 
 export default defineComponent({
   name: "AbritesDrawer",
@@ -153,6 +144,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <div class="app-sidebar" ref="drawer-host">
+    <div class="drawer-wrapper" ref="drawer-wrapper">
+      <slot></slot>
+    </div>
+    <div class="drawer-overlay" @click="hide({})"></div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @use "sass:math";

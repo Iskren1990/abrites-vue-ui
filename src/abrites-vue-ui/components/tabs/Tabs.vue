@@ -1,16 +1,3 @@
-<template>
-  <div class="tabs-host">
-    <AbritesTabHeader
-      :labels="tabLabels"
-      :active="state.activeTabIndex"
-      @change="setActiveTab"
-    ></AbritesTabHeader>
-    <div class="tabs-content">
-      <slot></slot>
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
 import {
   Component,
@@ -78,6 +65,19 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <div class="tabs-host">
+    <AbritesTabHeader
+      :labels="tabLabels"
+      :active="state.activeTabIndex"
+      @change="setActiveTab"
+    ></AbritesTabHeader>
+    <div class="tabs-content">
+      <slot></slot>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @use "sass:math";

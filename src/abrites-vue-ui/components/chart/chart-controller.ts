@@ -42,11 +42,11 @@ export class ChartController {
     return this._group || ChartController.defaultGroup;
   }
 
-  get chartInst(): Chart {
+  get chartInst() {
     return this._chart as Chart;
   }
 
-  get isInited(): boolean {
+  get isInited() {
     return this._chart != null;
   }
 
@@ -79,7 +79,7 @@ export class ChartController {
     ChartController._addInstance(this);
   }
 
-  private _globalDefaults(): void {
+  private _globalDefaults() {
     // performance improvement
     Chart.defaults.animation = false;
     Chart.defaults.datasets.line.pointRadius = 0;
@@ -102,7 +102,7 @@ export class ChartController {
     Chart.defaults.plugins.tooltip.usePointStyle = true;
   }
 
-  private _defaultPlugins(): void {
+  private _defaultPlugins() {
     type PluginOptions = PluginOptionsByType<keyof ChartTypeRegistry>;
     // zoom plugin missbehaves if type: "category"
     !this._options.scales && (this._options.scales = { x: { type: "linear" } });
@@ -135,7 +135,7 @@ export class ChartController {
     !this._options.plugins.zoom && (this._options.plugins.zoom = zoom);
   }
 
-  private _timeAxisDefaults(): void {
+  private _timeAxisDefaults() {
     Object.keys(this._options.scales || {}).forEach((scale) => {
       if (
         this._options.scales &&
@@ -172,7 +172,7 @@ export class ChartController {
     });
   }
 
-  private _defaultDatasetStyle(): void {
+  private _defaultDatasetStyle() {
     if (this._data == undefined) return;
     this._data.datasets.forEach((data) => {
       const randomColor = ColorHelper.getRandomColor();
@@ -183,7 +183,7 @@ export class ChartController {
     });
   }
 
-  destroyChart(): void {
+  destroyChart() {
     if (this._chart == null) {
       return; // nothing to destroy
     }
@@ -199,7 +199,7 @@ export class ChartController {
     this._chart = null;
   }
 
-  private static _addInstance(chart: ChartController): void {
+  private static _addInstance(chart: ChartController) {
     const isAdded = this._instances.find(
       (inst) => inst.chartInst.id === chart.chartInst.id
     );
@@ -215,14 +215,14 @@ export class ChartController {
     return ChartController._instances.filter((inst) => inst.group == group);
   }
 
-  updateChartOptions({ newOptions }: { newOptions: ChartOptions }): void {
+  updateChartOptions({ newOptions }: { newOptions: ChartOptions }) {
     if (this.chartInst != null) {
       this.chartInst.options = { ...this.chartInst.options, ...newOptions };
       this.chartInst.update();
     }
   }
 
-  updateChartInstancesScale(): void {
+  updateChartInstancesScale() {
     this.isZoomed.value = this.chartInst.isZoomedOrPanned();
 
     const min = this.chartInst.scales.x.min;
@@ -243,7 +243,7 @@ export class ChartController {
     });
   }
 
-  updateChart(): void {
+  updateChart() {
     if (this._chart != null) {
       this._chart.update();
     }

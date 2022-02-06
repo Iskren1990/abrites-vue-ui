@@ -23,27 +23,27 @@ import { ChartController } from "./chart-controller";
 
 <script lang="ts" setup>
 type PanAmount = number | Partial<Point>;
-interface PanControllerArgs {
+interface IPanControllerArgs {
   pan?: PanAmount;
   scales?: Scale<CoreScaleOptions>[];
   mode?: UpdateMode;
 }
 
-interface ChartProps {
+interface IChartProps {
   type: ChartType;
   data: ChartData;
+  options?: ChartOptions;
   isLoading?: boolean;
   missingDataText?: string;
   group?: string;
   width?: number;
   height?: number;
-  options?: ChartOptions;
   nocontrols?: boolean;
   isStartRangeReached?: boolean;
   isEndRangeReached?: boolean;
 }
 
-const props = withDefaults(defineProps<ChartProps>(), {
+const props = withDefaults(defineProps<IChartProps>(), {
   isLoading: false,
   missingDataText: "No data to show",
   height: 350,
@@ -64,10 +64,10 @@ const chartProps = computed<ChartConfiguration>(() => ({
 const resetZoom = (mode?: UpdateMode) => {
   chart.chartInst.resetZoom(mode);
 };
-const panPrev = ({ pan = 10, scales, mode }: PanControllerArgs = {}) => {
+const panPrev = ({ pan = 10, scales, mode }: IPanControllerArgs = {}) => {
   chart.chartInst.pan(pan, scales, mode);
 };
-const panNext = ({ pan = -10, scales, mode }: PanControllerArgs = {}) => {
+const panNext = ({ pan = -10, scales, mode }: IPanControllerArgs = {}) => {
   chart.chartInst.pan(pan, scales, mode);
 };
 

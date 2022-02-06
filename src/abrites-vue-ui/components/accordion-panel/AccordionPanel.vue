@@ -11,8 +11,9 @@ import {
 import { IAccordionParentController } from "../../inteerfaces/Accordion";
 export default defineComponent({ name: "AbritesAccordionPanel" });
 </script>
+
 <script lang="ts" setup>
-interface IProps {
+interface IAccordionPanelProps {
   label?: string;
   hint?: string;
   collapseIcon?: string;
@@ -25,7 +26,7 @@ interface IProps {
   withAccordeonController?: boolean;
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<IAccordionPanelProps>(), {
   collapseIcon: "keyboard_arrow_up",
   expandIcon: "keyboard_arrow_down",
   disabled: false,
@@ -36,10 +37,10 @@ const props = withDefaults(defineProps<IProps>(), {
 });
 
 const emit = defineEmits<{
-  (e: "changed", changed: boolean): boolean;
-  (e: "animationEnd", payload: boolean): boolean;
-  (e: "beforeExpand"): boolean;
-  (e: "beforeCollapse"): boolean;
+  (e: "changed", changed: boolean): void;
+  (e: "animationEnd", payload: boolean): void;
+  (e: "beforeExpand"): void;
+  (e: "beforeCollapse"): void;
 }>();
 
 const state = reactive({

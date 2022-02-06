@@ -21,17 +21,17 @@
       <h3 class="section-title" id="accordion-inputs">Inputs</h3>
       <ul>
         <li>
-          <strong>multiple</strong> <code>boolean</code>
+          <strong>multiple?</strong> <code>boolean</code>
           <p>
             Whether the accordion should allow expanding more than one panel
             (default to <code>false</code>).
           </p>
         </li>
         <li>
-          <strong>stepped</strong> <code>boolean</code>
+          <strong>stepped?</strong> <code>boolean</code>
           <p>
             Disable all panels after the current active one and allow expanding
-            only the panels before it. <br />
+            only the panels before it (default to <code>false</code>. <br />
             The following helper public methods could be used:
             <code>nextStep()</code>, <code>prevStep()</code> and
             <code>activateStep(index: number)</code>
@@ -78,18 +78,18 @@
       <h3 class="section-title" id="accordion-panel-inputs">Inputs</h3>
       <ul>
         <li>
-          <strong>label</strong> <code>string</code>
+          <strong>label?</strong> <code>string</code>
           <p>Primary label of the panel (displayed in the panel header).</p>
         </li>
         <li>
-          <strong>hint</strong> <code>string</code>
+          <strong>hint?</strong> <code>string</code>
           <p>
             Secondary label of the panel (displayed in the panel header below
             <code>label</code>).
           </p>
         </li>
         <li>
-          <strong>collapseIcon</strong> <code>string</code>
+          <strong>collapseIcon?</strong> <code>string</code>
           <p>
             Name of the icon ligature for the collapsed panel state (default to
             'keyboard_arrow_up'). See
@@ -98,7 +98,7 @@
           </p>
         </li>
         <li>
-          <strong>expandIcon</strong> <code>string</code>
+          <strong>expandIcon?</strong> <code>string</code>
           <p>
             Name of the icon ligature for the expanded panel state (default to
             'keyboard_arrow_down'). See
@@ -107,39 +107,39 @@
           </p>
         </li>
         <li>
-          <strong>disabled</strong> <code>boolean</code>
+          <strong>disabled?</strong> <code>boolean</code>
           <p>
             Mark the panel as disabled. This will disable also all pointer
             events (default to <code>false</code>)
           </p>
         </li>
         <li>
-          <strong>noninteractive</strong> <code>boolean</code>
+          <strong>noninteractive?</strong> <code>boolean</code>
           <p>
             Disable user interactivity and allow only programatically to change
             the panel visibility (default to <code>false</code>).
           </p>
         </li>
         <li>
-          <strong>scrollIntoView</strong> <code>boolean</code>
+          <strong>scrollIntoView?</strong> <code>boolean</code>
           <p>
             Whether to scroll to the expanded panel content if it's not within
             the visible viewport (default to <code>true</code>).
           </p>
         </li>
         <li>
-          <strong>expanded</strong> <code>boolean</code>
+          <strong>expanded?</strong> <code>boolean</code>
           <p>Show the panel content (default to <code>false</code>).</p>
         </li>
         <li>
-          <strong>animation</strong> <code>number</code>
+          <strong>animation?</strong> <code>number</code>
           <p>
             Interval in ms for the expand/collapse animation (default to
             <code>200</code>).
           </p>
         </li>
         <li>
-          <strong>withAccordeonController</strong> <code>boolean</code>
+          <strong>withAccordeonController?</strong> <code>boolean</code>
           <p>
             Weather the element is nested in {{`<AbritesAccordion
             ></AbritesAccordion>`}} (default to <code>false</code>).

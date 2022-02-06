@@ -41,7 +41,7 @@ const chartSynchronyser: Plugin = {
       });
     }
   },
-  afterDraw: function (chart: Chart): void {
+  afterDraw: function (chart: Chart) {
     const tt = chart.tooltip;
 
     if (tt && tt.dataPoints?.length > 0 && tt.opacity == 1) {
@@ -89,7 +89,7 @@ const chartSynchronyser: Plugin = {
   },
 };
 
-function drawCrosshair(chart: Chart): void {
+function drawCrosshair(chart: Chart) {
   if (!chart.tooltip) return;
   const activePoint = chart.tooltip?.dataPoints[0];
   const ctx = chart.ctx;

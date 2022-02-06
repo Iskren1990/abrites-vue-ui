@@ -28,7 +28,9 @@ const props = withDefaults(defineProps<IButtonProps>(), {
   continuousDelay: 300,
 });
 
-const emit = defineEmits(["trigger"]);
+const emit = defineEmits<{
+  (event: "trigger", value: Event): void;
+}>();
 const trigger = (e: Event) => emit("trigger", e);
 const isRouterLink = computed(() => props.link);
 const isContinuous = computed(
@@ -62,7 +64,6 @@ function cancelContinuousTrigger() {
 }
 
 function prventDefaultAndStopPropagtion(event: Event) {
-  event.preventDefault();
   event.stopPropagation();
 }
 </script>
@@ -74,7 +75,7 @@ function prventDefaultAndStopPropagtion(event: Event) {
       class="button"
       :href="link"
       :class="(isDisabled || isLoading) && disabled"
-      @click="prventDefaultAndStopPropagtion"
+      @click.prevent="prventDefaultAndStopPropagtion"
     >
       <div class="button-content">
         <AbritesLoader v-if="isLoading" class="active" />

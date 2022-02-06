@@ -107,7 +107,7 @@ export default defineComponent({
     };
   },
   methods: {
-    open(): void {
+    open() {
       if (this.isOpen) return;
       this.$emit("beforeOpenCtrl", null);
       clearTimeout(this.closeTimer);
@@ -199,7 +199,7 @@ function overlayEventMouseUpListener(e: Event, ctx: any) {
   }
 }
 
-function setHolder(holder: HTMLElement | null): HTMLElement {
+function setHolder(holder: HTMLElement | null) {
   const d = document;
   holder =
     holder || (d.body.querySelector(".abrites-popups-holder") as HTMLElement);

@@ -1,27 +1,24 @@
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, defineProps, defineExpose, computed } from "vue";
 import { RouteRecordRaw } from "vue-router";
 import { AbritesMenuItemModel } from "../index";
 
-export default defineComponent({
-  name: "AbritesMenu",
-  props: {
-    items: {
-      type: Array as PropType<Array<RouteRecordRaw>>,
-    },
-  },
-  setup(props) {
-    const itemToMenuItem = (item: RouteRecordRaw) => {
-      return new AbritesMenuItemModel({
-        label: item.meta?.title as string,
-        url: item.path,
-        icon: item.meta?.icon as string,
-      });
-    };
+export default defineComponent({ name: "AbritesMenu" });
+</script>
 
-    return { mappedItems: props.items?.map(itemToMenuItem) };
-  },
-});
+<script lang="ts" setup>
+const props = defineProps<{
+  items: Array<RouteRecordRaw>;
+}>();
+
+const itemToMenuItem = (item: RouteRecordRaw) => {
+  return new AbritesMenuItemModel({
+    label: item.meta?.title as string,
+    url: item.path,
+    icon: item.meta?.icon as string,
+  });
+};
+const mappedItems = computed(() => props.items.map(itemToMenuItem));
 </script>
 
 <template>

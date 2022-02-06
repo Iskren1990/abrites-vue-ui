@@ -1,3 +1,43 @@
+<script lang="ts">
+import {
+  defineComponent,
+  inject,
+  defineProps,
+  withDefaults,
+  ref,
+  RendererElement,
+  RendererNode,
+  VNode,
+  watchEffect,
+} from "vue";
+export default defineComponent({ name: "AbritesTabPanel" });
+</script>
+
+<script lang="ts" setup>
+interface ITabsProvider {
+  activeTabIndex: number;
+  tabs: VNode<RendererNode, RendererElement>[];
+}
+
+const props = withDefaults(
+  defineProps<{ label?: string; active?: boolean | string }>(),
+  { label: "", active: "0" }
+);
+
+const isActive = ref(false);
+const tabsState = inject<ITabsProvider>("TabsProvider");
+const tabIndex = tabsState?.tabs.findIndex(
+  (x) => x.props?.label == props.label
+);
+
+/// Monitors the injected state for activeTabIndex change
+/// sers the active status of the current component to true
+/// if the activeTabIndex is equal to current tab index @tabIndex
+watchEffect(() => {
+  isActive.value = tabIndex == tabsState?.activeTabIndex;
+});
+</script>
+
 <template>
   <div class="tab-panel-host">
     <div v-if="isActive" class="panel-content">
@@ -5,53 +45,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-interface ITabsProvider {
-  activeTabIndex: number;
-  tabs: VNode<RendererNode, RendererElement>[];
-}
-
-import {
-  defineComponent,
-  inject,
-  PropType,
-  ref,
-  RendererElement,
-  RendererNode,
-  VNode,
-  watchEffect,
-} from "vue";
-export default defineComponent({
-  name: "AbritesTabPanel",
-  props: {
-    label: {
-      type: String,
-      default: "",
-    },
-    active: {
-      type: String as PropType<boolean | string>,
-      default: "0",
-    },
-  },
-  setup(props) {
-    const isActive = ref(false);
-    const tabsState = inject<ITabsProvider>("TabsProvider");
-    const tabIndex = tabsState?.tabs.findIndex(
-      (x) => x.props?.label == props.label
-    );
-
-    /// Monitors the injected state for activeTabIndex change
-    /// sers the active status of the current component to true
-    /// if the activeTabIndex is equal to current tab index @tabIndex
-    watchEffect(() => {
-      isActive.value = tabIndex == tabsState?.activeTabIndex;
-    });
-
-    return { isActive, tabsState };
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 @import "../../styles/core";

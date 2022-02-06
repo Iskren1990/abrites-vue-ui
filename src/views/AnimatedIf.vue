@@ -22,7 +22,7 @@
       </p>
     </li>
     <li>
-      <strong>speed</strong> <code>string</code>
+      <strong>speed?</strong> <code>string</code>
       <p>
         Interval in ms for the slide up/down animation (default to
         <code>200</code>).

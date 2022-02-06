@@ -36,6 +36,7 @@ const dropdownRef = ref<HTMLElement | undefined>();
 const controller = new DropdownController(dropdownRef, props, isVisible);
 
 const emit = defineEmits<{ (event: "change", state: boolean): void }>();
+
 watchEffect(() => {
   emit("change", isVisible.value);
 });

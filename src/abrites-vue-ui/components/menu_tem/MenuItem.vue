@@ -10,7 +10,7 @@ defineProps({
   item: MenuItemModel,
 });
 
-function toggleSubmenuClass(event: Event): void {
+function toggleSubmenuClass(event: Event) {
   (event.currentTarget as Element)
     ?.closest(".has-submenu")
     ?.classList.toggle("show-submenu");

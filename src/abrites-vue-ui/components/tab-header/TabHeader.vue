@@ -1,3 +1,25 @@
+<script lang="ts">
+import { defineComponent, defineProps, defineEmits, ref } from "vue";
+export default defineComponent({ name: "AbritesTabHeader" });
+</script>
+
+<script lang="ts" setup>
+const props = defineProps<{ labels: string[]; active: number }>();
+const emit = defineEmits<{
+  (emit: "change", index: number): void;
+}>();
+
+let activeIndex = ref(props.active);
+
+const changeActiveIndexAndHandleEvent = (index: number, event: Event) => {
+  event.preventDefault();
+
+  activeIndex.value = index;
+  emit("change", activeIndex.value);
+  (event.target as HTMLElement)?.blur();
+};
+</script>
+
 <template>
   <div class="tab-header">
     <div
@@ -13,34 +35,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
-export default defineComponent({
-  name: "AbritesTabHeader",
-  props: {
-    labels: {
-      type: Array as PropType<string[]>,
-    },
-    active: {
-      type: Number,
-    },
-  },
-  setup(props, ctx) {
-    let activeIndex = ref(props.active);
-
-    const changeActiveIndexAndHandleEvent = (index: number, event: Event) => {
-      event.preventDefault();
-
-      activeIndex.value = index;
-      ctx.emit("change", activeIndex.value);
-      (event.target as HTMLElement)?.blur();
-    };
-
-    return { changeActiveIndexAndHandleEvent, activeIndex };
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 @use "sass:math";

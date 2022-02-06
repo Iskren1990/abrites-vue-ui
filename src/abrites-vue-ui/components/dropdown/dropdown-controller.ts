@@ -30,7 +30,7 @@ export default class DropdownController {
   }
 
   private _handle: HTMLElement = document.createElement("div");
-  get handle(): HTMLElement {
+  get handle() {
     return this._handle;
   }
   set handle(el: HTMLElement) {
@@ -116,13 +116,13 @@ export default class DropdownController {
   };
 
   /// Closes other active dropdowns
-  private _closeOtherDropdowns(): void {
+  private _closeOtherDropdowns() {
     DropdownController.instances
       .filter((inst) => inst._isNotParentTo(this) && inst.isVisible.value)
       .map((inst) => inst.hide());
   }
 
-  private _isNotParentTo(other: DropdownController): boolean {
+  private _isNotParentTo(other: DropdownController) {
     let current: HTMLElement | null | undefined = other.elRef.value;
     while (current && !current.isEqualNode(this.elRef.value as Node)) {
       current = current.parentElement;

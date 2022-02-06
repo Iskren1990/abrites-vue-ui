@@ -36,7 +36,7 @@ const emit = defineEmits<{
   (event: "blur"): void;
 }>();
 
-const writeValue = (checkbox: boolean): void => {
+const writeValue = (checkbox: boolean) => {
   emit("update:checkbox", checkbox);
 };
 </script>

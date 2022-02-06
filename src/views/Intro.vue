@@ -1,6 +1,12 @@
 <template>
   <div>Intro</div>
-  <p>Test if two remote repos are sync</p>
+  <h1>Refactor all Object style components to Composition ones</h1>
+  <p>AbritesPopup</p>
+  <p>AbritesDrawer</p>
+  <p>AbritesSearch</p>
+  <p>AbritesTabs</p>
+
+  AbritesPopup
 </template>
 
 <script lang="ts">
