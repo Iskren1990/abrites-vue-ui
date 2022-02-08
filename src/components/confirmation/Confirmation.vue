@@ -7,6 +7,9 @@ import {
   ref,
   toRefs,
   watchEffect,
+  Teleport as teleport_,
+  TeleportProps,
+  VNodeProps,
 } from "vue";
 interface IConfirmationProps {
   message: string;
@@ -41,10 +44,16 @@ const triggerYes = () => {
 };
 
 watchEffect(() => open.value && popup.value?.open());
+
+const Teleport = teleport_ as {
+  new (): {
+    $props: VNodeProps & TeleportProps;
+  };
+};
 </script>
 
 <template>
-  <teleport :to="teleportTo">
+  <component :is="Teleport" :to="teleportTo">
     <div class="confirmation-host" @confirm="confirm">
       <!-- <slot /> -->
       <AbritesPopup ref="popup" preventOverlayClose noCloseButton>
@@ -72,7 +81,7 @@ watchEffect(() => open.value && popup.value?.open());
         </footer>
       </AbritesPopup>
     </div>
-  </teleport>
+  </component>
 </template>
 
 <style lang="scss" scoped>

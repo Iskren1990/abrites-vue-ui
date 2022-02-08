@@ -1,5 +1,13 @@
 <script lang="ts" setup>
-import { defineProps, toRefs, unref, watch } from "vue";
+import {
+  defineProps,
+  toRefs,
+  unref,
+  watch,
+  Teleport as teleport_,
+  TeleportProps,
+  VNodeProps,
+} from "vue";
 import useSnackbarMessageQueue, {
   SnackbarErrorMessage,
   SnackbarInfoMessage,
@@ -40,10 +48,16 @@ watch(
   () => error?.value,
   () => error?.value && addMessage(new SnackbarErrorMessage(unref(error.value)))
 );
+
+const Teleport = teleport_ as {
+  new (): {
+    $props: VNodeProps & TeleportProps;
+  };
+};
 </script>
 
 <template>
-  <teleport :to="teleportTo || 'body'">
+  <component :is="Teleport" :to="teleportTo || 'body'">
     <div attrs class="snackbar-host" v-bind="$attrs">
       <div
         v-for="(message, index) of messages"
@@ -84,7 +98,7 @@ watch(
         </AbritesButton>
       </div>
     </div>
-  </teleport>
+  </component>
 </template>
 
 <style lang="scss" scoped>
