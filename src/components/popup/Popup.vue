@@ -22,181 +22,133 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  defineEmits,
+  defineProps,
+  defineExpose,
+  withDefaults,
+  onMounted,
+  onUnmounted,
+  ref,
+} from "vue";
 
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
-export default defineComponent({
-  name: "AbritesPopup",
-  props: {
-    opened: {
-      type: Boolean,
-      default: false,
-    },
-    popupClass: {
-      type: String,
-    },
-    preventOverlayClose: {
-      type: Boolean,
-      default: false,
-    },
-    preventEscClose: {
-      type: Boolean,
-      default: false,
-    },
-    noCloseButton: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props, { emit }) {
-    const popup = ref<HTMLElement | null>(null);
-    const holder = ref<HTMLElement | null>(null);
-    const closeTimer = ref<number>();
-    const isClosing = ref<boolean>(false);
-    const outsideClickStarted = ref<boolean>(false);
-    const mouseDownListenerRef = ref();
-    const mouseUpListenerRef = ref();
-    const keyDownListenerRef = ref();
-    const isOpen = ref(props.opened);
-    const returnProps = {
-      isOpen,
-      holder,
-      popup,
-      closeTimer,
-      isClosing,
-      mouseDownListenerRef,
-      outsideClickStarted,
-      mouseUpListenerRef,
-      keyDownListenerRef,
-    };
-    const close = ctxWith({ ...returnProps, emit, isOpen });
-
-    keyDownListenerRef.value = setHandlerCtx(keydownListenerFn, {
-      ...returnProps,
-      close,
-    });
-    mouseUpListenerRef.value = setHandlerCtx(overlayEventMouseUpListener, {
-      ...returnProps,
-      close,
-    });
-    mouseDownListenerRef.value = setHandlerCtx(
-      overlayMouseDownListenerFn,
-      returnProps
-    );
-
-    onMounted(() => {
-      holder.value = setHolder(holder.value);
-      document.body.appendChild(holder.value);
-      holder.value.appendChild(popup.value as HTMLElement);
-    });
-
-    onUnmounted(() => {
-      document.removeEventListener("mousedown", mouseDownListenerRef.value);
-      document.removeEventListener("keydown", keyDownListenerRef.value);
-      document.removeEventListener("mouseup", mouseUpListenerRef.value);
-      window.clearTimeout(closeTimer.value);
-    });
-
-    return {
-      ...returnProps,
-      mouseDownListenerRef,
-      keyDownListenerRef,
-      mouseUpListenerRef,
-      close,
-    };
-  },
-  methods: {
-    open() {
-      if (this.isOpen) return;
-      this.$emit("beforeOpenCtrl", null);
-      window.clearTimeout(this.closeTimer);
-      this.isOpen = true;
-      document.body.classList.add("popup-active");
-      this.$emit("openCtrl", null);
-      this.$emit("deferredCtrl", true);
-      this.initKeydownListener();
-      this.initOutsideClickListeners();
-    },
-    initOutsideClickListeners() {
-      // detect whether the initial click was outside of the popup content
-      document.removeEventListener("mousedown", this.mouseDownListenerRef);
-      document.addEventListener("mousedown", this.mouseDownListenerRef);
-    },
-    initKeydownListener() {
-      document.removeEventListener("keydown", this.keyDownListenerRef);
-      document.addEventListener("keydown", this.keyDownListenerRef);
-    },
-  },
-});
-
-function setHandlerCtx(
-  callback: (e: KeyboardEvent | MouseEvent, ctx: any) => void,
-  ctx: any
-) {
-  const handler = (e: KeyboardEvent | MouseEvent) => callback(e, ctx);
-  return handler;
+interface IPopupProps {
+  opened?: boolean;
+  popupClass?: string;
+  preventOverlayClose?: boolean;
+  preventEscClose?: boolean;
+  noCloseButton?: boolean;
 }
 
-function keydownListenerFn(e: KeyboardEvent | MouseEvent, ctx: any) {
+const props = withDefaults(defineProps<IPopupProps>(), {
+  opened: false,
+  preventOverlayClose: false,
+  preventEscClose: false,
+  noCloseButton: false,
+});
+const emit = defineEmits<{
+  (event: "beforeOpenCtrl", value): void;
+  (event: "openCtrl", value): void;
+  (event: "deferredCtrl", value: boolean): void;
+  (event: "beforeCloseCtrl", value): void;
+  (event: "closeCtrl", value): void;
+  (event: "beforeCloseCtrl", value): void;
+}>();
+
+const popup = ref<HTMLElement | null>(null);
+const holder = ref<HTMLElement | null>(null);
+const closeTimer = ref<number>();
+const isClosing = ref<boolean>(false);
+const outsideClickStarted = ref<boolean>(false);
+const isOpen = ref(props.opened);
+
+const keyDownListenerRef = (e: KeyboardEvent | MouseEvent) => {
   // esc key
   if (
-    !ctx.preventEscClose &&
-    ctx.isOpen.value &&
+    !props.preventEscClose &&
+    isOpen.value &&
     (e as KeyboardEvent).key == "Escape" &&
     e.target?.constructor !== HTMLInputElement &&
     e.target?.constructor !== HTMLSelectElement
   ) {
-    ctx.close();
+    close();
   }
-}
-
-function ctxWith(ctx: any) {
-  const close = ({ delay = 200 } = {}) => {
-    if (!ctx.isOpen.value) return;
-    ctx.emit("beforeCloseCtrl", null);
-    document.removeEventListener("mousedown", ctx.mouseDownListenerRef.value);
-    document.removeEventListener("keydown", ctx.keyDownListenerRef.value);
-    document.removeEventListener("mouseup", ctx.mouseUpListenerRef.value);
-    ctx.isClosing.value = true;
-    window.clearTimeout(ctx.closeTimer.value);
-    ctx.closeTimer = window.setTimeout(() => {
-      ctx.isClosing.value = false;
-      ctx.isOpen.value = false;
-      document.body.classList.remove("popup-active");
-      ctx.emit("closeCtrl", null);
-      ctx.emit("deferredCtrl", false);
-    }, delay);
-  };
-  return close;
-}
-
-function overlayMouseDownListenerFn(e: Event, ctx: any) {
+};
+const mouseUpListenerRef = (e: Event) => {
   if (
-    ctx.isOpen.value &&
-    !ctx.preventOverlayClose &&
-    e.target == ctx.popup.value
+    outsideClickStarted.value &&
+    isOpen.value &&
+    !props.preventOverlayClose &&
+    e.target == popup.value
   ) {
-    ctx.outsideClickStarted.value = true;
+    close();
+  }
+
+  if (outsideClickStarted.value) {
+    outsideClickStarted.value = false;
+  }
+};
+const mouseDownListenerRef = (e: Event) => {
+  if (isOpen.value && !props.preventOverlayClose && e.target == popup.value) {
+    outsideClickStarted.value = true;
   }
   // close the popup if the initial and end click are outside of the popup content
-  document.removeEventListener("mouseup", ctx.mouseUpListenerRef.value);
-  document.addEventListener("mouseup", ctx.mouseUpListenerRef.value);
+  document.removeEventListener("mouseup", mouseUpListenerRef);
+  document.addEventListener("mouseup", mouseUpListenerRef);
+};
+
+onMounted(() => {
+  holder.value = setHolder(holder.value);
+  document.body.appendChild(holder.value);
+  holder.value.appendChild(popup.value as HTMLElement);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("mousedown", mouseDownListenerRef);
+  document.removeEventListener("keydown", keyDownListenerRef);
+  document.removeEventListener("mouseup", mouseUpListenerRef);
+  window.clearTimeout(closeTimer.value);
+});
+
+function open() {
+  if (isOpen.value) return;
+  emit("beforeOpenCtrl", null);
+  window.clearTimeout(closeTimer.value);
+  isOpen.value = true;
+  document.body.classList.add("popup-active");
+  emit("openCtrl", null);
+  emit("deferredCtrl", true);
+  initKeydownListener();
+  initOutsideClickListeners();
 }
 
-function overlayEventMouseUpListener(e: Event, ctx: any) {
-  if (
-    ctx.outsideClickStarted.value &&
-    ctx.isOpen.value &&
-    !ctx.preventOverlayClose &&
-    e.target == ctx.popup.value
-  ) {
-    ctx.close();
-  }
+function close({ delay = 200 } = {}) {
+  if (!isOpen.value) return;
+  emit("beforeCloseCtrl", null);
+  document.removeEventListener("mousedown", mouseDownListenerRef);
+  document.removeEventListener("keydown", keyDownListenerRef);
+  document.removeEventListener("mouseup", mouseUpListenerRef);
+  isClosing.value = true;
+  window.clearTimeout(closeTimer.value);
+  closeTimer.value = window.setTimeout(() => {
+    isClosing.value = false;
+    isOpen.value = false;
+    document.body.classList.remove("popup-active");
+    emit("closeCtrl", null);
+    emit("deferredCtrl", false);
+  }, delay);
+}
 
-  if (ctx.outsideClickStarted.value) {
-    ctx.outsideClickStarted.value = false;
-  }
+function initOutsideClickListeners() {
+  // detect whether the initial click was outside of the popup content
+  document.removeEventListener("mousedown", mouseDownListenerRef);
+  document.addEventListener("mousedown", mouseDownListenerRef);
+}
+function initKeydownListener() {
+  document.removeEventListener("keydown", keyDownListenerRef);
+  document.addEventListener("keydown", keyDownListenerRef);
 }
 
 function setHolder(holder: HTMLElement | null) {
@@ -210,6 +162,8 @@ function setHolder(holder: HTMLElement | null) {
   }
   return holder;
 }
+
+defineExpose({ open, close });
 </script>
 
 <style lang="scss" scoped>

@@ -46,17 +46,10 @@
   </AbritesPopup>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+<script lang="ts" setup>
 import { ref } from "vue";
 
-export default defineComponent({
-  name: "PopupPage",
-  setup() {
-    const smallSizePopup = ref();
-    const defaultSizePopup = ref();
-    const largeSizePopup = ref();
-    return { smallSizePopup, defaultSizePopup, largeSizePopup };
-  },
-});
+const smallSizePopup = ref();
+const defaultSizePopup = ref();
+const largeSizePopup = ref();
 </script>

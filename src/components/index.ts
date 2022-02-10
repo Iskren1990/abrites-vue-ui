@@ -1,9 +1,9 @@
 export { default as AbritesButton } from "./button";
 export { default as AbritesLoader } from "./loader";
 export { default as AbritesMenu } from "./menu";
-export { default as AbritesMenuItem } from "./menu_tem";
+export { default as AbritesMenuItem } from "./menu_item";
 export { default as AbritesIcon } from "./icon";
-export { default as AbritesMenuItemModel } from "./menu_tem/MenuItemModel";
+export { default as AbritesMenuItemModel } from "./menu_item/MenuItemModel";
 export { default as AbritesDrawer } from "./drawer";
 export { default as AbritesSearch } from "./search";
 export { default as AbritesPopup } from "./popup";

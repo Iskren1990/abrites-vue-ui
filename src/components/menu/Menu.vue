@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { defineProps, defineExpose, computed } from "vue";
+import { defineProps, computed } from "vue";
 import { RouteRecordRaw } from "vue-router";
-import { AbritesMenuItemModel } from "../index";
-import MenuItemModel from "../menu_tem/MenuItemModel";
+import AbritesMenuItemModel from "../menu_item/MenuItemModel";
+import MenuItemModel from "../menu_item/MenuItemModel";
 
 const props = defineProps<{
   items: Array<RouteRecordRaw | MenuItemModel>;
@@ -44,11 +44,11 @@ const mappedItems = computed(() => props.items.map(itemToMenuItem));
             <AbritesMenuItem :item="item" />
           </div>
 
-          <Menu
+          <AbritesMenu
             v-if="item.hasChildren"
             class="sub-menu"
             :items="item.children"
-          ></Menu>
+          ></AbritesMenu>
         </template>
       </li>
     </ul>

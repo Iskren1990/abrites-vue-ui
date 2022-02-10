@@ -47,7 +47,7 @@ const setActiveTab = (index: number): void => {
 onBeforeMount(() => {
   if (slots.default) {
     state.tabs = slots.default().filter((child) => {
-      return (child.type as Component).name === "AbritesTabPanel";
+      return child.type != null;
     });
     state.tabs.forEach((child, i) => {
       const childProps = child.props as TabProps;

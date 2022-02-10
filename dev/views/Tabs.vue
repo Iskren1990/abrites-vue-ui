@@ -143,25 +143,13 @@
   <Preview title="Default" :htmlExample="htmlDefaultExample"></Preview>
 
   <Preview title="Title" :htmlExample="htmlTitleExample"> </Preview>
-  <AbritesTabs>
-    <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
-    <AbritesTabPanel label="Tab 2" active>Tab 2 content...</AbritesTabPanel>
-    <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
-  </AbritesTabs>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+<script lang="ts" setup>
 import { Preview } from "./shared/index";
 import Config from "../utils/app-config";
 
-export default defineComponent({
-  name: "Tabs",
-  components: { Preview },
-  data() {
-    return {
-      Config,
-      htmlDefaultExample: `    
+const htmlDefaultExample = `    
     <AbritesTabs>
       <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
       <AbritesTabPanel label="Tab 2" active>Tab 2 content...</AbritesTabPanel>
@@ -185,8 +173,8 @@ export default defineComponent({
       <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
       <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
     </AbritesTabs>
-    `,
-      htmlTitleExample: `
+    `;
+const htmlTitleExample = `
     <AbritesTabs>
       <AbritesTabPanel class="padded" label="Tab 1">Tab 1 content...</AbritesTabPanel>
       <AbritesTabPanel class="padded" label="Tab 2">Tab 2 content...</AbritesTabPanel>
@@ -209,8 +197,5 @@ export default defineComponent({
       <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
       <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
       <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>`,
-    };
-  },
-});
+    </AbritesTabs>`;
 </script>

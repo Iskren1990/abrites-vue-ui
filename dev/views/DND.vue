@@ -1,11 +1,8 @@
-<script lang="ts">
-import { ref, defineComponent } from "vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 import { Preview } from "./shared/index";
 import Config from "../utils/app-config";
-export default defineComponent({ name: "DND" });
-</script>
 
-<script lang="ts" setup>
 const simpleSetupFn = () => {
   const itemsList = ref(new Array(5).fill(0).map((_, ind) => ind.toString()));
   return { itemsList };
@@ -109,20 +106,20 @@ const cancelHtmlExample = `
     title="Simple"
     :htmlExample="simpleHtmlExample"
     :scriptExample="`${simpleSetupFn}`"
-    :setup-fn="simpleSetupFn"
+    :setupFn="simpleSetupFn"
   />
 
   <Preview
     title="With handle"
     :htmlExample="handleHtmlExample"
     :scriptExample="`${handleSetupFn}`"
-    :setup-fn="handleSetupFn"
+    :setupFn="handleSetupFn"
   />
   <Preview
     title="With cancel"
     :htmlExample="cancelHtmlExample"
     :scriptExample="`${cancelSetupFn}`"
-    :setup-fn="cancelSetupFn"
+    :setupFn="cancelSetupFn"
   />
 </template>
 

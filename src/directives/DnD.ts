@@ -27,8 +27,17 @@ export default (function AbritesDnD() {
       forceFallback: true,
       animation: 150,
       onUpdate: function (e: SortableEvent) {
+        console.log(e.oldIndex, e.newIndex);
+
         const itemsList = binding.value.itemsList;
-        if (!e.oldIndex || !e.newIndex) return;
+
+        if (
+          typeof e.oldIndex != "number" ||
+          typeof e.newIndex != "number" ||
+          isNaN(e.oldIndex) ||
+          isNaN(e.newIndex)
+        )
+          return;
         const target = itemsList[e.oldIndex];
         itemsList.splice(e.oldIndex, 1);
         itemsList.splice(e.newIndex, 0, target);

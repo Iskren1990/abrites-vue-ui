@@ -13,7 +13,7 @@ import {
   PluginOptionsByType,
   ChartTypeRegistry,
 } from "chart.js";
-import chartSynchronyser from "./chart-plugins";
+// import chartSynchronyser from "./chart-plugins";
 import { ZoomPluginOptions } from "chartjs-plugin-zoom/types/options";
 
 interface ChartControllerProps {
@@ -34,7 +34,7 @@ export class ChartController {
     this._group = group || ChartController.defaultGroup;
     Chart.register(...registerables);
     Chart.register(zoomPlugin);
-    Chart.register(chartSynchronyser);
+    // Chart.register(chartSynchronyser);
     this._globalDefaults();
   }
 

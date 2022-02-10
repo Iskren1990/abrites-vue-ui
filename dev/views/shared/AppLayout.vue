@@ -21,25 +21,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+<script lang="ts" setup>
+import { reactive, ref } from "vue";
 import { RouteRecordRaw } from "vue-router";
 import { routes } from "../../router";
 
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      // required: true,
-    },
-  },
-  setup() {
-    const routeItems = reactive<RouteRecordRaw[]>(routes);
-    const drawer = ref();
-
-    return { drawer, routeItems };
-  },
-});
+const routeItems = reactive<RouteRecordRaw[]>(routes);
+const drawer = ref();
 </script>
 
 <style lang="scss">

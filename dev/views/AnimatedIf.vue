@@ -59,19 +59,12 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "@vue/runtime-core";
+<script lang="ts" setup>
+import { ref } from "@vue/runtime-core";
 import { Preview } from "./shared/index";
 import Config from "../utils/app-config";
 
-export default defineComponent({
-  name: "AnimatedIfPage",
-  components: { Preview },
-
-  data() {
-    return {
-      Config,
-      htmlExample: `
+const htmlExample = `
   <div>
     <AbritesButton @trigger="toggle()">Toggle content</AbritesButton>
 
@@ -84,8 +77,8 @@ export default defineComponent({
   
     </AbritesAmimatedIf>
   </div>
-  `,
-      htmlSpeedExample: `
+  `;
+const htmlSpeedExample = `
   <div>
     <AbritesButton @trigger="toggle()">Toggle content</AbritesButton>
 
@@ -98,8 +91,8 @@ export default defineComponent({
 
     </AbritesAmimatedIf>
   </div>
-`,
-      codeExample: `,
+`;
+const codeExample = `,
     setup(props, ctx) {
         const visible = ref(false);
         const toggle = () => {
@@ -107,16 +100,13 @@ export default defineComponent({
         };
         return { toggle, visible };
       },
-    `,
-      impoirt: ['import { ref } from "vue";'],
-      setupFn: function () {
-        const visible = ref(false);
-        const toggle = () => {
-          visible.value = !visible.value;
-        };
-        return { visible, toggle };
-      },
-    };
-  },
-});
+    `;
+const impoirt = ['import { ref } from "vue";'];
+const setupFn = function () {
+  const visible = ref(false);
+  const toggle = () => {
+    visible.value = !visible.value;
+  };
+  return { visible, toggle };
+};
 </script>
