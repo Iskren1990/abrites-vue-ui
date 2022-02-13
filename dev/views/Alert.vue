@@ -27,9 +27,9 @@
 </template>
 
 <script lang="ts">
-import Config from "../utils/app-config";
+import * as Config from "../utils/app-config";
+import { Preview } from "./shared";
 import { defineComponent } from "@vue/runtime-core";
-import Preview from "./shared/Preview.vue";
 
 export default defineComponent({
   name: "AlertPage",

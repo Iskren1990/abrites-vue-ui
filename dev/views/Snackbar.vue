@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import Preview from "./shared/Preview.vue";
-import Config from "../utils/app-config";
+import { Preview } from "./shared";
+import * as Config from "../utils/app-config";
 import {
   SnackbarAction,
   SnackbarMessageModelProps,
-} from "@//composables/useSnackbarMessageQueue";
+} from "@/composables/useSnackbarMessageQueue";
 
 const imports = ['import { ref } from "vue";'];
 

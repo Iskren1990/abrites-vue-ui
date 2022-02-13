@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onUnmounted, ref } from "vue";
-import Config from "../utils/app-config";
+import * as Config from "../utils/app-config";
 import { Preview } from "./shared/index";
 
 const htmlExample = `

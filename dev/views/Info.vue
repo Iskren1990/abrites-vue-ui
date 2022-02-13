@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Preview } from "./shared/index";
-import Config from "../utils/app-config";
+import * as Config from "../utils/app-config";
 
 const htmlDefaultExample = `
   <div>

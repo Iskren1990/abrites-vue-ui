@@ -4,8 +4,11 @@ import {
   defineProps,
   computed,
   onUnmounted,
-} from "@vue/runtime-core";
-import { onMounted, watch, shallowRef, ref } from "vue";
+  onMounted,
+  watch,
+  shallowRef,
+  ref,
+} from "vue";
 import {
   ChartConfiguration,
   ChartData,
@@ -16,7 +19,7 @@ import {
   Scale,
   UpdateMode,
 } from "chart.js";
-import { ChartController } from "./chart-controller";
+import ChartController from "./chart-controller";
 
 type PanAmount = number | Partial<Point>;
 interface IPanControllerArgs {

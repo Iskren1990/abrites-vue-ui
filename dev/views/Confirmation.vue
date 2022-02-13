@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Ref, ref } from "vue";
 import { Preview } from "./shared/index";
-import Config from "../utils/app-config";
+import * as Config from "../utils/app-config";
 
 const imports = ['import { Ref, ref } from "vue";\n'];
 const setup = () => {

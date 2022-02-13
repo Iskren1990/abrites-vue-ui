@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { Preview } from "./shared/index";
-import Config from "../utils/app-config";
+import * as Config from "../utils/app-config";
 
 const simpleSetupFn = () => {
   const itemsList = ref(new Array(5).fill(0).map((_, ind) => ind.toString()));

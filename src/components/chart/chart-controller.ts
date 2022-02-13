@@ -1,8 +1,7 @@
 import { ref, Ref } from "vue";
 import zoomPlugin from "chartjs-plugin-zoom";
 import "chartjs-adapter-date-fns";
-import ColorHelper from "../../utils/color-helper";
-import { _DeepPartialObject } from "chart.js/types/utils";
+import ColorHelper from "./color-helper";
 import {
   ChartData,
   ChartOptions,
@@ -13,14 +12,14 @@ import {
   PluginOptionsByType,
   ChartTypeRegistry,
 } from "chart.js";
-// import chartSynchronyser from "./chart-plugins";
+import chartSynchronyser from "./chart-plugins";
 import { ZoomPluginOptions } from "chartjs-plugin-zoom/types/options";
 
 interface ChartControllerProps {
   group?: string;
 }
 
-export class ChartController {
+export default class ChartController {
   static defaultGroup = "default";
   private static _instances: ChartController[] = [];
 
@@ -34,7 +33,7 @@ export class ChartController {
     this._group = group || ChartController.defaultGroup;
     Chart.register(...registerables);
     Chart.register(zoomPlugin);
-    // Chart.register(chartSynchronyser);
+    Chart.register(chartSynchronyser);
     this._globalDefaults();
   }
 
@@ -249,3 +248,5 @@ export class ChartController {
     }
   }
 }
+
+export * from "chart.js";

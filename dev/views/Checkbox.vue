@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Preview from "../views/shared/Preview.vue";
-import Config from "../utils/app-config";
+import { Preview } from "../views/shared";
+import * as Config from "../utils/app-config";
 
 const htmlDefaultExample = `
   <AbritesCheckbox label="Checkbox 1" />

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import {
-  defineEmits,
-  defineProps,
-  defineExpose,
-  withDefaults,
   reactive,
   watchEffect,
   provide,
+  defineEmits,
+  defineProps,
+  withDefaults,
+  defineExpose,
 } from "@vue/runtime-core";
 import { ref } from "vue";
 import { IAccordionPanelState } from "../../inteerfaces/Accordion";

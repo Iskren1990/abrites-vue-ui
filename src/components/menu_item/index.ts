@@ -6,3 +6,5 @@ MenuItem.install = function (Vue: App) {
 };
 
 export default MenuItem;
+
+export * from "./MenuItemModel";

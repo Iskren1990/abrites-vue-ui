@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Config from "../utils/app-config";
-import Preview from "./shared/Preview.vue";
+import * as Config from "../utils/app-config";
+import { Preview } from "./shared";
 
 import { ref } from "vue";
 

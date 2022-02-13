@@ -1,4 +1,4 @@
-import { ChartController } from "./chart-controller";
+import ChartController from "./chart-controller";
 import { Chart, Plugin, Tooltip } from "chart.js";
 
 Tooltip.positioners.topLeftPositioner = function (elements, eventPosition) {

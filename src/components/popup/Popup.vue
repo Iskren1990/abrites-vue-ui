@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   defineEmits,
   defineProps,
@@ -100,7 +99,7 @@ const mouseDownListenerRef = (e: Event) => {
 };
 
 onMounted(() => {
-  holder.value = setHolder(holder.value);
+  setHolder();
   document.body.appendChild(holder.value);
   holder.value.appendChild(popup.value as HTMLElement);
 });
@@ -151,16 +150,16 @@ function initKeydownListener() {
   document.addEventListener("keydown", keyDownListenerRef);
 }
 
-function setHolder(holder: HTMLElement | null) {
+function setHolder() {
   const d = document;
-  holder =
-    holder || (d.body.querySelector(".abrites-popups-holder") as HTMLElement);
+  holder.value ??= d.body.querySelector(
+    ".abrites-popups-holder"
+  ) as HTMLElement;
 
-  if (holder == null) {
-    holder = d.createElement("div");
-    holder.classList.add("abrites-popups-holder");
+  if (holder.value == null) {
+    holder.value = d.createElement("div");
+    holder.value.classList.add("abrites-popups-holder");
   }
-  return holder;
 }
 
 defineExpose({ open, close });

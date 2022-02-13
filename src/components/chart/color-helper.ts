@@ -17,7 +17,7 @@ export default class ColorHelper {
   ];
 
   /// Returns a color from the predefined app colors list based on its index (rotational).
-  static getColor(index = 0): string {
+  static getColor(index = 0) {
     if (index >= this.appColors.length) {
       return this.appColors[index % this.appColors.length];
     }
@@ -25,7 +25,7 @@ export default class ColorHelper {
     return this.appColors[index];
   }
 
-  static getNextColor(color: string): string {
+  static getNextColor(color: string) {
     return ColorHelper.getColor(ColorHelper.appColors.indexOf(color) + 1);
   }
 
@@ -39,7 +39,7 @@ export default class ColorHelper {
   }
 
   /// Checks if [val] is valid CSS color string.
-  static isColor(val: string): boolean {
+  static isColor(val: string) {
     try {
       const dummyEl = document.createElement("div");
       const dummyStyle = dummyEl.style;
@@ -53,7 +53,7 @@ export default class ColorHelper {
   }
 
   /// Converts hex color string into rgba.
-  static hexToRgba(hex: string, alpha = 1): string {
+  static hexToRgba(hex: string, alpha = 1) {
     const parsedHex = Number.parseInt(hex?.substring(1) ?? "", 16);
 
     if (parsedHex == null) {

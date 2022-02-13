@@ -38,10 +38,6 @@ const baseConfig = {
       alias({
         entries: [
           {
-            find: "vue",
-            replacement: require.resolve("vue/dist/vue.esm-bundler.js"),
-          },
-          {
             find: "@",
             replacement: `${path.resolve(projectRoot, "src")}`,
           },

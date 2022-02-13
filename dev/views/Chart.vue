@@ -4,8 +4,8 @@ import generateValues, {
 } from "../composables/useGeneratedChartValues";
 import { computed, Ref, ref } from "@vue/reactivity";
 import { ChartType } from "chart.js";
-import Preview from "./shared/Preview.vue";
-import Config from "../utils/app-config";
+import { Preview } from "./shared";
+import * as Config from "../utils/app-config";
 import { onUnmounted } from "@vue/runtime-core";
 
 const htmlDefaultExample = `

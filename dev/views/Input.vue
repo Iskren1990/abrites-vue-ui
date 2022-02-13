@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Preview from "./shared/Preview.vue";
-import Config from "../utils/app-config";
+import { Preview } from "./shared";
+import * as Config from "../utils/app-config";
 
 const rows = 5;
 

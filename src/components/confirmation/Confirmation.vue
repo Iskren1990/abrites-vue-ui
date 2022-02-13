@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-// import { AbritesPopup } from "@/entry.esm";
+import AbritesPopup from "../popup";
 import {
-  defineEmits,
   withDefaults,
+  defineEmits,
   defineProps,
   ref,
   toRefs,
@@ -31,7 +31,7 @@ const emit = defineEmits<{
 }>();
 
 const { open, message, yesButtonText, noButtonText } = toRefs(props);
-const popup = ref();
+const popup = ref<typeof AbritesPopup>();
 
 const triggerNo = () => {
   emit("answer", false);
