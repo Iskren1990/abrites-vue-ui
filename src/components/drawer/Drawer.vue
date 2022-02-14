@@ -1,153 +1,137 @@
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import {
+  defineProps,
+  withDefaults,
+  defineEmits,
+  defineExpose,
+  ref,
+  computed,
+  watch,
+} from "vue";
+
 let animation = new Animation();
-let isAnimating = ref<boolean | null>(null);
 
-export default defineComponent({
-  name: "AbritesDrawer",
-  props: {
-    name: {
-      type: String,
-      default: "drawer",
-    },
-  },
-  data() {
-    return {
-      animationSpeed: 200,
-      isHidden: true,
-    };
-  },
-  computed: {
-    storageKey: function () {
-      return `${this.name}_drawer`;
-    },
-    host: function () {
-      return this.$refs[`drawer-host`] as HTMLElement;
-    },
-    wrapper: function () {
-      return this.$refs[`drawer-wrapper`] as HTMLElement;
-    },
-  },
-  watch: {
-    isHidden: function () {
-      this.setHiddenAttribute();
-      this.refreshGlobalIndicator();
-    },
-    isAnimating: function () {
-      if (isAnimating.value) {
-        this.$el.parentNode.setAttribute("animating", true);
-      } else {
-        this.$el.parentNode.removeAttribute("animating", true);
-      }
-      this.refreshGlobalIndicator();
-    },
-  },
-  mounted: function (): void {
-    this.setHiddenAttribute();
-    this.setStateFromStorage();
-    this.refreshGlobalIndicator();
-  },
-  methods: {
-    setHiddenAttribute(): void {
-      if (this.isHidden) {
-        this.host.setAttribute("hidden", "");
-      } else {
-        this.host.removeAttribute("hidden");
-      }
-    },
-    setStateFromStorage(): void {
-      if (window.localStorage.getItem(this.storageKey) == null) {
-        return; // no stored state
-      }
-      if (window.localStorage[this.storageKey] == "hidden") {
-        this.hide({ withAnimation: false });
-      } else {
-        this.show({ withAnimation: false });
-      }
-    },
-    refreshGlobalIndicator(): void {
-      if (this.isHidden) {
-        document.body.classList.remove("drawer-active");
-      } else {
-        document.body.classList.add("drawer-active");
-      }
-    },
-    _saveCurrentState(): void {
-      window.localStorage[this.storageKey] = this.isHidden
-        ? "hidden"
-        : "visible";
-    },
-    toggle({ withAnimation = true } = {}): void {
-      this.isHidden
-        ? this.show({ withAnimation })
-        : this.hide({ withAnimation });
-    },
-    show({ withAnimation = true }): void {
-      if (!this.isHidden) {
-        return;
-      }
+interface IDrawerProps {
+  animationSpeed?: number;
+  hidden: boolean;
+}
 
-      this.isHidden = false;
+const props = withDefaults(defineProps<IDrawerProps>(), {
+  animationSpeed: 200,
+  hidden: true,
+});
 
-      if (withAnimation) {
-        this._animate();
-      }
+const emit = defineEmits<{
+  (event: "resize"): void;
+  (event: "drawer-change", value: boolean): void;
+}>();
 
-      this._saveCurrentState();
-    },
-    hide({ withAnimation = true }): void {
-      if (this.isHidden) {
-        return;
-      }
-      this.isHidden = true;
-
-      if (withAnimation) {
-        this._animate();
-      }
-      this._saveCurrentState();
-    },
-    _animate(): void {
-      this.host.setAttribute("animating", "true");
-
-      if (animation != null && animation.playState != "idle") {
-        animation.reverse();
-      } else {
-        let cssWidth = window
-          .getComputedStyle(this.wrapper)
-          .getPropertyValue("width");
-
-        cssWidth = cssWidth.length > 3 ? cssWidth : "250px";
-
-        // prevents content wrapping
-        this.wrapper.style.width = cssWidth;
-        animation.cancel();
-        animation = this.host.animate(
-          [
-            { width: this.isHidden ? cssWidth : "0" },
-            { width: this.isHidden ? "0" : cssWidth },
-          ],
-          {
-            duration: this.animationSpeed,
-            easing: "ease",
-          }
-        );
-
-        animation.onfinish = () => {
-          this.host.removeAttribute("animating");
-          // trigger resize event so that js plugins (eg.charts) could refresh their instances
-          new Promise(() => this.$emit("resize"));
-          this.$emit("resize");
-          // emit Vue event
-        };
-      }
-    },
+const hiddenRef = ref(props.hidden);
+const isHidden = computed({
+  get: () => hiddenRef.value,
+  set: (val: boolean) => {
+    hiddenRef.value = val;
   },
 });
+
+const drawerHost = ref();
+const drawerWrapper = ref();
+
+const host = computed(() => drawerHost.value as HTMLElement);
+const wrapper = computed(() => drawerWrapper.value as HTMLElement);
+
+watch(isHidden, () => {
+  refreshGlobalIndicator();
+  if (isHidden.value == true) {
+    hide({ withAnimation: false });
+  } else {
+    show({ withAnimation: false });
+  }
+});
+
+function refreshGlobalIndicator() {
+  if (isHidden.value) {
+    document.body.classList.remove("drawer-active");
+  } else {
+    document.body.classList.add("drawer-active");
+  }
+}
+
+function toggle({ withAnimation = true } = {}) {
+  isHidden.value ? show({ withAnimation }) : hide({ withAnimation });
+}
+
+function show({ withAnimation = true }) {
+  if (!isHidden.value) {
+    return;
+  }
+
+  isHidden.value = false;
+
+  if (withAnimation) {
+    _animate();
+    return;
+  }
+  emit("drawer-change", isHidden.value);
+}
+
+function hide({ withAnimation = true }) {
+  if (isHidden.value) {
+    return;
+  }
+  isHidden.value = true;
+
+  if (withAnimation) {
+    _animate();
+    return;
+  }
+
+  emit("drawer-change", isHidden.value);
+}
+
+function _animate() {
+  host.value.setAttribute("animating", "true");
+
+  if (animation != null && animation.playState != "idle") {
+    animation.reverse();
+  } else {
+    let cssWidth = window
+      .getComputedStyle(wrapper.value)
+      .getPropertyValue("width");
+
+    cssWidth = cssWidth.length > 3 ? cssWidth : "250px";
+
+    // prevents content wrapping
+    wrapper.value.style.width = cssWidth;
+    animation.cancel();
+    animation = host.value.animate(
+      [
+        { width: isHidden.value ? cssWidth : "0" },
+        { width: isHidden.value ? "0" : cssWidth },
+      ],
+      {
+        duration: props.animationSpeed,
+        easing: "ease",
+      }
+    );
+
+    animation.onfinish = () => {
+      host.value.removeAttribute("animating");
+      // trigger resize event so that js plugins (eg.charts) could refresh their instances
+      new Promise(() => emit("resize"));
+      emit("resize");
+
+      emit("drawer-change", isHidden.value);
+    };
+  }
+}
+
+defineExpose({ hide, show, toggle });
 </script>
 
 <template>
-  <div class="app-sidebar" ref="drawer-host">
-    <div class="drawer-wrapper" ref="drawer-wrapper">
+  <div class="app-sidebar" :hidden="isHidden ? true : null" ref="drawerHost">
+    <div class="drawer-wrapper" ref="drawerWrapper">
       <slot></slot>
     </div>
     <div class="drawer-overlay" @click="hide({})"></div>

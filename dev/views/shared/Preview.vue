@@ -67,7 +67,7 @@ const templateRef = ref("");
 const templateParts = reactive<TemplateParts>({
   html: props.htmlExample,
   code: props.scriptExample,
-  imports: props.imports.join("\n"),
+  imports: props.imports.join("\n  "),
   setupFn: props.setupFn,
 });
 
@@ -88,6 +88,7 @@ function vueExampleGenerator(templateParts: TemplateParts): string {
 <script lang="ts">
   import { defineComponent } from "vue";
   ${templateParts.imports}
+  
   export default defineComponent({ name: "YourComponent", ${templateParts.code}});
 < /script>;
 

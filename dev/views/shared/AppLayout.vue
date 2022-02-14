@@ -1,5 +1,10 @@
 <template>
-  <AbritesDrawer name="side-navigation" ref="drawer">
+  <AbritesDrawer
+    :hidden="isHidden"
+    @drawer-change="updateStorageState"
+    name="side-navigation"
+    ref="drawer"
+  >
     <div class="drawer-header">
       <AbritesSearch class="expanded" placeholder="Search..."></AbritesSearch>
     </div>
@@ -25,7 +30,9 @@
 import { reactive, ref } from "vue";
 import { RouteRecordRaw } from "vue-router";
 import { routes } from "../../router";
+import { AbritesDrawer, useStorageState } from "@/entry.esm";
 
+const { isHidden, updateStorageState } = useStorageState("navbar");
 const routeItems = reactive<RouteRecordRaw[]>(routes);
 const drawer = ref();
 </script>

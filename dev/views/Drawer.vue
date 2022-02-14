@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
+import { AbritesDrawer, useStorageState } from "@/entry.esm";
 
 const htmlExample = `
-    <AbritesDrawer ref="drawer">
+    <AbritesDrawer :hidden="isHidden" @drawer-change="updateStorageState" ref="drawer">
       <div class="drawer-header">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png" alt="logo" width="100" />
       </div>
@@ -61,10 +62,13 @@ const vueExample = `
 
       return { menuItem };
     }`;
-const imports = [`import { ref } from "vue"`];
+const imports = [
+  `import { ref } from "vue"`,
+  `import { AbritesDrawer, useStorageState } from "@/entry.esm";`,
+];
 
 const setupFn = function script() {
-  const drawer = ref();
+  const drawer = ref<AbritesDrawer>();
   const menuItem = [
     {
       path: "/",
@@ -99,7 +103,8 @@ const setupFn = function script() {
     },
   ];
 
-  return { menuItem, drawer };
+  const { isHidden, updateStorageState } = useStorageState("view");
+  return { menuItem, drawer, isHidden, updateStorageState };
 };
 </script>
 
@@ -124,15 +129,19 @@ const setupFn = function script() {
     .
   </p>
 
+  <p>
+    <code>useStorageState</code> composable helper could be used as local
+    storage state management.
+  </p>
+
+  <p>
+    <code>
+      const { isHidden, updateStorageState } = useStorageState("view");
+    </code>
+  </p>
+
   <h3 class="section-title" id="inputs">Inputs</h3>
   <ul>
-    <li>
-      <strong>name?</strong> <code>string</code>
-      <p>
-        Name of the drawer (default to <code>'drawer'</code>). Used to restore
-        the last visibility state from the local storage.
-      </p>
-    </li>
     <li>
       <strong>animation?</strong> <code>number</code>
       <p>
@@ -149,10 +158,17 @@ const setupFn = function script() {
   <h3 class="section-title" id="events">Events</h3>
   <ul>
     <li>
-      <strong>change</strong> <code>{{ "boolean" }}</code>
+      <strong>drawer-change</strong> <code>{{ "boolean" }}</code>
       <p>
         Fired when the drawer visibility changes. Receives the new state as an
         argument.
+      </p>
+    </li>
+    <li>
+      <strong>resize</strong> <code>void</code>
+      <p>
+        Resize event so that js plugins (eg.charts) could refresh their
+        instances
       </p>
     </li>
   </ul>
