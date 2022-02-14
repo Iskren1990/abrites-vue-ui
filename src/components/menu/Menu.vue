@@ -123,14 +123,14 @@ const mappedItems = computed(() => props.items.map(itemToMenuItem));
       color: contrast-color($panel-color);
       background: $hover-color;
     }
-    &.router-link-active {
+    > .active {
       color: contrast-color($panel-color);
       background: $active-color;
     }
   }
 
   .menu-item {
-    &.router-link-active > .menu-item-label {
+    > .active.menu-item-label {
       color: contrast-color($accent-color);
       background: $accent-color;
     }
@@ -154,7 +154,7 @@ const mappedItems = computed(() => props.items.map(itemToMenuItem));
     }
     .menu-item {
       margin: (math.div($base-spacing, 2)) 0;
-      &.router-link-active > .menu-item-label {
+      > .active.menu-item-label {
         color: $accent-color;
         background: none;
       }
@@ -168,7 +168,7 @@ const mappedItems = computed(() => props.items.map(itemToMenuItem));
     & > .menu-item-label :deep(.submenu-toggle) i {
       transform: rotate(180deg);
     }
-    &:not(.router-link-active) > .menu-item-label {
+    > .menu-item-label:not(.active) {
       background: $border-color;
     }
   }

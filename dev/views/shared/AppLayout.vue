@@ -2,7 +2,6 @@
   <AbritesDrawer
     :hidden="isHidden"
     @drawer-change="updateStorageState"
-    name="side-navigation"
     ref="drawer"
   >
     <div class="drawer-header">
