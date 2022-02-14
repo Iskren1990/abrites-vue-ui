@@ -28,7 +28,7 @@ function toggleSubmenuClass(event: Event) {
     small
     v-if="props.item?.hasChildren"
     class="submenu-toggle"
-    @trigger="toggleSubmenuClass"
+    @trigger.prevent="toggleSubmenuClass"
   >
     <AbritesIcon :icon="'arrow_drop_down'"></AbritesIcon>
   </AbritesButton>
@@ -40,7 +40,7 @@ function toggleSubmenuClass(event: Event) {
 
 $icon-width: 24px;
 
-.icon {
+::v-deep(.icon) {
   width: $icon-width;
   text-align: center;
   margin-right: (math.div($base-spacing, 2));

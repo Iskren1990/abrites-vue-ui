@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, computed } from "vue";
 import { RouteRecordRaw } from "vue-router";
-import AbritesMenuItemModel from "../menu_item/MenuItemModel";
-import MenuItemModel from "../menu_item/MenuItemModel";
+import MenuItemModel from "../menu-item/MenuItemModel";
 
 const props = defineProps<{
   items: Array<RouteRecordRaw | MenuItemModel>;
@@ -10,7 +9,7 @@ const props = defineProps<{
 
 const itemToMenuItem = (item: RouteRecordRaw | MenuItemModel) => {
   if (item instanceof MenuItemModel) return item;
-  return new AbritesMenuItemModel({
+  return new MenuItemModel({
     label: item.meta?.title as string,
     url: item.path,
     icon: item.meta?.icon as string,
@@ -112,6 +111,7 @@ const mappedItems = computed(() => props.items.map(itemToMenuItem));
       text-align: center;
       margin-right: (math.div($base-spacing, 2));
       flex-shrink: 0;
+      display: unset;
     }
     .sub-menu-button {
       flex-shrink: 0;
