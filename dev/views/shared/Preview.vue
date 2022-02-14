@@ -4,7 +4,7 @@
       <h5 class="title">{{ title }}</h5>
       <div class="flex-fill"></div>
       <AbritesButton small @trigger="previewPopup.open()">
-        <abrites-icon icon="code"></abrites-icon>
+        <AbritesIcon icon="code"></AbritesIcon>
         <span class="txt">View code</span>
       </AbritesButton>
     </header>
