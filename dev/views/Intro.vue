@@ -1,12 +1,11 @@
 <template>
   <div>Intro</div>
-  <h1>Refactor all Object style components to Composition ones</h1>
-  <p>AbritesPopup</p>
-  <p>AbritesDrawer</p>
-  <p>AbritesSearch</p>
-  <p>AbritesTabs</p>
-
-  AbritesPopup
+  <h1>Implement</h1>
+  <ul>
+    <li>Search component</li>
+    <li>Select component</li>
+    <li>Finish Pagination component</li>
+  </ul>
 </template>
 
 <script lang="ts">

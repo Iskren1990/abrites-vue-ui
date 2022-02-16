@@ -1,12 +1,20 @@
 <template>
-  <div class="search-host" :class="hasValue ? 'has-value' : ''">
+  <div
+    class="search-host"
+    :class="{
+      expanded,
+      disabled,
+      'has-value': hasValue ? true : null,
+    }"
+  >
     <input
-      ref="searchInput"
+      ref="searchInputRef"
       type="text"
       class="search-field"
-      :class="isDisabled && 'disabled'"
+      :class="disabled"
       :placeholder="placeholder"
-      @input="updateValue($event)"
+      :value="props.term"
+      @input="updateValueHandler($event)"
     />
 
     <div class="search-show-handle">
@@ -23,54 +31,49 @@
 import { defineProps, withDefaults, defineEmits, ref } from "vue";
 
 interface ISearchProps {
-  value?: string;
+  term?: string;
   placeholder?: string;
-  isExpanded?: boolean;
+  expanded?: boolean;
+  disabled?: boolean;
   debounceTime?: number;
 }
 
 const props = withDefaults(defineProps<ISearchProps>(), {
-  isExpanded: false,
+  term: "",
+  placeholder: "",
+  expanded: false,
+  disabled: false,
   debounceTime: 200,
 });
 
-const emit =
-  defineEmits<{ (event: "searchValueChange", velue: string): void }>();
+const emit = defineEmits<{ (event: "update:term", velue: string): void }>();
 
 const debounceTimer = ref<number>(props.debounceTime);
-const isDisabled = ref(false);
-const searchInput = ref();
-const hasValue = ref();
+const searchInputRef = ref();
+const hasValue = ref(false);
 
-const updateValue = (event: Event | string, { debounce = true } = {}) => {
-  let newValue: string;
-  if (event == "string") {
-    newValue = event;
-  } else if (event instanceof Event) {
-    newValue = (event.target as HTMLInputElement).value;
-  }
-  hasValue.value = newValue.length;
-  searchInput.value.value = newValue;
+const updateValueHandler = (event: Event, debounce?: boolean) => {
+  let newValue = (event.target as HTMLInputElement).value;
+
+  updateValue(newValue, { debounce });
+};
+
+const updateValue = (value: string, { debounce = true } = {}) => {
   window.clearTimeout(debounceTimer.value);
   if (debounce) {
     debounceTimer.value = window.setTimeout(
-      () => emit("searchValueChange", newValue),
+      () => emit("update:term", value),
       props.debounceTime
     );
   } else {
-    emit("searchValueChange", newValue);
+    emit("update:term", value);
   }
-};
-
-const setDisabled = (val: boolean) => {
-  isDisabled.value = val;
-  isDisabled.value && searchInput.value.blur();
+  hasValue.value = !!value;
 };
 
 const clear = ({ debounce = false } = {}) => {
   updateValue("", { debounce });
-
-  searchInput.value.blur();
+  searchInputRef.value.blur();
 };
 </script>
 
@@ -101,7 +104,6 @@ const clear = ({ debounce = false } = {}) => {
       flex-shrink: 0;
     }
     .search-field {
-      background: red !important;
       font-size: $font-size;
       padding-left: $collapsed-size + 5px;
     }
