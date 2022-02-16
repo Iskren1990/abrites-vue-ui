@@ -5,7 +5,11 @@
     ref="drawer"
   >
     <div class="drawer-header">
-      <AbritesSearch class="expanded" placeholder="Search..."></AbritesSearch>
+      <AbritesSearch
+        v-model:term="searchTerm"
+        class="expanded"
+        placeholder="Search..."
+      ></AbritesSearch>
     </div>
     <div class="drawer-content">
       <AbritesMenu :items="routeItems" />
@@ -26,14 +30,25 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { ref, watch } from "vue";
 import { RouteRecordRaw } from "vue-router";
 import { routes } from "../../router";
 import { AbritesDrawer, useStorageState } from "@/entry.esm";
 
 const { isHidden, updateStorageState } = useStorageState("navbar");
-const routeItems = reactive<RouteRecordRaw[]>(routes);
+const searchTerm = ref("");
 const drawer = ref();
+const routeItems = ref<RouteRecordRaw[]>(routes);
+
+watch(
+  searchTerm,
+  () =>
+    (routeItems.value = routes.filter((x) =>
+      (x.meta.title as string)
+        .toLowerCase()
+        .includes(searchTerm.value.toLowerCase())
+    ))
+);
 </script>
 
 <style lang="scss">

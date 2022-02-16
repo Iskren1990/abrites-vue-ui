@@ -2,7 +2,6 @@
   <div>Intro</div>
   <h1>Implement</h1>
   <ul>
-    <li>Search component</li>
     <li>Select component</li>
     <li>Finish Pagination component</li>
   </ul>
