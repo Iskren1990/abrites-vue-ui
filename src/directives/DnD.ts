@@ -27,8 +27,6 @@ export default (function AbritesDnD() {
       forceFallback: true,
       animation: 150,
       onUpdate: function (e: SortableEvent) {
-        console.log(e.oldIndex, e.newIndex);
-
         const itemsList = binding.value.itemsList;
 
         if (

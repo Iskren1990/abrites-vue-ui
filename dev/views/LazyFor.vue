@@ -117,9 +117,22 @@ const setup = () => {
 
   <h3 class="section-title" id="examples">Examples</h3>
   <Preview
+    title="Default"
     :htmlExample="htmlDefaultExample"
     :vueExample="`${setup}`"
     :setupFn="setup"
     :imports="imports"
   />
 </template>
+
+<style lang="scss" scoped>
+::v-deep() .item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  padding: 10px;
+  background: #27282b;
+}
+</style>

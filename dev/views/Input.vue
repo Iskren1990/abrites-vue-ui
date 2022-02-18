@@ -3,13 +3,13 @@ import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 
 const htmlSimpleExample = `
-  <AbritesInput label="Input" spaced />
+  <AbritesInput label="Input" spaced value=""/>
 
-  <AbritesInput label="Input (no border)" noborder spaced />
+  <AbritesInput label="Input (no border)" noborder spaced value=""/>
 
-  <AbritesInput label="Input (dense)" dense spaced />
+  <AbritesInput label="Input (dense)" dense spaced value=""/>
 
-  <AbritesInput label="Textarea" :rows="rows" spaced />
+  <AbritesInput label="Textarea" :rows="2" spaced value=""/>
 `;
 
 const htmlStatesExample = `
@@ -33,15 +33,15 @@ const htmlStatesExample = `
 `;
 
 const htmlTypesExample = `
-  <AbritesInput label="Password input" type="password" spaced />
+  <AbritesInput label="Password input" type="password" spaced value=""/>
 
-  <AbritesInput label="Number input" type="number" spaced />
+  <AbritesInput label="Number input" type="number" spaced value=""/>
 
-  <AbritesInput label="Color input" type="color" spaced />
+  <AbritesInput label="Color input" type="color" spaced value=""/>
 `;
 
 const htmlSlotsExample = `
- <AbritesInput label="With prefix (text)" spaced>
+ <AbritesInput label="With prefix (text)" spaced value="">
     <template v-slot:prefix>$</template>
   </AbritesInput>
 
@@ -49,13 +49,14 @@ const htmlSlotsExample = `
     label="With prefix (icon)"
     placeholder="My placeholder..."
     spaced
+    value=""
   >
     <template v-slot:prefix>
       <AbritesIcon icon="mail" />
     </template>
   </AbritesInput>
 
-  <AbritesInput label="With suffix (text)" spaced>
+  <AbritesInput label="With suffix (text)" spaced value="">
     <template v-slot:suffix>
       <div>€</div>
     </template>
@@ -65,6 +66,7 @@ const htmlSlotsExample = `
     label="With suffix (icon)"
     placeholder="My placeholder..."
     spaced
+    value=""
   >
     <template v-slot:suffix>
       <div>
@@ -77,6 +79,7 @@ const htmlSlotsExample = `
     label="With prefix and suffix"
     placeholder="My placeholder..."
     spaced
+    value=""
   >
     <template v-slot:prefix>RC-</template>
     <template v-slot:suffix>

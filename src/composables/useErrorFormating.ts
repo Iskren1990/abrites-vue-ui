@@ -1,10 +1,8 @@
 import { computed, Ref, ref } from "vue";
 
-type InputError = string | string[] | undefined;
+export type InputError = string | string[] | undefined;
 
-const useErrorFormating = (
-  error: InputError
-): Record<string, Ref<string | boolean>> => {
+const useErrorFormating = (error: InputError) => {
   const errors = ref<string[]>([]);
   const hasError = computed<boolean>(() => errors.value.join("\n").length > 0);
 
