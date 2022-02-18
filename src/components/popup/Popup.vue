@@ -5,7 +5,7 @@
     class="popup-container"
     v-bind="{ active: isOpen, closing: isClosing }"
   >
-    <div v-if="isOpen" class="popup" :class="popupClass">
+    <div v-if="isOpen" class="popup" :class="$attrs.class">
       <AbritesButton
         v-if="!noCloseButton"
         round
@@ -35,7 +35,6 @@ import {
 
 interface IPopupProps {
   opened?: boolean;
-  popupClass?: string;
   preventOverlayClose?: boolean;
   preventEscClose?: boolean;
   noCloseButton?: boolean;
@@ -48,12 +47,10 @@ const props = withDefaults(defineProps<IPopupProps>(), {
   noCloseButton: false,
 });
 const emit = defineEmits<{
-  (event: "beforeOpenCtrl", value): void;
-  (event: "openCtrl", value): void;
-  (event: "deferredCtrl", value: boolean): void;
-  (event: "beforeCloseCtrl", value): void;
-  (event: "closeCtrl", value): void;
-  (event: "beforeCloseCtrl", value): void;
+  (event: "beforeOpenCtrl"): void;
+  (event: "openCtrl"): void;
+  (event: "beforeCloseCtrl"): void;
+  (event: "closeCtrl"): void;
 }>();
 
 const popup = ref<HTMLElement | null>(null);
@@ -113,19 +110,18 @@ onUnmounted(() => {
 
 function open() {
   if (isOpen.value) return;
-  emit("beforeOpenCtrl", null);
+  emit("beforeOpenCtrl");
   window.clearTimeout(closeTimer.value);
   isOpen.value = true;
   document.body.classList.add("popup-active");
-  emit("openCtrl", null);
-  emit("deferredCtrl", true);
+  emit("openCtrl");
   initKeydownListener();
   initOutsideClickListeners();
 }
 
 function close({ delay = 200 } = {}) {
   if (!isOpen.value) return;
-  emit("beforeCloseCtrl", null);
+  emit("beforeCloseCtrl");
   document.removeEventListener("mousedown", mouseDownListenerRef);
   document.removeEventListener("keydown", keyDownListenerRef);
   document.removeEventListener("mouseup", mouseUpListenerRef);
@@ -135,8 +131,7 @@ function close({ delay = 200 } = {}) {
     isClosing.value = false;
     isOpen.value = false;
     document.body.classList.remove("popup-active");
-    emit("closeCtrl", null);
-    emit("deferredCtrl", false);
+    emit("closeCtrl");
   }, delay);
 }
 
