@@ -123,33 +123,33 @@ const cancelHtmlExample = `
   />
 </template>
 
-<style>
-.container {
+<style lang="scss" scoped>
+::v-deep(.container) {
   position: relative;
   display: block;
   width: 100%;
-}
 
-.with-handle {
-  padding: 0;
-}
+  .item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px;
+    background: #27282b;
 
-.item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  margin: 10px 0;
-  padding: 10px;
-  background: #27282b;
-}
-.item .txt {
-  margin: 0 30px;
-}
-.item .txt:first-child {
-  margin-left: 0;
-}
-.item .txt:last-child {
-  margin-right: 0;
+    .txt {
+      margin: 0 30px;
+    }
+    .txt:first-child {
+      margin-left: 0;
+    }
+    .txt:last-child {
+      margin-right: 0;
+    }
+  }
+  .with-handle {
+    padding: 0;
+  }
 }
 </style>
