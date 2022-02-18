@@ -123,5 +123,3 @@ const setup = () => {
     :imports="imports"
   />
 </template>
-
-<style></style>

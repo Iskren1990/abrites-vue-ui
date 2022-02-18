@@ -136,15 +136,6 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/deffered",
-    name: "Deffered",
-    component: Deffered,
-    meta: {
-      title: "Deffered",
-      inMenu: true,
-    },
-  },
-  {
     path: "/dnd",
     name: "DND",
     component: DND,

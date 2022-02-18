@@ -1,3 +1,71 @@
+<script lang="ts" setup>
+import * as Config from "../utils/app-config";
+import { Preview } from "./shared";
+import { ref } from "vue";
+
+const imports = ["import { ref } from 'vue';"];
+const setupFn = () => {
+  const searchVal = ref("");
+  return { searchVal };
+};
+
+const htmlDefaultExample = `
+  <AbritesSearch large placeholder="Large search..."></AbritesSearch>
+
+  <AbritesSearch placeholder="Default search..."></AbritesSearch>
+
+  <AbritesSearch small placeholder="Small search..."></AbritesSearch>
+
+  <div class="flex-clear"></div>
+
+  <AbritesSearch expanded large placeholder="Large expanded search..."></AbritesSearch>
+
+  <AbritesSearch expanded placeholder="Default expanded search..."></AbritesSearch>
+
+  <AbritesSearch expanded small placeholder="Small expanded search..."></AbritesSearch>
+`;
+
+const htmlDisabledExample = `
+  <AbritesSearch disabled large placeholder="Large search..."></AbritesSearch>
+
+  <AbritesSearch disabled placeholder="Default search..."></AbritesSearch>
+
+  <AbritesSearch disabled small placeholder="Small search..."></AbritesSearch>
+
+  <div class="flex-clear"></div>
+
+  <AbritesSearch disabled expanded large placeholder="Large expanded search..."></AbritesSearch>
+
+  <AbritesSearch disabled expanded placeholder="Default expanded search..."></AbritesSearch>
+
+  <AbritesSearch disabled expanded small placeholder="Small expanded search..."></AbritesSearch>
+`;
+
+const htmlBlockExample = `
+  <AbritesSearch block large placeholder="Large search..."></AbritesSearch>
+  
+  <div class="flex-clear"></div>
+  
+  <AbritesSearch block placeholder="Default search..."></AbritesSearch>
+  
+  <div class="flex-clear"></div>
+  
+  <AbritesSearch block small placeholder="Small search..."></AbritesSearch>
+  
+  <div class="flex-clear"></div>
+  
+  <AbritesSearch block expanded large placeholder="Large expanded search..."></AbritesSearch>
+  
+  <div class="flex-clear"></div>
+  
+  <AbritesSearch block expanded placeholder="Default expanded search..."></AbritesSearch>
+  
+  <div class="flex-clear"></div>
+  
+  <AbritesSearch block expanded small placeholder="Small expanded search..."></AbritesSearch>
+`;
+</script>
+
 <template>
   <h2 class="component-title" id="selector">
     <a
@@ -86,73 +154,3 @@
   >
   </Preview>
 </template>
-
-<script lang="ts" setup>
-import * as Config from "../utils/app-config";
-import { Preview } from "./shared";
-import { ref } from "vue";
-
-const imports = ["import { ref } from 'vue';"];
-const setupFn = () => {
-  const searchVal = ref("");
-  return { searchVal };
-};
-
-const htmlDefaultExample = `
-  <AbritesSearch large placeholder="Large search..."></AbritesSearch>
-
-  <AbritesSearch placeholder="Default search..."></AbritesSearch>
-
-  <AbritesSearch small placeholder="Small search..."></AbritesSearch>
-
-  <div class="flex-clear"></div>
-
-  <AbritesSearch expanded large placeholder="Large expanded search..."></AbritesSearch>
-
-  <AbritesSearch expanded placeholder="Default expanded search..."></AbritesSearch>
-
-  <AbritesSearch expanded small placeholder="Small expanded search..."></AbritesSearch>
-`;
-
-const htmlDisabledExample = `
-  <AbritesSearch disabled large placeholder="Large search..."></AbritesSearch>
-
-  <AbritesSearch disabled placeholder="Default search..."></AbritesSearch>
-
-  <AbritesSearch disabled small placeholder="Small search..."></AbritesSearch>
-
-  <div class="flex-clear"></div>
-
-  <AbritesSearch disabled expanded large placeholder="Large expanded search..."></AbritesSearch>
-
-  <AbritesSearch disabled expanded placeholder="Default expanded search..."></AbritesSearch>
-
-  <AbritesSearch disabled expanded small placeholder="Small expanded search..."></AbritesSearch>
-`;
-
-const htmlBlockExample = `
-  <AbritesSearch block large placeholder="Large search..."></AbritesSearch>
-  
-  <div class="flex-clear"></div>
-  
-  <AbritesSearch block placeholder="Default search..."></AbritesSearch>
-  
-  <div class="flex-clear"></div>
-  
-  <AbritesSearch block small placeholder="Small search..."></AbritesSearch>
-  
-  <div class="flex-clear"></div>
-  
-  <AbritesSearch block expanded large placeholder="Large expanded search..."></AbritesSearch>
-  
-  <div class="flex-clear"></div>
-  
-  <AbritesSearch block expanded placeholder="Default expanded search..."></AbritesSearch>
-  
-  <div class="flex-clear"></div>
-  
-  <AbritesSearch block expanded small placeholder="Small expanded search..."></AbritesSearch>
-`;
-</script>
-
-<style></style>

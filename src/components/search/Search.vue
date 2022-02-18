@@ -4,7 +4,7 @@
     :class="{
       expanded,
       disabled,
-      'has-value': hasValue ? true : null,
+      'has-value': hasValue,
     }"
   >
     <input
@@ -13,7 +13,7 @@
       class="search-field"
       :class="disabled"
       :placeholder="placeholder"
-      :value="props.term"
+      :value="term"
       @input="updateValueHandler($event)"
     />
 
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, withDefaults, defineEmits, ref } from "vue";
+import { defineProps, withDefaults, defineEmits, ref, watch } from "vue";
 
 interface ISearchProps {
   term?: string;

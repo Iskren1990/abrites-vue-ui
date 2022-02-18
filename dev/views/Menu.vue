@@ -103,5 +103,3 @@ const htmlCompactExample = `
     :setupFn="setupFn"
   />
 </template>
-
-<style></style>

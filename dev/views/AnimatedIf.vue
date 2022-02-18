@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "@vue/runtime-core";
+import { ref } from "vue";
 import { Preview } from "./shared/index";
 import * as Config from "../utils/app-config";
 
@@ -101,7 +101,9 @@ const codeExample = `,
         return { toggle, visible };
       },
     `;
+
 const impoirt = ['import { ref } from "vue";'];
+
 const setupFn = function () {
   const visible = ref(false);
   const toggle = () => {

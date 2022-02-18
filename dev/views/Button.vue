@@ -376,4 +376,3 @@ const buttonsGroupExample = `
   <Preview title="Buttons group" :htmlExample="buttonsGroupExample"> </Preview>
 </template>
 
-<style></style>

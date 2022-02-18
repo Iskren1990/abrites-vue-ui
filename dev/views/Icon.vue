@@ -1029,5 +1029,3 @@ const htmlListExample = `
 
   <Preview title="All icons" :htmlExample="htmlListExample" />
 </template>
-
-<style></style>

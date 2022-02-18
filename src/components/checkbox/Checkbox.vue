@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import useErrorFormating from "@/composables/useErrorFormating";
-import { withDefaults, defineProps, defineEmits, toRefs, computed } from "vue";
+import { withDefaults, defineProps, defineEmits, toRefs } from "vue";
 
 interface ICheckboxProps {
-  value?: boolean;
+  checkbox?: boolean;
   label?: string;
   hint?: string;
   error?: string | string[];
@@ -11,22 +11,21 @@ interface ICheckboxProps {
 }
 
 const props = withDefaults(defineProps<ICheckboxProps>(), {
-  value: false,
+  checkbox: false,
   error: "",
 });
 
-const { value, error, disabled } = toRefs(props);
-const uniqueId = performance.now().toString();
+const { checkbox, error, disabled } = toRefs(props);
+const uniqueId = performance.now().toString() + Math.random();
 const { errors, hasError } = useErrorFormating(error.value);
-const internalValue = computed(() => value.value);
 
 const emit = defineEmits<{
   (event: "update:checkbox", checked: boolean): void;
   (event: "blur"): void;
 }>();
 
-const writeValue = (checkbox: boolean) => {
-  emit("update:checkbox", checkbox);
+const writeValue = (state: boolean) => {
+  emit("update:checkbox", state);
 };
 </script>
 
@@ -37,8 +36,8 @@ const writeValue = (checkbox: boolean) => {
         type="checkbox"
         :id="uniqueId"
         :disabled="disabled"
-        :checked="value"
-        @change.prevent="writeValue(!value)"
+        :checked="checkbox"
+        @change.stop.prevent="writeValue(!checkbox)"
         @blur="$emit('blur')"
       />
 

@@ -93,6 +93,7 @@ const htmlExample = `
 
   <h3 class="section-title" id="examples">Examples</h3>
   <Preview
+    title="Default"
     :htmlExample="htmlExample"
     :scriptExample="`${setup}`"
     :setupFn="setup"

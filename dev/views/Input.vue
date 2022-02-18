@@ -2,8 +2,6 @@
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 
-const rows = 5;
-
 const htmlSimpleExample = `
   <AbritesInput label="Input" spaced />
 

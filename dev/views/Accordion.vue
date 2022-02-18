@@ -1,3 +1,150 @@
+<script lang="ts" setup>
+import { Preview } from "./shared";
+import * as Config from "../utils/app-config";
+
+const themesExample = `
+  <AbritesAccordionPanel label="Default">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel label="Different collapse/expand icons" collapseIcon="remove" expandIcon="add">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel light label="Light">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel dark label="Dark">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel noshadow dark label="No shadow">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel nopadding dark label="No content padding">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel disabled label="Disabled">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel expanded noninteractive :scrollIntoView="false" label="Noninteractive and expanded by default">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel spaced light label="Additional expansion spacing">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel flat light label="Flat light">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  <AbritesAccordionPanel flat dark label="Flat dark">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+`;
+
+const slotsExample = `
+  <AbritesAccordionPanel label="Panel with header prefix">
+  <template v-slot:prefix>
+    <div>PREFIX</div>
+  </template>
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  
+  <AbritesAccordionPanel label="Panel with header suffix">
+    <template v-slot:suffix>
+      <div>SUFFIX</div>
+    </template>
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+  
+  <AbritesAccordionPanel label="Panel with header prefix + suffix">
+    <template v-slot:prefix>
+      <div>PREFIX</div>
+    </template>
+    <template v-slot:suffix>
+      <div>SUFFIX</div>
+    </template>
+    <p>Lorem ipsum dolor sit amet...</p>
+  </AbritesAccordionPanel>
+`;
+
+const htmlSimpleAccordionExample = `
+  <AbritesAccordion>
+    <AbritesAccordionPanel withAccordeonController label="Default Panel 1">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController label="Default Panel 2">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController label="Default Panel 3">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+  </AbritesAccordion>
+
+  <AbritesAccordion>
+    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 1">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 2">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 3">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+  </AbritesAccordion>
+  `;
+
+const htmlMultipleAccordionExample = `
+  <AbritesAccordion multiple>
+    <AbritesAccordionPanel withAccordeonController label="Default Panel 1">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController label="Default Panel 2">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController label="Default Panel 3">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+  </AbritesAccordion>
+
+  <AbritesAccordion multiple>
+    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 1">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 2">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 3">
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAccordionPanel>
+  </AbritesAccordion>
+`;
+
+const htmlSteppedAccordionExample = `
+  <AbritesAccordion ref="steppedAccordion" stepped>
+    <AbritesAccordionPanel withAccordeonController label="Step 1">
+      <p>Lorem ipsum dolor sit amet...</p>
+
+      <div class="panel-footer">
+        <AbritesButton accent @trigger="$refs.steppedAccordion.nextStep">Next step</AbritesButton>
+      </div>
+    </AbritesAccordionPanel>
+
+    <AbritesAccordionPanel withAccordeonController label="Step 2">
+      <p>Lorem ipsum dolor sit amet...</p>
+
+      <div class="panel-footer">
+        <AbritesButton @trigger="$refs.steppedAccordion.prevStep">Prev step</AbritesButton>
+        <AbritesButton accent @trigger="$refs.steppedAccordion.nextStep">Next step</AbritesButton>
+      </div>
+    </AbritesAccordionPanel>
+
+    <AbritesAccordionPanel withAccordeonController label="Step 3">
+      <p>Lorem ipsum dolor sit amet...</p>
+      <div class="panel-footer">
+        <AbritesButton @trigger="$refs.steppedAccordion.prevStep">Prev step</AbritesButton>
+      </div>
+    </AbritesAccordionPanel>
+  </AbritesAccordion>
+`;
+</script>
+
 <template>
   <AbritesGrid>
     <div class="col-lg-6">
@@ -236,150 +383,3 @@
     :htmlExample="htmlSteppedAccordionExample"
   />
 </template>
-
-<script lang="ts" setup>
-import { Preview } from "./shared";
-import * as Config from "../utils/app-config";
-
-const themesExample = `
-  <AbritesAccordionPanel label="Default">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel label="Different collapse/expand icons" collapseIcon="remove" expandIcon="add">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel light label="Light">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel dark label="Dark">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel noshadow dark label="No shadow">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel nopadding dark label="No content padding">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel disabled label="Disabled">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel expanded noninteractive :scrollIntoView="false" label="Noninteractive and expanded by default">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel spaced light label="Additional expansion spacing">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel flat light label="Flat light">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  <AbritesAccordionPanel flat dark label="Flat dark">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-`;
-
-const slotsExample = `
-  <AbritesAccordionPanel label="Panel with header prefix">
-  <template v-slot:prefix>
-    <div>PREFIX</div>
-  </template>
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  
-  <AbritesAccordionPanel label="Panel with header suffix">
-    <template v-slot:suffix>
-      <div>SUFFIX</div>
-    </template>
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-  
-  <AbritesAccordionPanel label="Panel with header prefix + suffix">
-    <template v-slot:prefix>
-      <div>PREFIX</div>
-    </template>
-    <template v-slot:suffix>
-      <div>SUFFIX</div>
-    </template>
-    <p>Lorem ipsum dolor sit amet...</p>
-  </AbritesAccordionPanel>
-`;
-
-const htmlSimpleAccordionExample = `
-  <AbritesAccordion>
-    <AbritesAccordionPanel withAccordeonController label="Default Panel 1">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController label="Default Panel 2">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController label="Default Panel 3">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-  </AbritesAccordion>
-
-  <AbritesAccordion>
-    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 1">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 2">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 3">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-  </AbritesAccordion>
-  `;
-
-const htmlMultipleAccordionExample = `
-  <AbritesAccordion multiple>
-    <AbritesAccordionPanel withAccordeonController label="Default Panel 1">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController label="Default Panel 2">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController label="Default Panel 3">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-  </AbritesAccordion>
-
-  <AbritesAccordion multiple>
-    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 1">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 2">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-    <AbritesAccordionPanel withAccordeonController flat label="Flat Panel 3">
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAccordionPanel>
-  </AbritesAccordion>
-`;
-
-const htmlSteppedAccordionExample = `
-  <AbritesAccordion ref="steppedAccordion" stepped>
-    <AbritesAccordionPanel withAccordeonController label="Step 1">
-      <p>Lorem ipsum dolor sit amet...</p>
-
-      <div class="panel-footer">
-        <AbritesButton accent @trigger="$refs.steppedAccordion.nextStep">Next step</AbritesButton>
-      </div>
-    </AbritesAccordionPanel>
-
-    <AbritesAccordionPanel withAccordeonController label="Step 2">
-      <p>Lorem ipsum dolor sit amet...</p>
-
-      <div class="panel-footer">
-        <AbritesButton @trigger="$refs.steppedAccordion.prevStep">Prev step</AbritesButton>
-        <AbritesButton accent @trigger="$refs.steppedAccordion.nextStep">Next step</AbritesButton>
-      </div>
-    </AbritesAccordionPanel>
-
-    <AbritesAccordionPanel withAccordeonController label="Step 3">
-      <p>Lorem ipsum dolor sit amet...</p>
-      <div class="panel-footer">
-        <AbritesButton @trigger="$refs.steppedAccordion.prevStep">Prev step</AbritesButton>
-      </div>
-    </AbritesAccordionPanel>
-  </AbritesAccordion>
-`;
-</script>

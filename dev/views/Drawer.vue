@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 import { AbritesDrawer, useStorageState } from "@/entry.esm";
@@ -68,7 +68,7 @@ const imports = [
 ];
 
 const setupFn = function script() {
-  const drawer = ref<AbritesDrawer>();
+  const drawer = ref<typeof AbritesDrawer>();
   const menuItem = [
     {
       path: "/",
@@ -214,5 +214,3 @@ const setupFn = function script() {
     :imports="imports"
   ></Preview>
 </template>
-
-<style></style>

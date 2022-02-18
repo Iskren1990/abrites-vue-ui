@@ -1,3 +1,30 @@
+<script lang="ts" setup>
+import * as Config from "../utils/app-config";
+import { Preview } from "./shared/index";
+
+const htmlColorsExample = `
+    <AbritesAlert>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAlert>
+    
+    <AbritesAlert accent>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAlert>
+    
+    <AbritesAlert danger>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAlert>
+    
+    <AbritesAlert success>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAlert>
+    
+    <AbritesAlert warning>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AbritesAlert>
+`;
+</script>
+
 <template>
   <h2 class="component-title" id="selector">
     <a
@@ -25,42 +52,3 @@
 
   <Preview title="Colors Example" :htmlExample="htmlColorsExample"> </Preview>
 </template>
-
-<script lang="ts">
-import * as Config from "../utils/app-config";
-import { Preview } from "./shared";
-import { defineComponent } from "@vue/runtime-core";
-
-export default defineComponent({
-  name: "AlertPage",
-  components: { Preview },
-  data() {
-    return {
-      Config,
-      htmlColorsExample: `
-    <AbritesAlert>
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAlert>
-    
-    <AbritesAlert accent>
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAlert>
-    
-    <AbritesAlert danger>
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAlert>
-    
-    <AbritesAlert success>
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAlert>
-    
-    <AbritesAlert warning>
-      <p>Lorem ipsum dolor sit amet...</p>
-    </AbritesAlert>
-`,
-    };
-  },
-});
-</script>
-
-<style></style>

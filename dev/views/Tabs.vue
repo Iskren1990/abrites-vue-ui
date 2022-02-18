@@ -1,3 +1,58 @@
+<script lang="ts" setup>
+import { Preview } from "./shared/index";
+import * as Config from "../utils/app-config";
+
+const htmlDefaultExample = `    
+    <AbritesTabs>
+      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Tab 2" active>Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+
+    <AbritesTabs right>
+      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Test 3" active="2">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+
+    <AbritesTabs center>
+      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+
+    <AbritesTabs stretched>
+      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+    `;
+const htmlTitleExample = `
+    <AbritesTabs>
+      <AbritesTabPanel class="padded" label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel class="padded" label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel class="padded" label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+
+    <AbritesTabs right>
+      <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+
+    <AbritesTabs center>
+      <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>
+
+    <AbritesTabs stretched>
+      <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
+      <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
+      <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
+    </AbritesTabs>`;
+</script>
+
 <template>
   <AbritesGrid>
     <div class="col-lg-4">
@@ -144,58 +199,3 @@
 
   <Preview title="Title" :htmlExample="htmlTitleExample"> </Preview>
 </template>
-
-<script lang="ts" setup>
-import { Preview } from "./shared/index";
-import * as Config from "../utils/app-config";
-
-const htmlDefaultExample = `    
-    <AbritesTabs>
-      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Tab 2" active>Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-
-    <AbritesTabs right>
-      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Test 3" active="2">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-
-    <AbritesTabs center>
-      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-
-    <AbritesTabs stretched>
-      <AbritesTabPanel label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-    `;
-const htmlTitleExample = `
-    <AbritesTabs>
-      <AbritesTabPanel class="padded" label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel class="padded" label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel class="padded" label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-
-    <AbritesTabs right>
-      <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-
-    <AbritesTabs center>
-      <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>
-
-    <AbritesTabs stretched>
-      <AbritesTabPanel padded label="Tab 1">Tab 1 content...</AbritesTabPanel>
-      <AbritesTabPanel padded label="Tab 2">Tab 2 content...</AbritesTabPanel>
-      <AbritesTabPanel padded label="Test 3">Tab 3 content...</AbritesTabPanel>
-    </AbritesTabs>`;
-</script>

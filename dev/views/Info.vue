@@ -123,5 +123,3 @@ const htmlSlotsExample = `
 
   <Preview title="Slots" :htmlExample="htmlSlotsExample" />
 </template>
-
-<style></style>

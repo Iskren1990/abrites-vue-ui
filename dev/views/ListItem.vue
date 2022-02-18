@@ -1,3 +1,68 @@
+<script lang="ts" setup>
+import { Preview } from "./shared";
+import * as Config from "../utils/app-config";
+
+const htmlSimpleExample = `
+<AbritesListItem label="Simple list item 1"></AbritesListItem>
+
+<AbritesListItem label="Simple list item 2"></AbritesListItem>
+
+<AbritesListItem spaced label="Spaced list item 1"></AbritesListItem>
+
+<AbritesListItem spaced label="Spaced list item 2"></AbritesListItem>
+
+<AbritesListItem shadowized label="Shadowized list item"></AbritesListItem>
+
+<AbritesListItem active label="Active list item"></AbritesListItem>
+
+<AbritesListItem disabled label="Disabled list item"></AbritesListItem>
+
+<AbritesListItem label="List item with hint" hint="Some hint"></AbritesListItem>
+
+<AbritesListItem large label="Large list item"></AbritesListItem>
+`;
+
+const htmlSlotsExample = `
+  <AbritesListItem label="Before content example">
+    <template v-slot:beforeContent> BEFORE... </template>
+  </AbritesListItem>
+
+  <AbritesListItem label="After content example">
+    <template v-slot:afterContent> AFTER... </template>
+  </AbritesListItem>
+
+  <AbritesListItem label="No selector example">
+    SOMETHING...
+  </AbritesListItem>
+
+  <AbritesListItem label="All slots + hint example" hint="Some hint">
+    <template v-slot:beforeContent> BEFORE... </template>
+    <template v-slot:afterContent> AFTER... </template>
+    SOMETHING...
+  </AbritesListItem>
+`;
+
+const htmlButtonsExample = `
+<AbritesListItem label="Regular list item with button controls">
+  <AbritesButton small round flat>
+    <AbritesIcon icon="attach_file"></AbritesIcon>
+  </AbritesButton>
+  <AbritesButton small round flat>
+    <AbritesIcon icon="mail"></AbritesIcon>
+  </AbritesButton>
+</AbritesListItem>
+
+<AbritesListItem large label="Large list item with button controls">
+  <AbritesButton round flat>
+    <AbritesIcon icon="attach_file"></AbritesIcon>
+  </AbritesButton>
+  <AbritesButton round flat>
+    <AbritesIcon icon="mail"></AbritesIcon>
+  </AbritesButton>
+</AbritesListItem>
+`;
+</script>
+
 <template>
   <h2 class="component-title" id="selector">
     <a
@@ -97,68 +162,3 @@
 
   <Preview title="With buttons" :htmlExample="htmlButtonsExample" />
 </template>
-
-<script lang="ts" setup>
-import { Preview } from "./shared";
-import * as Config from "../utils/app-config";
-
-const htmlSimpleExample = `
-<AbritesListItem label="Simple list item 1"></AbritesListItem>
-
-<AbritesListItem label="Simple list item 2"></AbritesListItem>
-
-<AbritesListItem spaced label="Spaced list item 1"></AbritesListItem>
-
-<AbritesListItem spaced label="Spaced list item 2"></AbritesListItem>
-
-<AbritesListItem shadowized label="Shadowized list item"></AbritesListItem>
-
-<AbritesListItem active label="Active list item"></AbritesListItem>
-
-<AbritesListItem disabled label="Disabled list item"></AbritesListItem>
-
-<AbritesListItem label="List item with hint" hint="Some hint"></AbritesListItem>
-
-<AbritesListItem large label="Large list item"></AbritesListItem>
-`;
-
-const htmlSlotsExample = `
-  <AbritesListItem label="Before content example">
-    <template v-slot:beforeContent> BEFORE... </template>
-  </AbritesListItem>
-
-  <AbritesListItem label="After content example">
-    <template v-slot:afterContent> AFTER... </template>
-  </AbritesListItem>
-
-  <AbritesListItem label="No selector example">
-    SOMETHING...
-  </AbritesListItem>
-
-  <AbritesListItem label="All slots + hint example" hint="Some hint">
-    <template v-slot:beforeContent> BEFORE... </template>
-    <template v-slot:afterContent> AFTER... </template>
-    SOMETHING...
-  </AbritesListItem>
-`;
-
-const htmlButtonsExample = `
-<AbritesListItem label="Regular list item with button controls">
-  <AbritesButton small round flat>
-    <AbritesIcon icon="attach_file"></AbritesIcon>
-  </AbritesButton>
-  <AbritesButton small round flat>
-    <AbritesIcon icon="mail"></AbritesIcon>
-  </AbritesButton>
-</AbritesListItem>
-
-<AbritesListItem large label="Large list item with button controls">
-  <AbritesButton round flat>
-    <AbritesIcon icon="attach_file"></AbritesIcon>
-  </AbritesButton>
-  <AbritesButton round flat>
-    <AbritesIcon icon="mail"></AbritesIcon>
-  </AbritesButton>
-</AbritesListItem>
-`;
-</script>

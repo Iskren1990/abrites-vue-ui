@@ -106,5 +106,3 @@ const htmlExample = `
   <h3 class="section-title" id="styling">Examples</h3>
   <Preview title="Random" :htmlExample="htmlExample" />
 </template>
-
-<style></style>
