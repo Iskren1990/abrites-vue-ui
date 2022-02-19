@@ -22,5 +22,5 @@ export function normalizeOptions(options): SelectOption[] {
   if (Array.isArray(options)) {
     return options.map(singleOption);
   }
-  console.warn("'options' should be an array!");
+  console.error("'options' should be an array!");
 }
