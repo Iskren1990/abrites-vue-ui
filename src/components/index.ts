@@ -25,4 +25,5 @@ export { default as AbritesInput } from "./input";
 export { default as AbritesLazyFor } from "./lazy-for";
 export { default as AbritesListItem } from "./list-item";
 export { default as AbritesPagination } from "./pagination";
+export { default as AbritesSelect } from "./select";
 export { default as AbritesTag } from "./tag";
