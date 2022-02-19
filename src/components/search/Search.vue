@@ -1,34 +1,5 @@
-<template>
-  <div
-    class="search-host"
-    :class="{
-      expanded,
-      disabled,
-      'has-value': hasValue,
-    }"
-  >
-    <input
-      ref="searchInputRef"
-      type="text"
-      class="search-field"
-      :class="disabled"
-      :placeholder="placeholder"
-      :value="term"
-      @input="updateValueHandler($event)"
-    />
-
-    <div class="search-show-handle">
-      <AbritesIcon icon="search"></AbritesIcon>
-    </div>
-
-    <div class="search-clear-handle" @click="clear()">
-      <AbritesIcon class="small" icon="clear"></AbritesIcon>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { defineProps, withDefaults, defineEmits, ref, watch } from "vue";
+import { defineProps, withDefaults, defineEmits, ref } from "vue";
 
 interface ISearchProps {
   term?: string;
@@ -76,6 +47,35 @@ const clear = ({ debounce = false } = {}) => {
   searchInputRef.value.blur();
 };
 </script>
+
+<template>
+  <div
+    class="search-host"
+    :class="{
+      expanded,
+      disabled,
+      'has-value': hasValue,
+    }"
+  >
+    <input
+      ref="searchInputRef"
+      type="text"
+      class="search-field"
+      :class="disabled"
+      :placeholder="placeholder"
+      :value="term"
+      @input="updateValueHandler($event)"
+    />
+
+    <div class="search-show-handle">
+      <AbritesIcon icon="search"></AbritesIcon>
+    </div>
+
+    <div class="search-clear-handle" @click="clear()">
+      <AbritesIcon class="small" icon="clear"></AbritesIcon>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @use "sass:math";
