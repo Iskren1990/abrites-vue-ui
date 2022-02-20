@@ -188,7 +188,7 @@ const htmlStatesExample = `
       <p>Additional text placed below the select field.</p>
     </li>
     <li>
-      <strong>error</strong> <code>string | string[]</code>
+      <strong>error?</strong> <code>string | string[]</code>
       <p>
         Error message placed below the select field (after <code>hint</code>).
       </p>
