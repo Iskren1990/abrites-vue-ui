@@ -13,7 +13,7 @@
       <component :is="{ template: htmlExample, setup: setupFn }"></component>
     </div>
 
-    <AbritesPopup ref="previewPopup" popupClass="large">
+    <AbritesPopup ref="previewPopup" class="large">
       <div class="popup-header">{{ title }}</div>
       <div class="popup-content">
         <AbritesTabs stretched @change="onTabChange">

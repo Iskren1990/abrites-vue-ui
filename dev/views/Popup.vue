@@ -8,7 +8,7 @@ const htmlSizesExample = `
 <AbritesButton @trigger="defaultSizePopup.open()">Default size popup</AbritesButton>
 <AbritesButton @trigger="smallSizePopup.open()">Small size popup</AbritesButton>
 
-<AbritesPopup ref="largeSizePopup" popupClass="large">
+<AbritesPopup ref="largeSizePopup" class="large">
   <div class="popup-header">My popup title</div>
   <div class="popup-content">
     <p>Lorem ipsum dolor sit amet...</p>
@@ -28,7 +28,7 @@ const htmlSizesExample = `
   </div>
 </AbritesPopup>
 
-<AbritesPopup ref="smallSizePopup" popupClass="small">
+<AbritesPopup ref="smallSizePopup" class="small">
   <div class="popup-header">My popup title</div>
   <div class="popup-content">
     <p>Lorem ipsum dolor sit amet...</p>
