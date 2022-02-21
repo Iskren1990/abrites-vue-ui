@@ -3,7 +3,7 @@ import {
   SelectOption,
   normalizeOptions,
 } from "../components/select/select-option";
-export function useBaseSelect<T>(props: IBaseSelect, emits) {
+const useBaseSelect = (props: IBaseSelect, emits) => {
   const options = computed(() => normalizeOptions(props.options));
 
   const _selected = ref<SelectOption[]>([]);
@@ -88,7 +88,10 @@ export function useBaseSelect<T>(props: IBaseSelect, emits) {
     selectOption,
     normalizeOptions,
   };
-}
+};
+
+export default useBaseSelect;
+
 // Props in IBaseSelect should be removed from Select.vue and RadioList.vue onde Vue suports interface import in setup fn.
 export interface IBaseSelect {
   select?: string | number | symbol;

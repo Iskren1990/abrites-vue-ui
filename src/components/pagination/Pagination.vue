@@ -1,14 +1,6 @@
 <script lang="ts" setup>
-import {
-  withDefaults,
-  defineProps,
-  defineEmits,
-  computed,
-  onMounted,
-  watch,
-  ref,
-} from "vue";
-import { useRouter } from "vue-router";
+import { withDefaults, defineProps, defineEmits, computed, ref } from "vue";
+
 import { SelectOption } from "../select/select-option";
 import { PaginationData } from "./pagination-data";
 
@@ -18,7 +10,6 @@ interface IPaginationProps {
   pageSizeOptions?: number[];
   perPageText?: string;
   ofTotalText?: string;
-  urlSync?: boolean;
   urlSyncParam?: string;
   disabled?: boolean;
 }
@@ -28,16 +19,13 @@ const props = withDefaults(defineProps<IPaginationProps>(), {
   disabled: false,
   perPageText: "Items per page",
   ofTotalText: "of",
-  urlSync: false,
-  urlSyncParam: "page",
+
   pageSizeOptions: () => [15, 30, 50],
 });
 
 const emit = defineEmits<{
   (emit: "update:pagination-data", data: PaginationData): void;
 }>();
-
-const router = useRouter();
 
 const onPageSizeSelectChanged = (selected: SelectOption) => {
   _pageSize.value = selected.label;
@@ -73,52 +61,6 @@ const _changeData = (newPage: number, newPageSize?: number) => {
     newPageSize || pageSize.value
   );
   emit("update:pagination-data", newData);
-};
-
-const _syncComponentWithUrl = () => {
-  if (!props.urlSync) {
-    return;
-  }
-
-  const params = router.currentRoute.value.query;
-  const syncParams = params[props.urlSyncParam] as string;
-
-  if (!syncParams?.length) {
-    return;
-  }
-  const tempData = PaginationData.fromString(syncParams ?? props.urlSyncParam);
-
-  emit("update:pagination-data", tempData);
-};
-
-onMounted(_syncComponentWithUrl);
-watch(
-  () => props.paginationData,
-  () => _syncUrlWithComponent()
-);
-
-const _syncUrlWithComponent = () => {
-  if (!props.urlSync) {
-    return;
-  }
-  const currentRouteName = router.currentRoute.value.name;
-  const query = router.currentRoute.value.query;
-  const currentHash = router.currentRoute.value.hash;
-
-  function toObj(key, value) {
-    const obj = {};
-    obj[key] = value;
-    return obj;
-  }
-
-  router.push({
-    name: currentRouteName,
-    query: {
-      ...query,
-      ...toObj(props.urlSyncParam, props.paginationData.toString()),
-    },
-    hash: currentHash,
-  });
 };
 
 const prevPage = () => _changeData(page() - 1);

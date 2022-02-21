@@ -15,6 +15,7 @@
   "sideEffects": false,
   "scripts": {
     "serve": "export NODE_OPTIONS=--openssl-legacy-provider &&  vue-cli-service serve dev/serve.ts",
+    "build-docs":  "export NODE_OPTIONS=--openssl-legacy-provider &&  vue-cli-service serve dev/serve.ts",
     "prebuild": "rimraf ./dist",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
@@ -23,13 +24,6 @@
     "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.d.ts"
   },
   "dependencies": {
-    "chart.js": "^3.7.0",
-    "chartjs-adapter-date-fns": "^2.0.0",
-    "chartjs-plugin-zoom": "^1.2.0",
-    "core-js": "^3.6.5",
-    "date-fns": "^2.28.0",
-    "sortablejs": "^1.14.0",
-    "@types/sortablejs": "^1.10.7"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
@@ -80,7 +74,14 @@
     "vue-router": "^4.0.12"
   },
   "peerDependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "chart.js": "^3.7.0",
+    "chartjs-adapter-date-fns": "^2.0.0",
+    "chartjs-plugin-zoom": "^1.2.0",
+    "core-js": "^3.6.5",
+    "date-fns": "^2.28.0",
+    "sortablejs": "^1.14.0",
+    "@types/sortablejs": "^1.10.7"
   },
   "engines": {
     "node": ">=12"

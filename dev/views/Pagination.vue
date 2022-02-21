@@ -3,6 +3,7 @@ import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 import { PaginationData } from "@/components/pagination/pagination-data";
 import { ref } from "vue";
+import { useUrlSync } from "@/entry.esm";
 
 const imports = ["import { ref } from 'vue';"];
 
@@ -31,7 +32,7 @@ const htmlSynchronizedExample = `
   <AbritesPagination
     left
     urlSync
-    v-model:pagination-data="pageData"
+    v-model:pagination-data="paginationData"
     :totalItems="100"
   />
 `;
@@ -40,13 +41,13 @@ const setup = () => {
   const pageDataCenter = ref(new PaginationData(1, 10));
   const pageSizeOptions = [10, 20, 30];
   const pageDataRight = ref(new PaginationData(1, 30));
-  const pageData = ref(new PaginationData(1, 15));
+  const { paginationData } = useUrlSync();
   return {
     pageDataLeft,
     pageDataCenter,
     pageSizeOptions,
     pageDataRight,
-    pageData,
+    paginationData,
   };
 };
 </script>
