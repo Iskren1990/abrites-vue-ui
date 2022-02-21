@@ -99,7 +99,6 @@ const _deepGet = (item: unknown, keys: string[]) => {
       accent
       small
     ></AbritesLoader>
-    loading {{ isLoading }}
     <table :class="{ loading: isLoading }">
       <thead class="responsive-hide">
         <tr>
