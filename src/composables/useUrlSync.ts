@@ -3,10 +3,11 @@ import { onMounted, ref, Ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 export interface IURLSync {
+  data: PaginationData;
   urlSyncParam?: string;
 }
-const useUrlSync = ({ urlSyncParam = "page" }: IURLSync = {}) => {
-  const paginationData = ref(new PaginationData(1, 15));
+const useUrlSync = ({ data, urlSyncParam = "page" }: IURLSync) => {
+  const paginationData = ref(data);
   const router = useRouter();
 
   const _syncComponentWithUrl = () => {

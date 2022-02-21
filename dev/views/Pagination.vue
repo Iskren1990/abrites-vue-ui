@@ -41,7 +41,9 @@ const setup = () => {
   const pageDataCenter = ref(new PaginationData(1, 10));
   const pageSizeOptions = [10, 20, 30];
   const pageDataRight = ref(new PaginationData(1, 30));
-  const { paginationData } = useUrlSync();
+  const { paginationData } = useUrlSync({
+    data: new PaginationData(1, 30),
+  });
   return {
     pageDataLeft,
     pageDataCenter,
@@ -64,7 +66,15 @@ const setup = () => {
   </h2>
   <p>
     Pagination component that suports <code>v-model</code> and URL
-    synchronization.
+    synchronization via
+    <code>
+      useUrlSync({ urlSyncParam = "page" }: IURLSync): PaginationData </code
+    >.
+  </p>
+  <p>
+    <code>
+      interface IURLSync { urlSyncParam?: string; data: PaginationData; }
+    </code>
   </p>
 
   <h3 class="section-title" id="inputs">Inputs</h3>
@@ -103,13 +113,6 @@ const setup = () => {
       <p>
         Separator label between the current page and
         <code>totalItems</code> (default to <code>'of'</code>).
-      </p>
-    </li>
-    <li>
-      <strong>urlSync?</strong> <code>boolean</code>
-      <p>
-        Activate synchronization with the url query parameters (default to
-        <code>false</code>).
       </p>
     </li>
     <li>
