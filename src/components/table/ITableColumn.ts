@@ -1,5 +1,4 @@
 export interface ITableColumn {
-
   /// Column data key.
   /// Usually used in `item[keyPart1]..[keyPartN]` as default of [content].
   key: string;

@@ -47,6 +47,7 @@ interface IPreviewProps {
   scriptExample?: string;
   imports?: string[];
   setupFn?: () => Record<string, unknown> | undefined;
+  style: string;
 }
 
 const props = withDefaults(defineProps<IPreviewProps>(), {
@@ -54,21 +55,24 @@ const props = withDefaults(defineProps<IPreviewProps>(), {
   htmlExample: "",
   scriptExample: "",
   imports: () => [],
+  style: "",
 });
 
-interface TemplateParts {
+interface ITemplateParts {
   html: string;
   code: string;
-  imports: string;
   setupFn: (() => Record<string, unknown> | undefined) | undefined;
+  imports: string;
+  style: string;
 }
 const previewPopup = ref();
 const templateRef = ref("");
-const templateParts = reactive<TemplateParts>({
+const templateParts = reactive<ITemplateParts>({
   html: props.htmlExample,
   code: props.scriptExample,
   imports: props.imports.join("\n  "),
   setupFn: props.setupFn,
+  style: props.style,
 });
 
 onBeforeMount(() => {
@@ -79,7 +83,7 @@ const onTabChange = () => {
   return;
 };
 
-function vueExampleGenerator(templateParts: TemplateParts): string {
+function vueExampleGenerator(templateParts: ITemplateParts): string {
   return `
 <template>
   ${templateParts.html}
@@ -92,7 +96,9 @@ function vueExampleGenerator(templateParts: TemplateParts): string {
   export default defineComponent({ name: "YourComponent", ${templateParts.code}});
 < /script>;
 
-<style> </style>
+<style>
+${templateParts.style}
+</style>
 `;
 }
 </script>

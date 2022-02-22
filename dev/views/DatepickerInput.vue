@@ -5,4 +5,3 @@ export default {};
 <template>
   <div>Datepicker Input</div>
 </template>
-
