@@ -47,7 +47,7 @@ interface IPreviewProps {
   scriptExample?: string;
   imports?: string[];
   setupFn?: () => Record<string, unknown> | undefined;
-  style: string;
+  style?: string;
 }
 
 const props = withDefaults(defineProps<IPreviewProps>(), {
