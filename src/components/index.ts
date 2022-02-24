@@ -30,3 +30,4 @@ export { default as AbritesTag } from "./tag";
 export { default as AbritesRadioList } from "./radio-list";
 export { default as AbritesTable } from "./table";
 export { default as AbritesMap } from "./map";
+export { default as AbritesDatepicker } from "./datepicker";
