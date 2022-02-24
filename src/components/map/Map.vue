@@ -68,7 +68,7 @@ onMounted(init);
 <style lang="scss" scoped>
 @use "sass:math";
 @import "../../styles/core";
-@import url("https://unpkg.com/leaflet@1.0.1/dist/leaflet.css");
+@import "../../../node_modules/leaflet/dist/leaflet.css";
 
 @mixin abrites-marker-theme($name, $color) {
   $animation-name: abrites-marker-#{$name}-pulse;
