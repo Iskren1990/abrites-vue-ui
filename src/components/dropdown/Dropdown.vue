@@ -3,6 +3,7 @@ import {
   withDefaults,
   defineEmits,
   defineProps,
+  defineExpose,
   ref,
   onMounted,
   onUnmounted,
@@ -37,6 +38,8 @@ watchEffect(() => {
 });
 onMounted(controller.mount);
 onUnmounted(controller.unmount);
+
+defineExpose({ controller, isVisible });
 </script>
 
 <template>
