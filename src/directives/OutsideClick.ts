@@ -38,8 +38,6 @@ class ClickHandler {
       typeof this.el.callback == "function" &&
       typeof this.el.callback() == "function"
     ) {
-      console.log("clicked");
-
       this.el.callback()();
     }
     this._outsideClickStarted = false; // reset
