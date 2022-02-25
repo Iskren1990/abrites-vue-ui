@@ -49,6 +49,8 @@ const emit = defineEmits<{
   (event: "canceled"): void;
 }>();
 
+// Common datepicker computed props
+// Once vue implements interface imports export common props in composable
 const hasPresets = computed(() => props.presets?.length);
 const enableRange = computed(() => props.range);
 const enableTime = computed(() => props.time);
@@ -262,7 +264,6 @@ const extractPickersDate = () => {
 const setValue = (val: Date[]) => emit("update:selected", val);
 
 const apply = () => {
-  if (!props.selected.length) return;
   emit("applied", props.selected);
 };
 

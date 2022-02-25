@@ -58,7 +58,8 @@ const htmlPresetsExample = `
 `;
 
 const imports = [
-  "import { endOfDay } from 'date-fns'",
+  "import { endOfMonth, endOfToday, endOfWeek } from 'date-fns'",
+  "import { startOfMonth, startOfToday, startOfWeek } from 'date-fns'",
   "import { ref } from 'vue';",
 ];
 
@@ -217,15 +218,15 @@ const script = () => {
 
   <h3 class="section-title" id="examples">Examples</h3>
 
-  <Preview title="Single" :htmlExample="htmlSingleExample"> </Preview>
+  <Preview title="Single" :htmlExample="htmlSingleExample" />
 
-  <Preview title="Range" :htmlExample="htmlRangeExample"> </Preview>
+  <Preview title="Range" :htmlExample="htmlRangeExample" />
 
-  <Preview title="With time" :htmlExample="htmlTimeExample"> </Preview>
+  <Preview title="With time" :htmlExample="htmlTimeExample" />
 
-  <Preview title="Multiple months" :htmlExample="htmlMonthsExample"> </Preview>
+  <Preview title="Multiple months" :htmlExample="htmlMonthsExample" />
 
-  <Preview title="Block" :htmlExample="htmlBlockExample"> </Preview>
+  <Preview title="Block" :htmlExample="htmlBlockExample" />
 
   <Preview
     title="Presets"
@@ -233,6 +234,5 @@ const script = () => {
     :scriptExample="`${script}`"
     :setupFn="script"
     :imports="imports"
-  >
-  </Preview>
+  />
 </template>
