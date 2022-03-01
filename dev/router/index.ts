@@ -1,46 +1,45 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Intro from "../views/Intro.vue";
-import Accordion from "../views/Accordion.vue";
-import Alert from "../views/Alert.vue";
-import AnimatedIf from "../views/AnimatedIf.vue";
-import Button from "../views/Button.vue";
-import Chart from "../views/Chart.vue";
-import Checkbox from "../views/Checkbox.vue";
-import Confirmation from "../views/Confirmation.vue";
-import Datepicker from "../views/Datepicker.vue";
-import DatepickerInput from "../views/DatepickerInput.vue";
-import DatepickerSlider from "../views/DatepickerSlider.vue";
-import Deffered from "../views/Deffered.vue";
-import DND from "../views/DND.vue";
-import Drawer from "../views/Drawer.vue";
-import Dropdown from "../views/Dropdown.vue";
-import Grid from "../views/Grid.vue";
-import Icon from "../views/Icon.vue";
-import Info from "../views/Info.vue";
-import Input from "../views/Input.vue";
-import LazyFor from "../views/LazyFor.vue";
-import ListItem from "../views/ListItem.vue";
-import Loader from "../views/Loader.vue";
-import Map from "../views/Map.vue";
-import Menu from "../views/Menu.vue";
-import OutsideClick from "../views/OutsideClick.vue";
-import Pagination from "../views/Pagination.vue";
-import Popup from "../views/Popup.vue";
-import RadioList from "../views/RadioList.vue";
-import Search from "../views/Search.vue";
-import Select from "../views/Select.vue";
-import Snackbar from "../views/Snackbar.vue";
-import Table from "../views/Table.vue";
-import Tabs from "../views/Tabs.vue";
-import Tag from "../views/Tag.vue";
-import Tooltips from "../views/Tooltips.vue";
+import IntroPage from "../views/IntroPage.vue";
+import AccordionPage from "../views/AccordionPage.vue";
+import AlertPage from "../views/AlertPage.vue";
+import AnimatedIfPage from "../views/AnimatedIfPage.vue";
+import ButtonPage from "../views/ButtonPage.vue";
+import ChartPage from "../views/ChartPage.vue";
+import CheckboxPage from "../views/CheckboxPage.vue";
+import ConfirmationPage from "../views/ConfirmationPage.vue";
+import DatepickerPage from "../views/DatepickerPage.vue";
+import DatepickerInputPage from "../views/DatepickerInputPage.vue";
+import DatepickerSliderPage from "../views/DatepickerSliderPage.vue";
+import DNDPage from "../views/DNDPage.vue";
+import DrawerPage from "../views/DrawerPage.vue";
+import DropdownPage from "../views/DropdownPage.vue";
+import GridPage from "../views/GridPage.vue";
+import IconPage from "../views/IconPage.vue";
+import InfoPage from "../views/InfoPage.vue";
+import InputPage from "../views/InputPage.vue";
+import LazyForPage from "../views/LazyForPage.vue";
+import ListItemPage from "../views/ListItemPage.vue";
+import LoaderPage from "../views/LoaderPage.vue";
+import MapPage from "../views/MapPage.vue";
+import MenuPage from "../views/MenuPage.vue";
+import OutsideClickPage from "../views/OutsideClickPage.vue";
+import PaginationPage from "../views/PaginationPage.vue";
+import PopupPage from "../views/PopupPage.vue";
+import RadioListPage from "../views/RadioListPage.vue";
+import SearchPage from "../views/SearchPage.vue";
+import SelectPage from "../views/SelectPage.vue";
+import SnackbarPage from "../views/SnackbarPage.vue";
+import TablePage from "../views/TablePage.vue";
+import TabsPage from "../views/TabsPage.vue";
+import TagPage from "../views/TagPage.vue";
+import TooltipsPage from "../views/TooltipsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     alias: "/intro",
     name: "Intro",
-    component: Intro,
+    component: IntroPage,
     meta: {
       title: "Abrites UI",
     },
@@ -48,7 +47,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/accordion",
     name: "Accordion",
-    component: Accordion,
+    component: AccordionPage,
     meta: {
       title: "Accordion",
       inMenu: true,
@@ -57,7 +56,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/alert",
     name: "Alert",
-    component: Alert,
+    component: AlertPage,
     meta: {
       title: "Alert",
       inMenu: true,
@@ -66,7 +65,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/animated-if",
     name: "AnimatedIf",
-    component: AnimatedIf,
+    component: AnimatedIfPage,
     meta: {
       title: "Animated If",
       inMenu: true,
@@ -75,7 +74,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/button",
     name: "Button",
-    component: Button,
+    component: ButtonPage,
     meta: {
       title: "Button",
       inMenu: true,
@@ -84,7 +83,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/chart",
     name: "Chart",
-    component: Chart,
+    component: ChartPage,
     meta: {
       title: "Chart",
       inMenu: true,
@@ -93,7 +92,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/checkbox",
     name: "Checkbox",
-    component: Checkbox,
+    component: CheckboxPage,
     meta: {
       title: "Checkbox",
       inMenu: true,
@@ -102,7 +101,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/confirmation",
     name: "Confirmation",
-    component: Confirmation,
+    component: ConfirmationPage,
     meta: {
       title: "Confirmation",
       inMenu: true,
@@ -111,7 +110,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/datepicker",
     name: "Datepicker",
-    component: Datepicker,
+    component: DatepickerPage,
     meta: {
       title: "Datepicker",
       inMenu: true,
@@ -120,7 +119,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/datepicker-input",
     name: "DatepickerInput",
-    component: DatepickerInput,
+    component: DatepickerInputPage,
     meta: {
       title: "Datepicker Input",
       inMenu: true,
@@ -129,7 +128,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/datepicker-slider",
     name: "DatepickerSlider",
-    component: DatepickerSlider,
+    component: DatepickerSliderPage,
     meta: {
       title: "Datepicker Slider",
       inMenu: true,
@@ -138,7 +137,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/dnd",
     name: "DND",
-    component: DND,
+    component: DNDPage,
     meta: {
       title: "Drag & Drop",
       inMenu: true,
@@ -147,7 +146,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/drawer",
     name: "Drawer",
-    component: Drawer,
+    component: DrawerPage,
     meta: {
       title: "Drawer",
       inMenu: true,
@@ -156,7 +155,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/dropdown",
     name: "Dropdown",
-    component: Dropdown,
+    component: DropdownPage,
     meta: {
       title: "Dropdown",
       inMenu: true,
@@ -165,7 +164,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/grid",
     name: "Grid",
-    component: Grid,
+    component: GridPage,
     meta: {
       title: "Grid",
       inMenu: true,
@@ -174,7 +173,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/icon",
     name: "Icon",
-    component: Icon,
+    component: IconPage,
     meta: {
       title: "Icon",
       inMenu: true,
@@ -183,7 +182,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/info",
     name: "Info",
-    component: Info,
+    component: InfoPage,
     meta: {
       title: "Info",
       inMenu: true,
@@ -192,7 +191,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/input",
     name: "Input",
-    component: Input,
+    component: InputPage,
     meta: {
       title: "Input",
       inMenu: true,
@@ -201,7 +200,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/lazy-for",
     name: "LazyFor",
-    component: LazyFor,
+    component: LazyForPage,
     meta: {
       title: "Lazy-For",
       inMenu: true,
@@ -210,7 +209,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/list-item",
     name: "ListItem",
-    component: ListItem,
+    component: ListItemPage,
     meta: {
       title: "List Item",
       inMenu: true,
@@ -219,7 +218,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/loader",
     name: "Loader",
-    component: Loader,
+    component: LoaderPage,
     meta: {
       title: "Loader",
       inMenu: true,
@@ -228,7 +227,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/map",
     name: "Map",
-    component: Map,
+    component: MapPage,
     meta: {
       title: "Map",
       inMenu: true,
@@ -237,7 +236,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/menu",
     name: "Menu",
-    component: Menu,
+    component: MenuPage,
     meta: {
       title: "Menu",
       inMenu: true,
@@ -246,7 +245,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/cutsideclick",
     name: "OutsideClick",
-    component: OutsideClick,
+    component: OutsideClickPage,
     meta: {
       title: "Outside Click",
       inMenu: true,
@@ -255,7 +254,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/pagination",
     name: "Pagination",
-    component: Pagination,
+    component: PaginationPage,
     meta: {
       title: "Pagination",
       inMenu: true,
@@ -264,7 +263,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/popup",
     name: "Popup",
-    component: Popup,
+    component: PopupPage,
     meta: {
       title: "Popup",
       inMenu: true,
@@ -273,7 +272,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/radio-list",
     name: "RadioList",
-    component: RadioList,
+    component: RadioListPage,
     meta: {
       title: "Radio List",
       inMenu: true,
@@ -282,7 +281,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/search",
     name: "Search",
-    component: Search,
+    component: SearchPage,
     meta: {
       title: "Search",
       inMenu: true,
@@ -291,7 +290,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/select",
     name: "Select",
-    component: Select,
+    component: SelectPage,
     meta: {
       title: "Select",
       inMenu: true,
@@ -300,7 +299,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/snackbar",
     name: "Snackbar",
-    component: Snackbar,
+    component: SnackbarPage,
     meta: {
       title: "Snackbar",
       inMenu: true,
@@ -309,7 +308,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/table",
     name: "Table",
-    component: Table,
+    component: TablePage,
     meta: {
       title: "Table",
       inMenu: true,
@@ -318,7 +317,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/tabs",
     name: "Tabs",
-    component: Tabs,
+    component: TabsPage,
     meta: {
       title: "Tabs",
       inMenu: true,
@@ -327,7 +326,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/tag",
     name: "Tag",
-    component: Tag,
+    component: TagPage,
     meta: {
       title: "Tag",
       inMenu: true,
@@ -336,7 +335,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/tooltips",
     name: "Tooltips",
-    component: Tooltips,
+    component: TooltipsPage,
     meta: {
       title: "Tooltips",
       inMenu: true,

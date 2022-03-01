@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Preview } from "../views/shared";
+import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 import { ref } from "vue";
 
