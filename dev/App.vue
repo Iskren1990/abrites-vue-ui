@@ -2,11 +2,6 @@
   <AppLayout />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import { AppLayout } from "./views/shared/index";
-
-export default defineComponent({
-  components: { AppLayout },
-});
 </script>

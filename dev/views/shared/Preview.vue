@@ -19,13 +19,13 @@
         <AbritesTabs stretched @change="onTabChange">
           <AbritesTabPanel label="HTML" active>
             <pre class="javascript" v-highlightjs>
-              <code class="javascript"> 
+              <code class="language-html hljs"> 
                 {{ htmlExample }}
               </code>
             </pre>
           </AbritesTabPanel>
 
-          <AbritesTabPanel label="VUE">
+          <AbritesTabPanel label="Vue SFC Example">
             <pre class="javascript" v-highlightjs>
               <code class="javascript"> 
                 {{ templateRef }}
@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts" setup>
+/*eslint no-useless-escape: 0*/
 import { defineProps, withDefaults, onBeforeMount, reactive, ref } from "vue";
 
 interface IPreviewProps {
@@ -94,7 +95,7 @@ function vueExampleGenerator(templateParts: ITemplateParts): string {
   ${templateParts.imports}
   
   export default defineComponent({ name: "YourComponent", ${templateParts.code}});
-< /script>;
+<\/script>;
 
 <style>
 ${templateParts.style}

@@ -450,41 +450,42 @@ const vueSteppedExample = () => {
   <h3 class="section-title" id="inputs">Predefined Options</h3>
   <p>Performance</p>
   <ul>
-    <li><code>Chart.defaults.animation = false;</code></li>
-  </ul>
-  <ul>
-    <p><code>// crosshair requirement</code></p>
-    <li><code>Chart.defaults.datasets.line.pointRadius = 0;</code></li>
-    <li><code>Chart.defaults.hover.mode = "index";</code></li>
-    <li><code>Chart.defaults.hover.intersect = false;</code></li>
-    <li><code>Chart.defaults.interaction.mode = "index";</code></li>
+    <pre v-highlightjs>
+    <code class="language-javascript">
+      Chart.defaults.animation = false;
+      // crosshair requirement
+      Chart.defaults.datasets.line.pointRadius = 0;
+      Chart.defaults.hover.mode = "index";
+      Chart.defaults.hover.intersect = false;
+      Chart.defaults.interaction.mode = "index";
+    </code>
+    </pre>
   </ul>
   <p>Stylization</p>
   <ul>
-    <li><code>Chart.defaults.interaction.intersect = false;</code></li>
-    <li><code>Chart.defaults.maintainAspectRatio = false;</code></li>
-    <li>
-      <code>Chart.defaults.scale.grid.color = "rgba(255,255,255,0.1)";</code>
-    </li>
-    <li><code>Chart.defaults.elements.line.borderWidth = 1;</code></li>
+    <pre v-highlightjs><code class="language-javascript">
+      Chart.defaults.interaction.intersect = false;
+      Chart.defaults.maintainAspectRatio = false;
+      Chart.defaults.scale.grid.color = "rgba(255,255,255,0.1)";
+      Chart.defaults.elements.line.borderWidth = 1;
+    </code></pre>
   </ul>
   <p>Tooltip</p>
   <ul>
-    <li><code>Chart.defaults.datasets.line.pointHoverRadius = 2;</code></li>
-    <li><code>Chart.defaults.plugins.tooltip.enabled = true;</code></li>
-    <li>
-      <code
-        >Chart.defaults.plugins.tooltip.position = "topLeftPositioner";</code
-      >
-    </li>
-    <li><code>Chart.defaults.plugins.tooltip.usePointStyle = true;</code></li>
+    <pre v-highlightjs><code class="language-javascript">
+      Chart.defaults.datasets.line.pointHoverRadius = 2;
+      Chart.defaults.plugins.tooltip.enabled = true;
+      Chart.defaults.plugins.tooltip.position = "topLeftPositioner";
+      Chart.defaults.plugins.tooltip.usePointStyle = true;
+    </code></pre>
   </ul>
   <p>Plugins</p>
   <ul style="list-style: none">
     <li>
       <p>Zoom</p>
-      <pre>
-      {
+      <pre v-highlightjs>
+        <code class="language-javascript" >
+        {
         //  cares for dragging of the map
         pan: {
           enabled: true,
@@ -502,8 +503,9 @@ const vueSteppedExample = () => {
             enabled: true,
           },
           mode: "x",
-      }</pre
-      >
+      }
+        </code>
+      </pre>
       <p>
         To remove the zoom option assign empty object to the property name with
         the "options".
@@ -511,10 +513,11 @@ const vueSteppedExample = () => {
     </li>
     <li>
       <p>Time/Timescale Axis</p>
-      <pre><code>options.scales[scale].type == "time"</code></pre>
-      <p></p>
-      <pre><code>options.scales[scale].type == "timescale"</code></pre>
-      <pre>
+      <pre v-highlightjs>
+        <code class="language-javascript">
+      options.scales[scale].type == "time";
+      options.scales[scale].type == "timescale";
+      
         {
           ticks: {
             autoSkip: false,
@@ -524,30 +527,34 @@ const vueSteppedExample = () => {
             },
           },
         }
+        </code>
       </pre>
     </li>
     <li>
       <p>Data Parsing</p>
-      <pre><code>options.datasets</code></pre>
-      <pre>
+      <pre v-highlightjs><code class="language-javascript">
+      options.datasets;
         {
           line: {
             parsing: false,
           },
         }
-      </pre>
+      </code></pre>
       <p>Increases perfrmance for large amount of points.</p>
     </li>
     <li>
       <p>Sync</p>
-      <pre><code>options.plugins.sync.group</code></pre>
+      <pre v-highlightjs><code class="language-javascript">
+      options.plugins.sync.group;
+      </code></pre>
       <p>The group of the chart instance.</p>
     </li>
     <li>
       <p>Crosshair Style</p>
-      <pre><code>color: string;</code></pre>
-      <p></p>
-      <pre><code>lineWidth: number;</code></pre>
+      <pre v-highlightjs><code class="language-javascript">
+        color: string;
+        lineWidth: number;
+      </code></pre>
       <p>Color and width of the line.</p>
     </li>
   </ul>
