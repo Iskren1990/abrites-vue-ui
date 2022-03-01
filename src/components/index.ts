@@ -32,3 +32,4 @@ export { default as AbritesTable } from "./table";
 export { default as AbritesMap } from "./map";
 export { default as AbritesDatepicker } from "./datepicker";
 export { default as AbritesDatepickerInput } from "./datepicker-input";
+export { default as AbritesDatepickerSlider } from "./datepicker-slider";
