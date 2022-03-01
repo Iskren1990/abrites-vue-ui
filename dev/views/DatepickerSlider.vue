@@ -2,6 +2,7 @@
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 import { ref } from "vue";
+import { startOfWeek, endOfWeek } from "date-fns";
 
 const htmlSliderExample = `
   <AbritesDatepickerSlider hotkeys v-model:selected="range" />
@@ -9,11 +10,25 @@ const htmlSliderExample = `
   <p>Range: {{ range }}</p>
 `;
 
-const imports = ["import { ref } from 'vue';"];
+const htmlRangeExample = `
+  <AbritesDatepickerSlider :maxRange="760800" hotkeys v-model:selected="range" />
+
+  <p>Range: {{ range }}</p>
+`;
+
+const htmlMinMaxRangeExample = `
+  <AbritesDatepickerSlider :minDate="startOfWeek(Date.now())" :maxDate="endOfWeek(Date.now())" hotkeys v-model:selected="range" />
+
+  <p>Range: {{ range }}</p>
+`;
+const imports = [
+  "import { ref } from 'vue';",
+  "import { startOfWeek, endOfWeek } from 'date-fns';",
+];
 
 const setup = () => {
   const range = ref([]);
-  return { range };
+  return { range, startOfWeek, endOfWeek };
 };
 </script>
 
@@ -95,6 +110,22 @@ const setup = () => {
   <Preview
     title="Default"
     :htmlExample="htmlSliderExample"
+    :scriptExample="`${setup}`"
+    :setupFn="setup"
+    :imports="imports"
+  />
+
+  <Preview
+    title="With range"
+    :htmlExample="htmlRangeExample"
+    :scriptExample="`${setup}`"
+    :setupFn="setup"
+    :imports="imports"
+  />
+
+  <Preview
+    title="With date limitation"
+    :htmlExample="htmlMinMaxRangeExample"
     :scriptExample="`${setup}`"
     :setupFn="setup"
     :imports="imports"

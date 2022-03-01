@@ -20,6 +20,8 @@ import {
   getHours,
   getMinutes,
   getSeconds,
+  getDay,
+  intervalToDuration,
 } from "date-fns";
 import {
   withDefaults,
@@ -390,6 +392,16 @@ function resizeCallback(e: MouseEvent) {
 
   const maxRangeDiff = calcMaxPossibleRangeDiff();
   if (differenceInSeconds(newRange[1], newRange[0]) > maxRangeDiff) {
+    return;
+  }
+
+  // min && max range reached
+  if (
+    hasReachedMaxDate.value &&
+    hasReachedMinDate.value &&
+    differenceInDays(newRange[1], newRange[0]) >=
+      differenceInDays(localSelected.value[1], localSelected.value[0])
+  ) {
     return;
   }
 
