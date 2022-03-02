@@ -18,7 +18,7 @@ export default class DropdownController {
 
   /// default handler
   /// component imput props
-  /// refference to the current component display state
+  /// reference to the current component display state
 
   constructor(
     public elRef: Ref<HTMLElement | undefined>,
