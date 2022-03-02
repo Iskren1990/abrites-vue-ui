@@ -44,6 +44,7 @@ const props = withDefaults(defineProps<IDatepickerPorps>(), {
   dropdownPosition: "bottom-right",
   disabled: false,
   displayValueFormat: "dd MMM yyyy, HH:mm",
+  months: 0,
 });
 
 const emit = defineEmits<{
@@ -53,7 +54,7 @@ const emit = defineEmits<{
   (event: "dropdown-change", state: boolean): void;
 }>();
 
-const inputSelected = ref(props.selected);
+const inputSelected = ref<Date[]>(props.selected);
 
 // Common datepicker computed props
 // Once vue implements interface imports export common props in composable
@@ -84,7 +85,7 @@ const setValue = (val: Date[]) => {
 
 const apply = (val: Date[]) => {
   dropdown.value.controller.hide();
-  emit("applied", inputSelected.value);
+  emit("applied", inputSelected.value as Date[]);
 };
 
 const canceled = () => {
@@ -133,7 +134,7 @@ const canceled = () => {
           contentSelectable
           :handle="datepickerInput?.$el"
           class="picker-dropdown"
-          @change="emit('dropdown-change', $event)"
+          @change="$emit('dropdown-change', $event)"
         >
           <AbritesDatepicker
             v-if="isActive"

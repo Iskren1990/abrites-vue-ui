@@ -11,7 +11,8 @@
   "allowJs": true,
   "files": [
     "dist/*",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "src/**/*.ts"
   ],
   "sideEffects": false,
   "scripts": {

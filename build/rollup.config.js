@@ -139,6 +139,7 @@ if (!argv.format || argv.format === "es") {
       // Only use typescript for declarations - babel will
       // do actual js transformations
       typescript({
+        tsconfig: "../tsconfig.json",
         typescript: ttypescript,
         useTsconfigDeclarationDir: true,
         emitDeclarationOnly: true,

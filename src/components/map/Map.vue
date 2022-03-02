@@ -1,39 +1,37 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, onMounted, ref, PropType } from "vue";
+import {
+  defineProps,
+  defineEmits,
+  withDefaults,
+  onMounted,
+  ref,
+  PropType,
+} from "vue";
 import L, { LatLng, MapOptions, TileLayerOptions } from "leaflet";
 
-const props = defineProps({
-  options: {
-    type: Object as PropType<MapOptions>,
-    require: true,
-    default: () => {
-      return {
-        zoomControl: false,
-        attributionControl: false,
-      };
-    },
+interface IMapProps {
+  options: MapOptions;
+  layerOptions: TileLayerOptions;
+  center: LatLng;
+  tileUrl: string;
+}
+
+const props = withDefaults(defineProps<IMapProps>(), {
+  options: () => {
+    return {
+      zoomControl: false,
+      attributionControl: false,
+    };
   },
-  layerOptions: {
-    type: Object as PropType<TileLayerOptions>,
-    require: true,
-    default: () => {
-      return {
-        minZoom: 3,
-        maxZoom: 20,
-      };
-    },
+  default: () => {
+    return {
+      minZoom: 3,
+      maxZoom: 20,
+    };
   },
-  center: {
-    type: Object as PropType<LatLng>,
-    require: true,
-    default: () => new LatLng(42.6978634, 23.3221789),
-  },
-  tileUrl: {
-    type: String,
-    require: true,
-    // default: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    default: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-  },
+  center: () => new LatLng(42.6978634, 23.3221789),
+  tileUrl: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+  // tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 });
 
 const emit = defineEmits<{
@@ -44,11 +42,11 @@ const mapEl = ref<HTMLCanvasElement>();
 const map = ref<L.Map>();
 
 const destroy = () => map.value?.remove();
-const resize = () => map.value.invalidateSize();
+const resize = () => map.value?.invalidateSize();
 
 const init = () => {
   destroy();
-  map.value = L.map(mapEl.value, props.options).setView(props.center, 13);
+  map.value = L.map(mapEl.value || "", props.options).setView(props.center, 13);
   L.tileLayer(props.tileUrl, props.layerOptions).addTo(map.value);
   resize();
   emit("init", map.value);
