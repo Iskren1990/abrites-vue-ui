@@ -1,9 +1,9 @@
 import { computed, ref } from "vue";
 
-export default function useStorageState(name: string) {
+const useStorageState = (name: string) => {
   const isHidden = ref(false);
 
-  const storageKey = computed(() => `${name}_drawer`);
+  const storageKey = computed(() => `${name}_storage`);
 
   (function setStateFromStorage() {
     if (window.localStorage.getItem(storageKey.value) == null) {
@@ -20,4 +20,6 @@ export default function useStorageState(name: string) {
   }
 
   return { isHidden, updateStorageState };
-}
+};
+
+export default useStorageState;

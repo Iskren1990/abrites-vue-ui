@@ -6,6 +6,7 @@ import AnimatedIfPage from "../views/AnimatedIfPage.vue";
 import ButtonPage from "../views/ButtonPage.vue";
 import ChartPage from "../views/ChartPage.vue";
 import CheckboxPage from "../views/CheckboxPage.vue";
+import ComposablesPage from "../views/ComposablesPage.vue";
 import ConfirmationPage from "../views/ConfirmationPage.vue";
 import DatepickerPage from "../views/DatepickerPage.vue";
 import DatepickerInputPage from "../views/DatepickerInputPage.vue";
@@ -95,6 +96,15 @@ const routes: Array<RouteRecordRaw> = [
     component: CheckboxPage,
     meta: {
       title: "Checkbox",
+      inMenu: true,
+    },
+  },
+  {
+    path: "/composables",
+    name: "Composables",
+    component: ComposablesPage,
+    meta: {
+      title: "Composables",
       inMenu: true,
     },
   },

@@ -24,8 +24,8 @@ const useEventListener = (
   options?: boolean | AddEventListenerOptions
 ) => {
   const el = unref(element);
-  const removeListener = () => el.removeEventListener(event, listener);
   const registerListener = () => el.addEventListener(event, listener, options);
+  const removeListener = () => el.removeEventListener(event, listener);
 
   onUnmounted(removeListener);
 

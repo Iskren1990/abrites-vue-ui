@@ -1,10 +1,10 @@
 import { computed, ComputedRef, Slot } from "vue";
 
 const useIsSlotInited = (
-  slots: Slot | undefined
+  slot: Slot | undefined
 ): ComputedRef<boolean | undefined> => {
   const isInited = computed(
-    () => slots && slots().findIndex((x) => x.type) != -1
+    () => slot && slot().findIndex((x) => x.type) != -1
   );
   return isInited;
 };
