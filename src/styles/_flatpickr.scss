@@ -1,0 +1,179 @@
+@use "sass:math";
+@import "./core";
+
+$panel-hover-color: lighten($panel-color, 5%);
+
+// Overrides of the default flatpickr theme
+::v-deep(.flatpickr-calendar) {
+  background: $panel-color;
+  color: $txt-secondary-color;
+  font-weight: normal;
+  font-family: inherit;
+  border-radius: $border-radius;
+  & * {
+    box-sizing: border-box;
+  }
+
+  // texts and controls
+  .flatpickr-weekday,
+  .flatpickr-months .flatpickr-prev-month,
+  .flatpickr-months .flatpickr-next-month {
+    color: $txt-secondary-color;
+    fill: $txt-secondary-color;
+  }
+  .flatpickr-day,
+  .flatpickr-time input,
+  .flatpickr-months .flatpickr-month {
+    color: $txt-primary-color;
+  }
+  .flatpickr-current-month input.cur-year[disabled],
+  .flatpickr-current-month input.cur-year[disabled]:hover
+  .flatpickr-time .flatpickr-time-separator,
+  .flatpickr-time .flatpickr-am-pm,
+  .flatpickr-day.flatpickr-disabled,
+  .flatpickr-day.flatpickr-disabled:hover,
+  .flatpickr-day.prevMonthDay,
+  .flatpickr-day.nextMonthDay,
+  .flatpickr-day.notAllowed,
+  .flatpickr-day.notAllowed.prevMonthDay,
+  .flatpickr-day.notAllowed.nextMonthDay {
+    color: $txt-hint-color;
+  }
+  .flatpickr-time .numInputWrapper span.arrowDown:after,
+  .flatpickr-current-month .numInputWrapper span.arrowDown:after {
+    border-top-color: $txt-hint-color;
+  }
+  .flatpickr-time .numInputWrapper span.arrowUp:after,
+  .flatpickr-current-month .numInputWrapper span.arrowUp:after {
+    border-bottom-color: $txt-hint-color;
+  }
+
+  &.inline {
+    box-shadow: none;
+  }
+  &.inline,
+  .dayContainer,
+  .flatpickr-days {
+    width: 100% !important; // override fixed js width
+    min-width: 0;
+    max-width: none;
+  }
+  .flatpickr-rContainer {
+    width: 100%;
+  }
+  .flatpickr-day {
+    max-width: none;
+  }
+  .dayContainer {
+    padding: 0 5px;
+  }
+  .dayContainer + .dayContainer {
+    box-shadow: -1px 0 0 $panel-hover-color;
+  }
+  &.arrowTop:before,
+  &.arrowTop:after {
+    border-bottom-color: $panel-color;
+  }
+  &.arrowBottom:before,
+  &.arrowBottom:after {
+    border-top-color: $panel-color;
+  }
+  .flatpickr-months > *,
+  .flatpickr-weekday,
+  input, select {
+    background: none;
+  }
+  .flatpickr-months {
+    margin-bottom: 5px;
+  }
+  .flatpickr-current-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flatpickr-current-month .flatpickr-monthDropdown-months {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+    height: 25px;
+    padding: 0 5px;
+    margin: 0 2px;
+    vertical-align: top;
+    font-weight: normal;
+    font-family: inherit;
+    font-size: 1.2rem;
+    background: $panel-hover-color;
+    border-radius: $border-radius;
+    .flatpickr-monthDropdown-month {
+      background: $panel-hover-color;
+    }
+  }
+  .flatpickr-current-month input.cur-year {
+    height: 25px;
+    padding: 4px;
+    vertical-align: top;
+    line-height: normal;
+  }
+  .flatpickr-am-pm:hover,
+  .flatpickr-am-pm:focus,
+  input:hover, input:focus,
+  select:hover, select:focus {
+    background: $panel-hover-color;
+  }
+  &.showTimeInput.hasTime .flatpickr-time {
+    border-top-color: $border-color;
+  }
+  .flatpickr-day {
+    height: 35px;
+    line-height: 35px;
+    &.today {
+      border-color: $border-color;
+      color: $accent-color;
+    }
+  }
+  .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange,
+  .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus,
+  .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover,
+  .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay,
+  .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+    border-color: $accent-color;
+    background: $accent-color;
+    color: contrast-color($accent-color);
+  }
+  .flatpickr-day.inRange, .flatpickr-day.prevMonthDay.inRange, .flatpickr-day.nextMonthDay.inRange,
+  .flatpickr-day.today.inRange, .flatpickr-day.prevMonthDay.today.inRange, .flatpickr-day.nextMonthDay.today.inRange,
+  .flatpickr-day:hover, .flatpickr-day.prevMonthDay:hover, .flatpickr-day.nextMonthDay:hover, .flatpickr-day:focus,
+  .flatpickr-day.prevMonthDay:focus, .flatpickr-day.nextMonthDay:focus {
+    border-color: $panel-hover-color;
+    background: $panel-hover-color;
+    color: $txt-primary-color;
+  }
+  .flatpickr-day.today.selected:hover, .flatpickr-day.today.selected:focus,
+  .flatpickr-day.today.startRange:hover, .flatpickr-day.today.startRange:focus,
+  .flatpickr-day.today.endRange:hover, .flatpickr-day.today.endRange:focus,
+  .flatpickr-day.today.selected.prevMonthDay:hover, .flatpickr-day.today.selected.prevMonthDay:focus,
+  .flatpickr-day.today.selected.nextMonthDay:hover, .flatpickr-day.today.selected.nextMonthDay:focus {
+    color: $txt-primary-color;
+  }
+  .flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+    color: rgba($txt-primary-color, 0.05);
+  }
+  .flatpickr-day.inRange {
+    border-color: transparent;
+    box-shadow: -5px 0 0 $panel-hover-color, 5px 0 0 $panel-hover-color;
+  }
+  .flatpickr-day.today:hover, .flatpickr-day.today:focus {
+    color: $txt-primary-color;
+  }
+  .flatpickr-day.today.selected:hover, .flatpickr-day.today.selected:focus,
+  .flatpickr-day.today.startRange:hover, .flatpickr-day.today.startRange:focus,
+  .flatpickr-day.today.endRange:hover, .flatpickr-day.today.endRange:focus {
+    color: contrast-color($accent-color);
+  }
+  .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)), .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)), .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
+    box-shadow: -10px 0 0 $border-color;
+  }
+  &.multiMonth .flatpickr-days .dayContainer:nth-child(n+2) .flatpickr-day.inRange:nth-child(7n+1) {
+    box-shadow: -1px 0 0 $border-color;
+  }
+}
