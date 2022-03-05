@@ -8,6 +8,7 @@ import {
   onMounted,
   onUnmounted,
   watchEffect,
+Ref,
 } from "vue";
 import DropdownController from "./dropdown-controller";
 
@@ -39,7 +40,13 @@ watchEffect(() => {
 onMounted(controller.mount);
 onUnmounted(controller.unmount);
 
-defineExpose({ controller, isVisible });
+defineExpose<{
+    controller: DropdownController;
+    isVisible: Ref<boolean>;
+}>({
+    controller,
+    isVisible
+});
 </script>
 
 <template>

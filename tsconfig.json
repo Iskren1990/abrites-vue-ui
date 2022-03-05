@@ -1,45 +1,51 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "strict": false,
-        "noImplicitAny": false,
-        "declaration": true,
-        "declarationDir": "dist/types",
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "importHelpers": true,
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
-        "baseUrl": ".",
-        "newLine": "lf",
-        "types": [
-            "vue",
-            "node",
-        ],
-        "paths": {
-            "@/*": [
-                "src/*"
-            ]
-        },
-        "plugins": [
-            {
-                "transform":"@zerollup/ts-transform-paths",
-                "exclude": ["*"]
-            }
-        ],
-        "lib": [
-            "esnext",
-            "dom",
-            "dom.iterable",
-            "scripthost"
-        ]
+  "compilerOptions": {
+    "target": "esnext",
+    "noImplicitAny": false,
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": false,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "declarationDir": "dist/types",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "importHelpers": true,
+    "lib": [
+      "esnext", 
+      "dom", 
+      "dom.iterable",
+      "scripthost",
+    ],
+    "newLine": "lf",
+    "baseUrl": ".",
+    "types": [
+      "vue",
+      "node",
+    ],
+    "plugins": [
+      {
+        "transform":"@zerollup/ts-transform-paths",
+        "exclude": ["*"]
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
     },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": [
+    "node_modules",
+    "dist"
+],
 }

@@ -10,4 +10,6 @@ AbritesTable.install = function (Vue: App) {
 
 export default AbritesTable;
 
-export { ISortData, SortDirection, ITableAction, ITableColumn };
+export * from "./ISortData";
+export * from "./ITableAction";
+export * from "./ITableColumn";

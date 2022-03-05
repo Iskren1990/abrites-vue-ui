@@ -1,15 +1,8 @@
 /* eslint-disable vue/no-mutating-props */
 <script lang="ts" setup>
 import { format } from "date-fns";
-import {
-  withDefaults,
-  defineProps,
-  defineEmits,
-  computed,
-  ref,
-  unref,
-} from "vue";
-import { AbritesDropdown } from "..";
+import { withDefaults, defineProps, defineEmits, computed, ref } from "vue";
+import { AbritesDropdown, AbritesInput } from "..";
 import { IDatepickerPreset } from "../datepicker/IDatepickerPreset";
 
 interface IDatepickerPorps {
@@ -44,7 +37,6 @@ const props = withDefaults(defineProps<IDatepickerPorps>(), {
   dropdownPosition: "bottom-right",
   disabled: false,
   displayValueFormat: "dd MMM yyyy, HH:mm",
-  months: 0,
 });
 
 const emit = defineEmits<{
@@ -54,15 +46,15 @@ const emit = defineEmits<{
   (event: "dropdown-change", state: boolean): void;
 }>();
 
-const inputSelected = ref<Date[]>(props.selected);
+const inputSelected = ref(props.selected);
 
 // Common datepicker computed props
 // Once vue implements interface imports export common props in composable
 const enableRange = computed(() => props.range);
 const enableTime = computed(() => props.time);
 
-const dropdown = ref<InstanceType<typeof AbritesDropdown>>();
-const datepickerInput = ref<InstanceType<typeof AbritesDropdown>>();
+const dropdown = ref<typeof AbritesDropdown>();
+const datepickerInput = ref<InstanceType<typeof AbritesInput>>();
 
 const isActive = computed(() => dropdown.value?.isVisible);
 const hasMultipleMonths = computed(() => props.months > 1);
@@ -85,7 +77,7 @@ const setValue = (val: Date[]) => {
 
 const apply = (val: Date[]) => {
   dropdown.value.controller.hide();
-  emit("applied", inputSelected.value as Date[]);
+  emit("applied", inputSelected.value);
 };
 
 const canceled = () => {
@@ -111,8 +103,8 @@ const canceled = () => {
         :label="label"
         :hint="hint"
         :error="error"
-        :placeholder="placeholder"
-        :value="displayValue"
+        :placeholder="(placeholder as string)"
+        :value="(displayValue as string)"
         @keydown.space="controller?.toggle"
         @keydown.enter="controller?.toggle"
         :class="{ focus: isActive }"
@@ -134,7 +126,7 @@ const canceled = () => {
           contentSelectable
           :handle="datepickerInput?.$el"
           class="picker-dropdown"
-          @change="$emit('dropdown-change', $event)"
+          @change="emit('dropdown-change', $event)"
         >
           <AbritesDatepicker
             v-if="isActive"
