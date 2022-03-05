@@ -4,7 +4,7 @@
 
 
 
-[![Alt][screenshot](https://gitlab.abrites.tld/npm-stuffs/abrites-vue-ui/-/blob/master/public/images/screenshot.png)](https://torrentee.cf)
+[![Alt][screenshot]](https://torrentee.cf)
 
 ## About The Project
 
