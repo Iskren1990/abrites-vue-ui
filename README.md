@@ -92,7 +92,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Open a issue with request.
 
-[screenshot]: ./public/screenshot.png
+[screenshot]: https://github.com/Iskren1990/abrites-vue-ui/blob/master/public/screenshot.png
 
 
 ## Prerequisites
