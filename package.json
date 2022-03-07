@@ -1,12 +1,16 @@
 {
   "name": "abrites-vue-ui",
-  "version": "1.0.1",
+  "version": "0.0.0-development",
   "description": "",
   "main": "dist/abrites-vue-ui.umd.js",
   "browser": "dist/abrites-vue-ui.es.js",
   "module": "dist/abrites-vue-ui.es.js",
   "types": "dist/types/entry.esm.d.ts",
   "style": "dist/style.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Iskren1990/abrites-vue-ui.git"
+  },
   "allowJs": true,
   "files": [
     "dist",
@@ -15,25 +19,25 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "dev": "vite",
-    "build":  "vite build && vue-tsc  --emitDeclarationOnly",
+    "dev": "vite --host",
+    "build": "vite build && vue-tsc  --emitDeclarationOnly",
     "build-docs": "vite build --config ./vite.documentation.config.ts",
     "prebuild": "rimraf ./dist",
-    "postbuild": "rimraf ./src/types/dev ./src/types/src/entry.d.ts"
+    "postbuild": "rimraf ./src/types/dev ./src/types/src/entry.d.ts",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "date-fns": "^2.28.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.0",
-    "vite": "^2.8.0",
     "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@types/chai": "^4.2.11",
-    "@types/mocha": "^5.2.4", 
+    "@types/mocha": "^5.2.4",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
+    "@vitejs/plugin-vue": "^2.2.0",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-e2e-nightwatch": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -59,10 +63,12 @@
     "rimraf": "^3.0.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "semantic-release": "^19.0.2",
     "ttypescript": "^1.5.12",
     "typescript": "^4.5.4",
-    "vue-tsc": "^0.29.8",
-    "vue-router": "^4.0.12"
+    "vite": "^2.8.0",
+    "vue-router": "^4.0.12",
+    "vue-tsc": "^0.29.8"
   },
   "peerDependencies": {
     "@types/leaflet": "^1.7.9",
@@ -71,11 +77,10 @@
     "chartjs-adapter-date-fns": "^2.0.0",
     "chartjs-plugin-zoom": "^1.2.0",
     "core-js": "^3.6.5",
+    "flatpickr": "^4.6.9",
     "leaflet": "^1.7.1",
     "sortablejs": "^1.14.0",
-    "flatpickr": "^4.6.9",
     "vue": "^3.0.5"
-
   },
   "engines": {
     "node": ">=12"
