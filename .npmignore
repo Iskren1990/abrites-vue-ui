@@ -26,6 +26,7 @@ dist-ssr
 # Generated fles
 *.tgz
 /docs-dist
+.tool-versions
 
 # npm bulk
 /build
