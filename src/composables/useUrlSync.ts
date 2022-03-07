@@ -1,4 +1,4 @@
-import { PaginationData } from "@/components/pagination/pagination-data";
+import { PaginationData } from "src/components/pagination/pagination-data";
 import { onMounted, ref, Ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
