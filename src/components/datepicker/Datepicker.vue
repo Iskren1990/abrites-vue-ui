@@ -344,11 +344,13 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
+<style>
+@import "../../../node_modules/flatpickr/dist/flatpickr.min.css";
+</style>
+
 <style lang="scss" scoped>
 @use "sass:math";
-@import "../../styles/core";
 @import "../../styles/flatpickr";
-@import "../../../node_modules/flatpickr/dist/flatpickr.css";
 
 $base-calendar-width: 360px;
 
@@ -375,7 +377,7 @@ $base-calendar-width: 360px;
 
   ::v-deep(.flatpickr-calendar) {
     max-width: 100%;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     border-bottom: 1px solid $border-color;
   }
   &.with-time ::v-deep(.flatpickr-calendar) {
