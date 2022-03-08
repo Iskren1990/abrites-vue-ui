@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useEventListener } from "@/composables";
+import { useEventListener } from "../../composables";
 import {
   differenceInSeconds,
   endOfDay,

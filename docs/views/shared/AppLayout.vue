@@ -33,7 +33,7 @@
 import { ref, watch } from "vue";
 import { RouteRecordRaw } from "vue-router";
 import { routes } from "../../router";
-import { AbritesDrawer, useStorageState } from "@/entry.esm";
+import { AbritesDrawer, useStorageState } from "../../../src/entry.esm";
 
 const { isHidden, updateStorageState } = useStorageState("navbar");
 const searchTerm = ref("");

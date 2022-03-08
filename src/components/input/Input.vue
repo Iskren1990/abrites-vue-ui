@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import useErrorFormating from "@/composables/useErrorFormating";
-import useIsSlotInited from "@/composables/useIsSlotInited";
+import useErrorFormating from "../../composables/useErrorFormating";
+import useIsSlotInited from "../../composables/useIsSlotInited";
 import {
   withDefaults,
   defineProps,
