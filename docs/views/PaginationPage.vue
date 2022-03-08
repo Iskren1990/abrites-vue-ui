@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
-import { PaginationData } from "@/components/pagination/pagination-data";
+import { PaginationData } from "../../src/components/pagination/pagination-data";
 import { ref } from "vue";
-import { useUrlSync } from "@/entry.esm";
+import { useUrlSync } from "../../src/entry.esm";
 
 const imports = ["import { ref } from 'vue';"];
 

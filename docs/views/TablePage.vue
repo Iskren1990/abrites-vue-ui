@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ITableAction } from "@/components/table";
-import { ITableColumn } from "@/components/table";
-import { ISortData } from "@/components/table";
+import { ITableAction } from "../../src/components/table";
+import { ITableColumn } from "../../src/components/table";
+import { ISortData } from "../../src/components/table";
 import * as Config from "../utils/app-config";
 import { Preview } from "./shared";
 

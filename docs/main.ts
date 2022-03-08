@@ -1,4 +1,4 @@
-import ui from "@/entry";
+import ui from "../src/entry";
 import { createApp } from "vue/dist/vue.esm-bundler.js";
 import App from "./App.vue";
 import router from "./router";

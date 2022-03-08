@@ -10,7 +10,7 @@ import {
   startOfToday,
   startOfWeek,
 } from "date-fns";
-import { IDatepickerPreset } from "@/components/datepicker/IDatepickerPreset";
+import { IDatepickerPreset } from "../../src/components/datepicker/IDatepickerPreset";
 
 const selected = ref();
 

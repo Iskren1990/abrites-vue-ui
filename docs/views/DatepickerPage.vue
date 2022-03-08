@@ -10,7 +10,7 @@ import {
   startOfWeek,
 } from "date-fns";
 
-import { IDatepickerPreset } from "@/components/datepicker/IDatepickerPreset";
+import { IDatepickerPreset } from "../../src/components/datepicker/IDatepickerPreset";
 import { ref } from "vue";
 
 const htmlSingleExample = `

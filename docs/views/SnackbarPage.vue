@@ -5,7 +5,7 @@ import * as Config from "../utils/app-config";
 import {
   SnackbarAction,
   SnackbarMessageModelProps,
-} from "@/composables/useSnackbarMessageQueue";
+} from "../../src/composables/useSnackbarMessageQueue";
 
 const imports = ['import { ref } from "vue";'];
 

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
-import { AbritesDrawer, useStorageState } from "@/entry.esm";
+import { AbritesDrawer, useStorageState } from "../../src/entry.esm";
 
 const htmlExample = `
     <AbritesDrawer :hidden="isHidden" @drawer-change="updateStorageState" ref="drawer">
