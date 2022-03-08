@@ -1,7 +1,7 @@
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/components/animated_if/AnimatedIf.dart`"
+      :href="`${Config.componentsUrl}/components/animatedif/AnimatedIf.vue`"
       target="_blank"
       rel="noopener"
       >AbritesAnimatedIf</a

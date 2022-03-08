@@ -174,7 +174,7 @@ const scriptHandleExample = () => {
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/lib/dropdown/dropdown.dart`"
+      :href="`${Config.componentsUrl}/components/dropdown/Dropdown.vue`"
       target="_blank"
       rel="noopener"
       >AbritesDropdown</a

@@ -21,10 +21,4 @@ export interface ITableColumn {
   /// https://vuejs.org/guide/essentials/component-basics.html#dynamic-components
   /// If not set, `item[keyPart1]..[keyPartN]` value will be used.
   content?: unknown; //ComponentFactory;
-
-  /// Any additional data that could be passed to the [content] component.
-  /// Useful when you want to reuse a content template across different table views - ex. see `date_column_content.dart`.
-  /// Useful when you want to reuse a content template across different table views - ex. see `date_column_content.dart`.
-  /// https://vuejs.org/guide/scaling-up/tooling.html#project-scaffolding
-  contentAdditionalContext?: Map<string, never>;
 }

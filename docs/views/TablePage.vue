@@ -108,7 +108,7 @@ const imports = [
 <template>
   <h2 class="component-title" id="selector">
     <a
-      :href="`${Config.componentsUrl}/components/table/Table.vue.dart`"
+      :href="`${Config.componentsUrl}/components/table/Table.vue`"
       target="_blank"
       rel="noopener"
       >AbritesTable</a
@@ -193,7 +193,7 @@ const imports = [
       <p>
         Fired after table sort change. Receives the new
         <a
-          :href="`${Config.componentsUrl}/components/table/ISortData.dart`"
+          :href="`${Config.componentsUrl}/components/table/ISortData.vue`"
           target="_blank"
           rel="noopener"
           >ISortData</a
