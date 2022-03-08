@@ -1,11 +1,11 @@
 {
   "name": "abrites-vue-ui",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/abrites-vue-ui.umd.js",
+  "types": "dist/types/src/entry.esm.d.ts",
   "browser": "dist/abrites-vue-ui.es.js",
   "module": "dist/abrites-vue-ui.es.js",
-  "types": "dist/types/entry.esm.d.ts",
   "style": "dist/style.css",
   "repository": {
     "type": "git",
@@ -13,8 +13,7 @@
   },
   "allowJs": true,
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "sideEffects": false,
   "scripts": {
@@ -22,10 +21,11 @@
     "build": "vite build && vue-tsc  --emitDeclarationOnly && cp -r src/styles dist/styles",
     "build-docs": "vite build --config ./vite.documentation.config.ts",
     "prebuild": "rimraf ./dist",
-    "postbuild": "rimraf ./src/types/dev ./src/types/src/entry.d.ts",
+    "postbuild": "rimraf ./src/types/docs ./src/types/src/entry.d.ts",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "abrites-vue-ui": "file:abrites-vue-ui-1.0.5.tgz",
     "date-fns": "^2.28.0"
   },
   "devDependencies": {
