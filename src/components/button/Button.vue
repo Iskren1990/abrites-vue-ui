@@ -58,7 +58,11 @@ function prventDefaultAndStopPropagtion(event: Event) {
 </script>
 
 <template>
-  <div class="button-host">
+  <div
+    class="button-host"
+    :loading="loading || null"
+    :class="{ loading: isLoading }"
+  >
     <a
       v-if="isRouterLink"
       class="button"
@@ -66,8 +70,9 @@ function prventDefaultAndStopPropagtion(event: Event) {
       :class="(isDisabled || isLoading) && disabled"
       @click.prevent="prventDefaultAndStopPropagtion"
     >
+      <AbritesLoader v-if="isLoading" class="active loader" />
       <div class="button-content">
-        <AbritesLoader v-if="isLoading" class="active" />
+        <slot />
       </div>
     </a>
 
@@ -83,9 +88,9 @@ function prventDefaultAndStopPropagtion(event: Event) {
       @keydown.enter="trigger"
       @keydown.space="trigger"
     >
+      <AbritesLoader v-if="isLoading" class="active loader" />
       <div class="button-content">
-        <AbritesLoader v-if="isLoading" class="active" />
-        <slot v-if="!isLoading" />
+        <slot />
       </div>
     </button>
   </div>
@@ -94,7 +99,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
 <style lang="scss" scoped>
 @use "sass:math";
 @import "../../styles/core";
-
 @mixin button-theme($name, $color) {
   .button-host[#{$name}]:not([flat]):not(.flat)
     &:not([disabled]):not(.disabled),
@@ -132,7 +136,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
     }
   }
 }
-
 .button-host {
   @include normalize-host();
   position: relative;
@@ -146,7 +149,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
   background: none;
   border-radius: $border-radius;
   transition: opacity $transition-speed;
-
   &[block],
   &.block {
     display: block;
@@ -192,7 +194,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
   &.disabled {
     pointer-events: none;
   }
-
   .buttons-group:not(.round) & {
     border-radius: 0;
     margin-left: 1px;
@@ -214,7 +215,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
     margin-left: 5px;
   }
 }
-
 .button {
   position: relative;
   z-index: auto;
@@ -296,6 +296,7 @@ function prventDefaultAndStopPropagtion(event: Event) {
   &.disabled,
   &[disabled],
   .button-host[disabled] &,
+  .button-host.loading &,
   .button-host[loading] & {
     cursor: default;
     color: $txt-disabled-color;
@@ -308,16 +309,18 @@ function prventDefaultAndStopPropagtion(event: Event) {
   .button-host:not([flat]) &[disabled],
   .button-host:not(.button-host[flat]) &.disabled,
   .button-host[disabled]:not([flat]) &,
+  .button-host.loading:not([flat]) &,
   .button-host[loading]:not([flat]) & {
     background: $disabled-color;
   }
+
+  .button-host.loading &,
   .button-host[loading] & {
     .button-content {
       opacity: 0;
       transform: scale(0.8);
     }
   }
-
   // styles
   @include button-theme("accent", $accent-color);
   @include button-theme("danger", $danger-color);
@@ -325,7 +328,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
   @include button-theme("warning", $warning-color);
   @include button-theme("light", $txt-secondary-color);
   @include button-theme("dark", $base-color);
-
   .button-host[justified] &,
   .button-host.justified & {
     .button-content {
@@ -335,7 +337,6 @@ function prventDefaultAndStopPropagtion(event: Event) {
       }
     }
   }
-
   .button-host[wide] &,
   .button-host.wide & {
     min-width: 110px;
@@ -401,7 +402,7 @@ function prventDefaultAndStopPropagtion(event: Event) {
   }
 }
 </style>
-
+//
 <style lang="scss">
 @import "../../styles/core";
 
@@ -412,13 +413,13 @@ function prventDefaultAndStopPropagtion(event: Event) {
   &.block {
     width: 100%;
   }
-  .round {
+  &.round {
     padding: 4px 5px;
     border-radius: 40px;
     @include children-spacing(5px);
     background: rgba(darken($base-color, 1%), 0.9);
   }
-  .disabled {
+  &.disabled {
     opacity: 0.5;
     pointer-events: none;
     box-shadow: none;
