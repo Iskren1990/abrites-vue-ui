@@ -594,7 +594,7 @@ const vueSteppedExample = () => {
 </template>
 
 <style lang="scss" scoped>
-::v-deep() .grid-host {
+::v-deep(.grid-host) {
   margin: 5px 0;
   width: 100%;
 }

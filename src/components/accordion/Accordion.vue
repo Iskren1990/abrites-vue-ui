@@ -180,7 +180,7 @@ defineExpose({
   outline: 0;
   padding: 0;
 
-  ::v-deep() .accordion-panel-host {
+  ::v-deep(.accordion-panel-host) {
     margin: 1px 0;
     transition: margin $transition-speed;
     &.expanded {
@@ -199,7 +199,7 @@ defineExpose({
 
   &[spaced],
   &.spaced {
-    ::v-deep() .accordion-panel-host {
+    ::v-deep(.accordion-panel-host) {
       margin: (math.div($base-spacing, 2)) 0;
       &.expanded {
         margin: $base-spacing 0;

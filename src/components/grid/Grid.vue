@@ -43,8 +43,8 @@
   &.nogutters {
     margin-right: 0;
     margin-left: 0;
-    & > ::v-deep() .col,
-    & > ::v-deep() [class*="col-"] {
+    & > ::v-deep(.col),
+    & > ::v-deep([class*="col-"]) {
       padding-right: 0 !important;
       padding-left: 0 !important;
     }

@@ -126,7 +126,7 @@ const setup = () => {
 </template>
 
 <style lang="scss" scoped>
-::v-deep() .item {
+::v-deep(.item) {
   display: flex;
   align-items: center;
   width: 100%;

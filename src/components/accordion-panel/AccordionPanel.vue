@@ -257,7 +257,7 @@ $accordion-panel-spacing: 20px !default;
   ::v-deep() & > :last-child {
     margin-bottom: 0;
   }
-  ::v-deep() .panel-footer {
+  ::v-deep(.panel-footer) {
     width: 100%;
     display: flex;
     align-items: center;

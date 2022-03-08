@@ -93,7 +93,7 @@ const setupWithCondition = () => {
 </template>
 
 <style lang="scss" scoped>
-::v-deep() .container {
+::v-deep(.container) {
   display: flex;
   align-items: center;
   flex-direction: column;
