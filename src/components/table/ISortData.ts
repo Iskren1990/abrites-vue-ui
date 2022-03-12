@@ -1,6 +1,6 @@
-export type SortDirection = "asc" | "desc";
-
-export interface ISortData {
+export type ISortData = {
   key: string;
   direction: SortDirection;
-}
+};
+
+export type SortDirection = "asc" | "desc";

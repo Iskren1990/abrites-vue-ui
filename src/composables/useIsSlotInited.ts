@@ -9,4 +9,4 @@ const useIsSlotInited = (
   return isInited;
 };
 
-export default useIsSlotInited;
+export { useIsSlotInited };

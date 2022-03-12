@@ -11,12 +11,18 @@ import {
   defineEmits,
   useSlots,
 } from "vue";
+
 interface TabProps {
   label: string;
   active: boolean;
 }
+
 const emit = defineEmits<{
-  (event: "change", oldActiveTabIndex, currentActiveTabIndex): void;
+  (
+    event: "change",
+    oldActiveTabIndex: number,
+    currentActiveTabIndex: number
+  ): void;
 }>();
 
 const slots = useSlots();

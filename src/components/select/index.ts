@@ -6,3 +6,5 @@ AbritesSelect.install = function (Vue: App) {
 };
 
 export default AbritesSelect;
+
+export { SelectOption } from "./select-option";

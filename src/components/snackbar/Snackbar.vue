@@ -8,7 +8,8 @@ import {
   TeleportProps,
   VNodeProps,
 } from "vue";
-import useSnackbarMessageQueue, {
+import {
+  useSnackbarMessageQueue,
   SnackbarErrorMessage,
   SnackbarInfoMessage,
   SnackbarMessageModelProps,

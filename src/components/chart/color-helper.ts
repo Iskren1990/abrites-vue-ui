@@ -1,4 +1,4 @@
-export default class ColorHelper {
+export class ColorHelper {
   /// Commonly used app colors.
   static appColors = [
     "#fedd17",

@@ -7,6 +7,6 @@ AbritesChart.install = function (Vue: App) {
 
 export default AbritesChart;
 
-export * from "./chart-controller";
-export * from "./chart-plugins";
-export * from "./color-helper";
+export { ChartController } from "./chart-controller";
+export { chartSynchronyser } from "./chart-plugins";
+export { ColorHelper } from "./color-helper";

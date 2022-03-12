@@ -114,4 +114,4 @@ const useSnackbarMessageQueue = () => {
   return { messages, addMessage, removeMessage };
 };
 
-export default useSnackbarMessageQueue;
+export { useSnackbarMessageQueue };

@@ -7,4 +7,5 @@ MenuItem.install = function (Vue: App) {
 
 export default MenuItem;
 
-export * from "./MenuItemModel";
+export type { NamedParams } from "./MenuItemModel";
+export { MenuItemModel } from "./MenuItemModel";

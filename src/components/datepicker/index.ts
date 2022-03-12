@@ -6,3 +6,5 @@ AbritesDatepicker.install = function (Vue: App) {
 };
 
 export default AbritesDatepicker;
+
+export type { IDatepickerPreset } from "./IDatepickerPreset";

@@ -18,10 +18,10 @@
   "sideEffects": false,
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build && vue-tsc  --emitDeclarationOnly && cp -r src/styles dist/styles",
+    "build": "vite build && vue-tsc  --emitDeclarationOnly && cp -r src/styles dist/styles ",
     "build-docs": "vite build --config ./vite.documentation.config.ts",
     "prebuild": "rimraf ./dist",
-    "postbuild": "rimraf ./src/types/docs ./src/types/src/entry.d.ts",
+    "postbuild": "rimraf ./dist/types/docs ./dist/types/src/entry.d.ts",
     "semantic-release": "semantic-release"
   },
   "dependencies": {

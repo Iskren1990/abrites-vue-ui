@@ -8,9 +8,9 @@ import {
   onMounted,
   onUnmounted,
   watchEffect,
-Ref,
+  Ref,
 } from "vue";
-import DropdownController from "./dropdown-controller";
+import { DropdownController } from "./dropdown-controller";
 
 interface IDropdownProps {
   visible?: boolean;
@@ -22,6 +22,7 @@ interface IDropdownProps {
   /// If is not set the component fallbacks to its first parent element.
   handle?: HTMLElement;
 }
+
 const props = withDefaults(defineProps<IDropdownProps>(), {
   visible: false,
   isContentSelectable: false,
@@ -41,11 +42,11 @@ onMounted(controller.mount);
 onUnmounted(controller.unmount);
 
 defineExpose<{
-    controller: DropdownController;
-    isVisible: Ref<boolean>;
+  controller: DropdownController;
+  isVisible: Ref<boolean>;
 }>({
-    controller,
-    isVisible
+  controller,
+  isVisible,
 });
 </script>
 

@@ -184,7 +184,7 @@ import * as Config from "../utils/app-config";
   <h3 class="section-title" id="inputs">Inputs</h3>
   <ul>
     <li>
-      <strong>{ data, urlSyncParam? = "page" }</strong>
+      <strong>{ router, data, urlSyncParam? = "page" }</strong>
       <code>{ PaginationData, string; }</code>
       <p>Storage key value (fefaults to <strong>_storage</strong>)</p>
     </li>

@@ -90,7 +90,7 @@ const useBaseSelect = (props: IBaseSelect, emits) => {
   };
 };
 
-export default useBaseSelect;
+export { useBaseSelect };
 
 // Props in IBaseSelect should be removed from Select.vue and RadioList.vue onde Vue suports interface import in setup fn.
 export interface IBaseSelect {

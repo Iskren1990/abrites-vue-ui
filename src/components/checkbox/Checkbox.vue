@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import useErrorFormating from "../../composables/useErrorFormating";
+import { useErrorFormating } from "../../composables/useErrorFormating";
 import { withDefaults, defineProps, defineEmits, toRefs } from "vue";
 
 interface ICheckboxProps {

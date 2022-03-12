@@ -1,7 +1,7 @@
 /* eslint-disable vue/no-side-effects-in-computed-properties */
 <script lang="ts" setup>
-import { InputError, useErrorFormating } from "@/composables";
-import { useBaseSelect } from "@/composables";
+import { InputError, useErrorFormating } from "../../composables";
+import { useBaseSelect } from "../../composables";
 import { computed, defineProps, ref, withDefaults, defineEmits } from "vue";
 import { SelectOption } from "./select-option";
 

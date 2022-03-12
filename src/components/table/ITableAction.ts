@@ -1,13 +1,4 @@
-export interface ITableAction {
-  // TableAction(
-  //   this.label, {
-  //   this.icon,
-  //   this.trigger,
-  //   this.visible,
-  //   this.disabled,
-  //   this.cssClass = 'light',
-  // });
-
+export type ITableAction = {
   /// Button label (or tooltip if [icon] is set)
   label: string;
 
@@ -27,4 +18,4 @@ export interface ITableAction {
   /// Whether to show/hide the action button for the specified data item.
   /// If not set, the action button is always visible.
   visible?: (item: Record<string, never>) => boolean;
-}
+};

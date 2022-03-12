@@ -6,3 +6,8 @@ AbritesAccordion.install = function (Vue: App) {
 };
 
 export default AbritesAccordion;
+
+export type {
+  IAccordionPanelState,
+  IAccordionParentController,
+} from "./Accordion";

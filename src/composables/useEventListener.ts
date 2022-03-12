@@ -32,4 +32,4 @@ const useEventListener = (
   return { registerListener, removeListener };
 };
 
-export default useEventListener;
+export { useEventListener };

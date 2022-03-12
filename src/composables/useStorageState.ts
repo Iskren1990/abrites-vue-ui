@@ -22,4 +22,4 @@ const useStorageState = (name: string) => {
   return { isHidden, updateStorageState };
 };
 
-export default useStorageState;
+export { useStorageState };

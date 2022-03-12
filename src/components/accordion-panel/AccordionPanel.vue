@@ -7,7 +7,7 @@ import {
   inject,
   reactive,
 } from "vue";
-import { IAccordionParentController } from "../../inteerfaces/Accordion";
+import { IAccordionParentController } from "../accordion/Accordion";
 
 interface IAccordionPanelProps {
   label?: string;

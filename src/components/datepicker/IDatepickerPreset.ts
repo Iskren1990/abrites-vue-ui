@@ -1,5 +1,5 @@
-export interface IDatepickerPreset {
+export type IDatepickerPreset = {
   label: string;
   trigger?: () => Date[];
   autoApply?: boolean;
-}
+};

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Preview } from "./shared/index";
 import * as Config from "../utils/app-config";
-import MenuItemModel from "../../src/components/menu-item/MenuItemModel";
+import { MenuItemModel } from "../../src/components/menu-item/MenuItemModel";
 
 const setupFn = () => {
   const menuItems = [

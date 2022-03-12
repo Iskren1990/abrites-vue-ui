@@ -6,3 +6,5 @@ AbritesDropdown.install = function (Vue: App) {
 };
 
 export default AbritesDropdown;
+
+export { DropdownController } from "./dropdown-controller";

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import MenuItemModel from "./MenuItemModel";
+import { MenuItemModel } from "./MenuItemModel";
 
 const props = defineProps<{
   item: MenuItemModel;

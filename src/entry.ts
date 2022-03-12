@@ -15,3 +15,25 @@ Object.entries(components).forEach(([componentName, component]) => {
 });
 
 export default plugin;
+
+export * from "./composables/index";
+export {
+  MenuItemModel,
+  ChartController,
+  chartSynchronyser,
+  ColorHelper,
+  DropdownController,
+  PaginationData,
+  SelectOption,
+} from "./components/helpers";
+export type {
+  IAccordionPanelState,
+  IAccordionParentController,
+  IDatepickerPreset,
+  NamedParams,
+  ISortData,
+  ITableAction,
+  ITableColumn,
+  SortDirection,
+} from "./components/helpers";
+export * from "./components/index";

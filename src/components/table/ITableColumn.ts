@@ -1,4 +1,4 @@
-export interface ITableColumn {
+export type ITableColumn = {
   /// Column data key.
   /// Usually used in `item[keyPart1]..[keyPartN]` as default of [content].
   key: string;
@@ -21,4 +21,4 @@ export interface ITableColumn {
   /// https://vuejs.org/guide/essentials/component-basics.html#dynamic-components
   /// If not set, `item[keyPart1]..[keyPartN]` value will be used.
   content?: unknown; //ComponentFactory;
-}
+};

@@ -11,7 +11,7 @@ interface IDropdownProps {
   handle?: HTMLElement;
 }
 
-export default class DropdownController {
+export class DropdownController {
   // Dropdown instances
   private static instances: DropdownController[] = [];
   id = Date.now();

@@ -1,4 +1,4 @@
-interface IAccordionPanelState {
+export type IAccordionPanelState = {
   isExpanded: boolean;
   isDisabled: boolean;
   isNoninteractive: boolean;
@@ -11,10 +11,8 @@ interface IAccordionPanelState {
   toggle: () => void;
   expand: () => void;
   collapse: () => void;
-}
+};
 
-interface IAccordionParentController {
+export type IAccordionParentController = {
   addChildState: (state: IAccordionPanelState) => number;
-}
-
-export { IAccordionPanelState, IAccordionParentController };
+};

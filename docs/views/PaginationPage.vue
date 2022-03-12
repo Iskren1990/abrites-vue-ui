@@ -1,11 +1,15 @@
 <script lang="ts" setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { Preview } from "./shared";
 import * as Config from "../utils/app-config";
 import { PaginationData } from "../../src/components/pagination/pagination-data";
-import { ref } from "vue";
 import { useUrlSync } from "../../src/entry.esm";
 
-const imports = ["import { ref } from 'vue';"];
+const imports = [
+  "import { ref } from 'vue';",
+  "import { useRouter } from 'vue-router';",
+];
 
 const htmlAlighmentsExample = `
   <AbritesPagination 
@@ -37,11 +41,13 @@ const htmlSynchronizedExample = `
   />
 `;
 const setup = () => {
+  const router = useRouter();
   const pageDataLeft = ref(new PaginationData(1, 30));
   const pageDataCenter = ref(new PaginationData(1, 10));
   const pageSizeOptions = [10, 20, 30];
   const pageDataRight = ref(new PaginationData(1, 30));
   const { paginationData } = useUrlSync({
+    router,
     data: new PaginationData(1, 30),
   });
   return {

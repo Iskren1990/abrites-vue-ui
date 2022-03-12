@@ -1,4 +1,4 @@
-export default class MenuItemModel {
+export class MenuItemModel {
   /// if no [label] or [icon] are provided the menu item is considered a separator
   public label?: string;
   public icon?: string;
@@ -25,9 +25,9 @@ export default class MenuItemModel {
   }
 }
 
-interface NamedParams {
+export type NamedParams = {
   label?: string;
   icon?: string;
   url?: string;
   children?: MenuItemModel[];
-}
+};

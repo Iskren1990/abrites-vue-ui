@@ -9,7 +9,7 @@ import {
   defineExpose,
 } from "@vue/runtime-core";
 import { ref } from "vue";
-import { IAccordionPanelState } from "../../inteerfaces/Accordion";
+import { IAccordionPanelState } from "./Accordion";
 
 interface IAccordionProps {
   multiple?: boolean;

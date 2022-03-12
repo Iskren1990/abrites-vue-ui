@@ -22,3 +22,4 @@ export default install;
 export * from "./components/index";
 export * from "./directives/index";
 export * from "./composables/index";
+export * from "./components/helpers";

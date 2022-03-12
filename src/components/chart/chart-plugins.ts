@@ -1,4 +1,4 @@
-import ChartController from "./chart-controller";
+import { ChartController } from "./chart-controller";
 import { Chart, Plugin, Tooltip } from "chart.js";
 
 Tooltip.positioners.topLeftPositioner = function (elements, eventPosition) {
@@ -27,7 +27,7 @@ interface CrosshairOptions {
   lineWidth: number;
 }
 
-const chartSynchronyser: Plugin = {
+export const chartSynchronyser: Plugin = {
   id: "afterDatasetsDraw",
   beforeEvent(chart: Chart, { event }) {
     // removes datapoints and tooltip
@@ -107,5 +107,3 @@ function drawCrosshair(chart: Chart) {
   ctx.stroke();
   ctx.restore();
 }
-
-export default chartSynchronyser;

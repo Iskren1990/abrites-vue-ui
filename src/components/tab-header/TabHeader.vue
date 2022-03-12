@@ -2,7 +2,6 @@
 import { defineProps, defineEmits, ref, toRefs } from "vue";
 
 const props = defineProps<{ labels: string[]; active: number }>();
-const { labels, active } = toRefs(props);
 
 const emit = defineEmits<{
   (emit: "change", index: number): void;

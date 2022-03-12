@@ -1,4 +1,4 @@
-import { computed, Ref, ref } from "vue";
+import { computed, ref } from "vue";
 
 export type InputError = string | string[] | undefined;
 
@@ -15,4 +15,4 @@ const useErrorFormating = (error: InputError) => {
   return { errors: ref(errors.value.join("\n")), hasError };
 };
 
-export default useErrorFormating;
+export { useErrorFormating };

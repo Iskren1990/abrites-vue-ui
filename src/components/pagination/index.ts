@@ -6,3 +6,5 @@ AbritesPagination.install = function (Vue: App) {
 };
 
 export default AbritesPagination;
+
+export { PaginationData } from "./pagination-data";

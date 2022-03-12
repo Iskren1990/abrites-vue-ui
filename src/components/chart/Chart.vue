@@ -19,7 +19,7 @@ import {
   Scale,
   UpdateMode,
 } from "chart.js";
-import ChartController from "./chart-controller";
+import { ChartController } from "./chart-controller";
 
 type PanAmount = number | Partial<Point>;
 interface IPanControllerArgs {

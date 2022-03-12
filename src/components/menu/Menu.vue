@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, computed } from "vue";
 import { RouteRecordRaw } from "vue-router";
-import MenuItemModel from "../menu-item/MenuItemModel";
+import { MenuItemModel } from "../menu-item/MenuItemModel";
 
 const props = defineProps<{
   items: Array<RouteRecordRaw | MenuItemModel>;
