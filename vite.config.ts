@@ -6,6 +6,7 @@ import { resolve } from "path";
 export default defineConfig({
   build: {
     outDir: "dist",
+    target: "es2015",
     lib: {
       entry: resolve(__dirname, "src/entry.ts"),
       name: "AbritesVueUi",
@@ -14,7 +15,18 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ["vue"],
+      external: [
+        "vue",
+        "vue-router",
+        "sortablejs",
+        "leaflet",
+        "flatpickr",
+        "chartjs-plugin-zoom",
+        "chartjs-adapter-date-fns",
+        "chart.js",
+        "@types/sortablejs",
+        "@types/leaflet",
+      ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps

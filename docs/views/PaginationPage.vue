@@ -47,7 +47,6 @@ const setup = () => {
   const pageSizeOptions = [10, 20, 30];
   const pageDataRight = ref(new PaginationData(1, 30));
   const { paginationData } = useUrlSync({
-    router,
     data: new PaginationData(1, 30),
   });
   return {

@@ -1,9 +1,8 @@
 import { PaginationData } from "../components/pagination/pagination-data";
 import { onMounted, ref, watch } from "vue";
-import { Router, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 export interface IURLSync {
-  router: Router;
   data: PaginationData;
   urlSyncParam?: string;
 }
@@ -14,8 +13,9 @@ function toObj(key, value) {
   return obj;
 }
 
-const useUrlSync = ({ router, data, urlSyncParam = "page" }: IURLSync) => {
+const useUrlSync = ({ data, urlSyncParam = "page" }: IURLSync) => {
   const paginationData = ref(data);
+  const router = useRouter();
 
   const _syncComponentWithUrl = () => {
     const params = router.currentRoute.value.query;
