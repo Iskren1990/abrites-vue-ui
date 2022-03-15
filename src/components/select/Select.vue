@@ -219,7 +219,6 @@ function filterConditions(value) {
             />
           </div>
           <div class="options-list">
-            {{ internalOptions }}
             <div
               v-for="option in filteredOptions"
               :key="option.key"
@@ -240,7 +239,6 @@ function filterConditions(value) {
                   : baseDeactivate(() => selectOption(option))
               "
             >
-              {{ option }}
               {{ renderOptionLabel(option) }}
             </div>
             <div
