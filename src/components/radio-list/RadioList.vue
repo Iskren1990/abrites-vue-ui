@@ -1,13 +1,21 @@
 <script lang="ts" setup>
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useBaseSelect, useErrorFormating } from "../../composables";
 import { defineProps, defineEmits } from "vue";
 interface IRadioistProps {
   // extends IBaseSelect interface
-  select?: string | number | symbol;
-  options: Array<Record<string | number | symbol, unknown> | [] | string>;
+  select?:
+    | Record<string | number | symbol, unknown>
+    | []
+    | any
+    | string
+    | number;
+  options: Array<
+    Record<string | number | symbol, unknown> | [] | any | string | number
+  >;
   multiple?: boolean;
   disabledOptions?: Array<
-    Record<string | number | symbol, unknown> | [] | string
+    Record<string | number | symbol, unknown> | [] | any | string | number
   >;
   disabled?: boolean;
   labelFactory?: (option) => string;

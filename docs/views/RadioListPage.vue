@@ -137,14 +137,18 @@ const htmlStatesExample = `
   <h3 class="section-title" id="inputs">Inputs</h3>
   <ul>
     <li>
-      <strong>select?</strong> <code>string | number | symbol</code>
+      <strong>select?</strong>
+      <code
+        >Record&lt;string | number | symbol, unknown&gt; | [] | string |
+        any</code
+      >
       <p>User selected option <code>v-model:select="selected"</code>.</p>
     </li>
     <li>
       <strong>options</strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] |
-        string&gt;
+        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] | string |
+        any&gt;
       </code>
       <p>List of options to select from.</p>
     </li>
@@ -155,8 +159,8 @@ const htmlStatesExample = `
     <li>
       <strong>disabledOptions?</strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] |
-        string&gt;</code
+        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] | string |
+        any&gt;</code
       >
       <p>List of options to mark as disabled.</p>
     </li>
@@ -200,12 +204,17 @@ const htmlStatesExample = `
     <li>
       <strong>update:select </strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] |
-        string&gt;
+        <a
+          :href="`${Config.componentsUrl}/components/select/select-option.ts#L1`"
+          target="_blank"
+          rel="noopener"
+          >Array&lt;SelectOption&gt; | SelectOption</a
+        >
       </code>
       <p>
         Fired after selection change. Receives the changed
-        <code>selected</code> as an argument.
+        <code>selected</code> as an argument. Type of emited value depends if
+        multiple is true.
       </p>
     </li>
   </ul>

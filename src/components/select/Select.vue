@@ -1,18 +1,27 @@
-/* eslint-disable vue/no-side-effects-in-computed-properties */
 <script lang="ts" setup>
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable vue/no-side-effects-in-computed-properties */
+
 import { InputError, useErrorFormating } from "../../composables";
 import { useBaseSelect } from "../../composables";
 import { computed, defineProps, ref, withDefaults, defineEmits } from "vue";
-import { SelectOption } from "./select-option";
+import { normalizeOptions, SelectOption, singleOption } from "./select-option";
 
 // Props in IBaseSelect should be removed from Select.vue and RadioList.vue onde Vue suports interface import in setup fn.
 interface ISelectProps {
   // extends IBaseSelect interface
-  select?: string | number | symbol;
-  options: Array<Record<string | number | symbol, unknown> | [] | string>;
+  select?:
+    | Record<string | number | symbol, unknown>
+    | []
+    | any
+    | string
+    | number;
+  options: Array<
+    Record<string | number | symbol, unknown> | [] | any | string | number
+  >;
   multiple?: boolean;
   disabledOptions?: Array<
-    Record<string | number | symbol, unknown> | [] | string
+    Record<string | number | symbol, unknown> | [] | any | string | number
   >;
   disabled?: boolean;
   labelFactory?: (option) => string;
@@ -48,7 +57,7 @@ const emit = defineEmits<{
 }>();
 
 const {
-  options,
+  options: internalOptions,
   selected,
   hasSelected,
   isOptionSelected,
@@ -94,11 +103,26 @@ const baseDeactivate = (callback: () => void) => {
 
 const toggle = () => (isActive.value ? deactivate() : activate());
 
-// set innitial selected if any
-props.select &&
-  selectOption(options.value.find((x) => x.label == props.select));
+const processSelected = () => {
+  if (Array.isArray(props.select)) {
+    const normalizedSelected = normalizeOptions(props.select);
+    const selectedInOptions = normalizedSelected.filter((x) =>
+      internalOptions.value.find((y) => y.key == x.key)
+    );
+    selectedInOptions.forEach(selectOption);
+  } else {
+    selectOption(
+      internalOptions.value.find(
+        (x) => x.label == singleOption(props.select, props.select).label
+      )
+    );
+  }
+};
 
-const _filteredOptions = ref<SelectOption[]>(options.value);
+// set innitial selected if any
+props.select && processSelected();
+
+const _filteredOptions = ref<SelectOption[]>(internalOptions.value);
 const filteredOptions = computed({
   get: () => {
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
@@ -108,10 +132,10 @@ const filteredOptions = computed({
   set: (value) => {
     // is searchable is passed and if we have search term
     if (!props.searchable || term.value.length == 0) {
-      _filteredOptions.value = options.value;
+      _filteredOptions.value = internalOptions.value;
     }
 
-    _filteredOptions.value = options.value.filter(filterConditions);
+    _filteredOptions.value = internalOptions.value.filter(filterConditions);
   },
 });
 
@@ -195,6 +219,7 @@ function filterConditions(value) {
             />
           </div>
           <div class="options-list">
+            {{ internalOptions }}
             <div
               v-for="option in filteredOptions"
               :key="option.key"
@@ -215,6 +240,7 @@ function filterConditions(value) {
                   : baseDeactivate(() => selectOption(option))
               "
             >
+              {{ option }}
               {{ renderOptionLabel(option) }}
             </div>
             <div
@@ -440,6 +466,7 @@ function filterConditions(value) {
         cursor: initial;
         pointer-events: none;
         color: $txt-secondary-color;
+        opacity: 0.3;
       }
       &.selected {
         color: $accent-color;

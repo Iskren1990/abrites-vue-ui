@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { computed, ref } from "vue";
 import {
   SelectOption,
@@ -28,12 +29,11 @@ const useBaseSelect = (props: IBaseSelect, emits) => {
     ) {
       return;
     }
-
     selected.value = [option];
 
     emits(
       "update:select",
-      props.multiple ? _selected.value.map((x) => x.label) : _selected.value[0]
+      props.multiple ? _selected.value.map((x) => x) : _selected.value[0]
     );
   };
 
@@ -58,11 +58,13 @@ const useBaseSelect = (props: IBaseSelect, emits) => {
     _selected.value = [];
   };
 
-  const _disabledOptions = ref(props.disabledOptions || []);
-  const isOptionDisabled = (option) => _disabledOptions.value?.includes(option);
+  const _disabledOptions = ref(normalizeOptions(props.disabledOptions) || []);
+  const isOptionDisabled = (option) => {
+    return !!_disabledOptions.value?.find((x) => x.key == option.key);
+  };
 
   const isOptionSelected = (option) => {
-    return _selected.value?.includes(option);
+    return !!_selected.value?.find((x) => x.key == option.key);
   };
 
   const renderOptionLabel = (
@@ -94,11 +96,20 @@ export { useBaseSelect };
 
 // Props in IBaseSelect should be removed from Select.vue and RadioList.vue onde Vue suports interface import in setup fn.
 export interface IBaseSelect {
-  select?: string | number | symbol;
-  options: Array<Record<string | number | symbol, unknown> | [] | string>;
+  select?:
+    | Record<string | number | symbol, unknown>
+    | []
+    | any
+    | number
+    | string;
+  options: Array<
+    Record<string | number | symbol, unknown> | [] | any | number | string
+  >;
   multiple?: boolean;
   disabledOptions?: Array<
-    Record<string | number | symbol, unknown> | [] | string
+    Array<
+      Record<string | number | symbol, unknown> | [] | any | number | string
+    >
   >;
   disabled?: boolean;
   labelFactory?: (option) => string;
