@@ -1,5 +1,5 @@
 export class SelectOption {
-  key: string | number | symbol | never;
+  key: string | number | never;
   label: string | number | symbol | never;
   constructor(key, label) {
     this.key = key;

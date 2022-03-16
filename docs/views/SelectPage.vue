@@ -172,13 +172,13 @@ const htmlPreselectedExample = `
   <ul>
     <li>
       <strong>select?</strong>
-      <code> Record&lt;string | number | symbol, unknown&gt; | [] | any</code>
+      <code> Record&lt;string | number, unknown&gt; | [] | any</code>
       <p>User selected option <code>v-model:select="selected"</code>.</p>
     </li>
     <li>
       <strong>options</strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] | any&gt;
+        Array&lt;Record&lt;string | number, unknown&gt; | [] | any&gt;
       </code>
       <p>List of options to select from.</p>
     </li>
@@ -189,8 +189,7 @@ const htmlPreselectedExample = `
     <li>
       <strong>disabledOptions?</strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] |
-        any&gt;</code
+        Array&lt;Record&lt;string | number, unknown&gt; | [] | any&gt;</code
       >
       <p>List of options to mark as disabled.</p>
     </li>

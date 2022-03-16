@@ -138,17 +138,13 @@ const htmlStatesExample = `
   <ul>
     <li>
       <strong>select?</strong>
-      <code
-        >Record&lt;string | number | symbol, unknown&gt; | [] | string |
-        any</code
-      >
+      <code>Record&lt;string | number, unknown&gt; | [] | string | any</code>
       <p>User selected option <code>v-model:select="selected"</code>.</p>
     </li>
     <li>
       <strong>options</strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] | string |
-        any&gt;
+        Array&lt;Record&lt;string | number, unknown&gt; | [] | string | any&gt;
       </code>
       <p>List of options to select from.</p>
     </li>
@@ -159,7 +155,7 @@ const htmlStatesExample = `
     <li>
       <strong>disabledOptions?</strong>
       <code>
-        Array&lt;Record&lt;string | number | symbol, unknown&gt; | [] | string |
+        Array&lt;Record&lt;string | number, unknown&gt; | [] | string |
         any&gt;</code
       >
       <p>List of options to mark as disabled.</p>

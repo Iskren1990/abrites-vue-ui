@@ -4,18 +4,11 @@ import { useBaseSelect, useErrorFormating } from "../../composables";
 import { defineProps, defineEmits } from "vue";
 interface IRadioistProps {
   // extends IBaseSelect interface
-  select?:
-    | Record<string | number | symbol, unknown>
-    | []
-    | any
-    | string
-    | number;
-  options: Array<
-    Record<string | number | symbol, unknown> | [] | any | string | number
-  >;
+  select?: Record<string | number, unknown> | [] | any | string | number;
+  options: Array<Record<string | number, unknown> | [] | any | string | number>;
   multiple?: boolean;
   disabledOptions?: Array<
-    Record<string | number | symbol, unknown> | [] | any | string | number
+    Record<string | number, unknown> | [] | any | string | number
   >;
   disabled?: boolean;
   labelFactory?: (option) => string;
