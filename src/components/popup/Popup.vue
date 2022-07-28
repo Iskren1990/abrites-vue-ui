@@ -33,7 +33,7 @@ import {
   ref,
 } from "vue";
 
-interface IPopupProps {
+export interface IPopupProps {
   opened?: boolean;
   preventOverlayClose?: boolean;
   preventEscClose?: boolean;
@@ -157,7 +157,10 @@ function setHolder() {
   }
 }
 
-defineExpose({ open, close });
+defineExpose<{
+  open: () => void;
+  close: ({ delay }?: { delay?: number }) => void;
+}>({ open, close });
 </script>
 
 <style lang="scss" scoped>

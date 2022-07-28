@@ -2,6 +2,7 @@
 import { Preview } from "./shared/index";
 import * as Config from "../utils/app-config";
 import { ref } from "vue";
+import { AbritesPopup } from "@/components";
 
 const htmlSizesExample = `
 <AbritesButton @trigger="largeSizePopup.open()">Large size popup</AbritesButton>
@@ -80,14 +81,14 @@ const deferredExample = `
 const imports = ["import { ref } from 'vue';"];
 
 const sizeFn = () => {
-  const smallSizePopup = ref();
-  const defaultSizePopup = ref();
-  const largeSizePopup = ref();
+  const smallSizePopup = ref<InstanceType<typeof AbritesPopup>>();
+  const defaultSizePopup = ref<InstanceType<typeof AbritesPopup>>();
+  const largeSizePopup = ref<InstanceType<typeof AbritesPopup>>();
   return { smallSizePopup, defaultSizePopup, largeSizePopup };
 };
 
 const defferedFn = () => {
-  const deferredPopup = ref();
+  const deferredPopup = ref<InstanceType<typeof AbritesPopup>>();
   return { deferredPopup };
 };
 </script>
